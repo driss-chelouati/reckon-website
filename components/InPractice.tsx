@@ -1,0 +1,137 @@
+export default function InPractice() {
+  return (
+    <>
+      <div className="band">
+        <div className="sec" id="practice" style={{ paddingBottom: "0" }}>
+          <div className="srail">
+            <span className="l">In practice</span>
+            <span className="r">Judged by what a team must undo</span>
+          </div>
+          <div className="shead">
+            <h2>Output a team can build straight from.</h2>
+            <div style={{ paddingBottom: "clamp(4px,1vw,14px)" }}>
+              <p className="lede">
+                The brief named a job, not a screen. The rules add what a brief never says out loud: totals name their rows, settled records are not offered actions, routes exist and status values are a closed set. Nobody reverse-engineers intent from a picture.
+              </p>
+              <a className="snum" href="#templates">
+                <i>02</i>
+                <u>See the products →</u>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="prac">
+        <div className="pin">
+          <div className="tl">
+            <b style={{ left: "6%" }}>RULES</b>
+            {' '}
+            <i style={{ left: "6%" }} />
+            {' '}
+            <b style={{ left: "21%" }}>MODEL</b>
+            {' '}
+            <i style={{ left: "21%" }} />
+            {' '}
+            <b style={{ left: "36%" }}>FIXTURES</b>
+            {' '}
+            <i style={{ left: "36%" }} />
+            {' '}
+            <b style={{ left: "52%" }}>DERIVE</b>
+            {' '}
+            <i style={{ left: "52%" }} />
+            {' '}
+            <b style={{ left: "68%" }}>RENDER</b>
+            {' '}
+            <i style={{ left: "68%" }} />
+            {' '}
+            <b style={{ left: "84%" }}>AUDIT</b>
+            {' '}
+            <i style={{ left: "84%" }} />
+            {' '}
+            <i style={{ left: "13%", opacity: ".45" }} />
+            {' '}
+            <i style={{ left: "28%", opacity: ".45" }} />
+            {' '}
+            <i style={{ left: "44%", opacity: ".45" }} />
+            {' '}
+            <i style={{ left: "60%", opacity: ".45" }} />
+            {' '}
+            <i style={{ left: "76%", opacity: ".45" }} />
+            {' '}
+            <i style={{ left: "92%", opacity: ".45" }} />
+          </div>
+          <svg className="link2" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M470,238 C560,238 560,318 640,318" />
+            <path d="M600,398 C690,398 690,478 770,478" />
+          </svg>
+          <div className="trk" style={{ top: "118px" }}>
+            <div className="lab" style={{ left: "30%" }}>
+              <u />
+              Work queue{' '}
+              <s>✓</s>
+            </div>
+            <div className="bar2 lit" style={{ left: "30%", width: "26%" }} />
+            <div className="mk on" style={{ left: "41%" }} />
+            <div className="sub" style={{ left: "41%" }}>figures name their arrays</div>
+            <div className="bar2" style={{ left: "57%", width: "12%" }} />
+          </div>
+          <div className="trk" style={{ top: "230px" }}>
+            <div className="lab" style={{ left: "22%" }}>
+              <u />
+              Claim detail{' '}
+              <s>✓</s>
+            </div>
+            <div className="bar2 lit" style={{ left: "22%", width: "34%" }} />
+            <div className="mk on" style={{ left: "38%" }} />
+            <div className="sub" style={{ left: "38%" }}>evidence gates the decision</div>
+          </div>
+          <div className="trk" style={{ top: "342px" }}>
+            <div className="lab" style={{ left: "46%" }}>
+              <u />
+              Decision{' '}
+              <s className="bad">◆</s>
+            </div>
+            <div className="bar2 lit" style={{ left: "46%", width: "28%" }} />
+            <div className="mk bad" style={{ left: "60%" }} />
+            <div className="sub" style={{ left: "60%" }}>liability cap applied</div>
+            <div className="bar2 ghost" style={{ left: "76%", width: "16%" }} />
+          </div>
+          <div className="trk" style={{ top: "454px" }}>
+            <div className="lab" style={{ left: "62%" }}>
+              <u />
+              Recovery{' '}
+              <s>✓</s>
+            </div>
+            <div className="bar2 lit" style={{ left: "62%", width: "30%" }} />
+            <div className="mk on" style={{ left: "78%" }} />
+            <div className="sub" style={{ left: "78%" }}>every enum value drawn</div>
+          </div>
+          <div className="pcard">
+            <h4>ClaimsDesk</h4>
+            <div className="pquote">
+              “I’m an adjuster. I need to see what’s burning down, and I can only act on claims that are actually ready for me.”
+            </div>
+            <div className="prow">
+              <u className="on" />
+              Screens generated
+              <b>8</b>
+            </div>
+            <div className="prow sub2">
+              Derived aggregates
+              <b>14</b>
+            </div>
+            <div className="prow sub2">
+              States exercised
+              <b>9 / 9</b>
+            </div>
+            <div className="prow sub2">
+              Actions withheld
+              <b>2</b>
+            </div>
+            <div className="pfoot">One pass · no corrections</div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
