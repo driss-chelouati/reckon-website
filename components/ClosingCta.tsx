@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import SiteLink from "@/components/SiteLink";
 import { useEffect, useRef, type ReactNode } from "react";
 import * as THREE from "three";
 
@@ -8,9 +8,9 @@ type Action = { href: string; label: string; tear?: string };
 
 const Act = ({ className, action }: { className: string; action: Action }) =>
   action.href.startsWith("/") ? (
-    <Link className={className} href={action.href} data-t={action.tear}>
+    <SiteLink className={className} href={action.href} data-t={action.tear}>
       {action.label}
-    </Link>
+    </SiteLink>
   ) : (
     <a className={className} href={action.href} data-t={action.tear}>
       {action.label}
