@@ -2,6 +2,7 @@
 
 import * as THREE from "three";
 import Field, { type BuildScene } from "@/components/fx/Field";
+import { pointFragmentShader, pointVertexShader } from "@/components/fx/pointShader";
 
 /* Pricing hero — a dot field carried by crossing waves. A bright crest sweeps
    through it; most points swell, ride the swell and settle back dim, while a
@@ -17,29 +18,6 @@ const CYCLE = 11;
 const DIM = [74, 76, 92];
 const WARM = [255, 138, 104];
 const HOT = [255, 206, 182];
-
-/* A small shader so each point can carry its own size — the swell is what makes
-   the wave legible, and PointsMaterial cannot vary size per vertex. */
-const vertexShader = `
-attribute float psize;
-varying vec3 vColor;
-void main(){
-  vColor = color;
-  vec4 mv = modelViewMatrix * vec4(position, 1.0);
-  gl_PointSize = psize;
-  gl_Position = projectionMatrix * mv;
-}`;
-
-const fragmentShader = `
-uniform float uOpacity;
-varying vec3 vColor;
-void main(){
-  vec2 d = gl_PointCoord - vec2(0.5);
-  float r = dot(d, d);
-  if (r > 0.25) discard;
-  float a = smoothstep(0.25, 0.02, r);
-  gl_FragColor = vec4(vColor, a * uOpacity);
-}`;
 
 const build: BuildScene = (renderer) => {
   const scene = new THREE.Scene();
@@ -87,8 +65,8 @@ const build: BuildScene = (renderer) => {
     depthWrite: false,
     blending: THREE.AdditiveBlending,
     uniforms: { uOpacity: { value: 0.95 } },
-    vertexShader,
-    fragmentShader,
+    vertexShader: pointVertexShader,
+    fragmentShader: pointFragmentShader,
     vertexColors: true,
   });
   group.add(new THREE.Points(geo, mat));

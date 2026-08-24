@@ -1,0 +1,91 @@
+/* ---------- changelog + roadmap ---------- */
+.chero{position:relative; padding:clamp(52px,6.5vw,96px) 0 0}
+.chero > *{position:relative; z-index:1}
+.chero h1{font-size:clamp(36px,5.6vw,70px); line-height:1.04; letter-spacing:-.034em}
+.chero .lede{margin-top:26px; max-width:56ch}
+.cfx{position:absolute; z-index:0 !important; right:calc(-2.2 * var(--gut)); top:-170px;
+  width:min(900px,68vw); height:760px; pointer-events:none;
+  -webkit-mask-image:radial-gradient(74% 68% at 72% 44%, #000 16%, rgba(0,0,0,.45) 60%, transparent 100%);
+  mask-image:radial-gradient(74% 68% at 72% 44%, #000 16%, rgba(0,0,0,.45) 60%, transparent 100%)}
+.cfx canvas{display:block; width:100%; height:100%}
+@media(max-width:1080px){ .cfx{opacity:.5; width:86vw} }
+@media(max-width:760px){ .cfx{display:none} }
+
+/* the state of things, across the top */
+.cnow{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  margin-top:clamp(32px,3.6vw,46px); border-top:1px solid var(--hair)}
+@media(max-width:760px){ .cnow{grid-template-columns:1fr} }
+.cnow > div{padding:22px clamp(18px,2vw,28px) 0 0}
+.cnow > div + div{border-left:1px solid var(--hair); padding-left:clamp(18px,2vw,28px)}
+@media(max-width:760px){
+  .cnow > div{padding:20px 0 0}
+  .cnow > div + div{border-left:0; border-top:1px solid var(--hair)}
+}
+.cnow i{display:block; font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:9px;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); margin-bottom:11px}
+.cnow b{display:block; font-family:var(--font-jetbrains-mono),monospace; font-variant-numeric:tabular-nums;
+  font-size:clamp(19px,1.9vw,24px); font-weight:500; letter-spacing:-.02em; color:var(--ink)}
+.cnow span{display:block; margin-top:8px; font-size:12.5px; line-height:1.5; color:var(--ink-3)}
+
+/* the log itself: a spine with entries hanging off it */
+.log{position:relative; margin-top:clamp(24px,2.8vw,38px); padding-left:clamp(18px,2.4vw,34px)}
+.log::before{content:""; position:absolute; left:0; top:6px; bottom:6px; width:1px;
+  background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05))}
+.rel2{position:relative; padding:0 0 clamp(30px,3.4vw,46px)}
+.rel2:last-child{padding-bottom:0}
+.rel2::before{content:""; position:absolute; left:calc(-1 * clamp(18px,2.4vw,34px)); top:7px;
+  width:9px; height:9px; margin-left:-4px; border-radius:50%;
+  background:var(--bg); box-shadow:0 0 0 1px rgba(255,255,255,.28)}
+.rel2.now::before{background:var(--fire); box-shadow:0 0 0 4px rgba(249,122,92,.16)}
+.rhd{display:flex; align-items:baseline; flex-wrap:wrap; gap:12px; margin-bottom:14px}
+.rhd b{font-family:var(--font-jetbrains-mono),monospace; font-size:14px; font-weight:500;
+  letter-spacing:-.01em; color:var(--ink)}
+.rhd time{font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-3)}
+.rtag{font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px; letter-spacing:.14em;
+  text-transform:uppercase; border-radius:999px; padding:4px 10px;
+  color:var(--ink-3); background:rgba(255,255,255,.06)}
+.rtag.cur{color:var(--fire-lt); background:rgba(249,122,92,.13)}
+.rnote{font-size:14px; line-height:1.62; color:var(--ink-2); margin:0 0 16px; max-width:66ch}
+.rl2{display:grid; gap:0; border-top:1px solid var(--hair)}
+.rl2 div{display:grid; grid-template-columns:64px minmax(0,1fr); gap:14px; align-items:baseline;
+  padding:11px 0; border-bottom:1px solid var(--hair);
+  font-size:13.5px; line-height:1.5; color:var(--ink-2)}
+.rl2 em{font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.rl2 em.add{color:#8FD0AC}
+.rl2 em.chg{color:var(--fire-lt)}
+.rl2 em.fix{color:var(--tie)}
+
+/* what is next, and how sure it is */
+.road{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(12px,1.5vw,18px); margin-top:clamp(24px,2.8vw,38px)}
+@media(max-width:940px){ .road{grid-template-columns:1fr} }
+.rdc{position:relative; display:flex; flex-direction:column; padding:4px;
+  border:1px solid var(--edge-2); border-radius:16px; background:rgba(255,255,255,.022)}
+.rdin{display:flex; flex-direction:column; flex:1; overflow:hidden;
+  border:1px solid var(--edge-2); border-radius:12px; background:rgba(255,255,255,.022)}
+.rdh{display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:14px 18px; border-bottom:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--ink-3)}
+.conf{display:inline-flex; gap:3px; align-items:center}
+.conf u{width:14px; height:3px; border-radius:2px; text-decoration:none;
+  background:rgba(255,255,255,.14)}
+.conf u.on{background:var(--fire)}
+.rdb{padding:18px; display:grid; gap:0; margin-top:auto;
+  background:rgba(255,255,255,.038); border-radius:12px 12px 0 0}
+.rdb h3{font-size:15px; font-weight:600; color:var(--ink); margin:0 0 8px}
+.rdb p{font-size:13px; line-height:1.6; color:var(--ink-2); margin:0 0 14px}
+.rdb ul{list-style:none; margin:0; padding:0; display:grid; gap:9px}
+.rdb li{position:relative; padding-left:16px; font-size:12.5px; line-height:1.5;
+  color:var(--ink-3)}
+.rdb li::before{content:""; position:absolute; left:0; top:7px; width:5px; height:5px;
+  border-radius:50%; background:rgba(255,255,255,.22)}
+
+.cnote{margin-top:clamp(28px,3.2vw,42px); padding-top:20px; border-top:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.09em; line-height:1.8;
+  color:var(--ink-3); max-width:74ch}
+@keyframes pagein{from{opacity:0} to{opacity:1}}
+.hband ~ *{animation:pagein .75s ease .82s both}
+@media(prefers-reduced-motion:reduce){ .hband ~ *{animation:none} }

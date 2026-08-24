@@ -3,13 +3,19 @@ import { faqItems, type QaItem } from "@/lib/faq";
 /* Five hidden radios drive which answer is showing. This stays CSS-only and
    keyboard-accessible as it is — turning it into React state would mean the
    page needs JavaScript to answer its own questions. */
+const DEFAULT_LEDE =
+  "The questions a sceptical lead asks before they will put an unfamiliar file in front of their team.";
+
 export default function Faq({
   items = faqItems,
+  lede = DEFAULT_LEDE,
   num,
   href,
   label,
 }: {
   items?: QaItem[];
+  /* /changelog asks the reader a different way in */
+  lede?: string;
   num: string;
   href: string;
   label: string;
@@ -25,10 +31,7 @@ export default function Faq({
           <div className="shead">
             <h2>Straight answers.</h2>
             <div>
-              <p className="lede">
-                The questions a sceptical lead asks before they will put an unfamiliar file in
-                front of their team.
-              </p>
+              <p className="lede">{lede}</p>
               <a className="snum" href={href}>
                 <i>{num}</i>
                 <u>{label}</u>
