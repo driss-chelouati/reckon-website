@@ -1,16 +1,46 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Link from "next/link";
+import { useEffect, useRef, type ReactNode } from "react";
 import * as THREE from "three";
 
-/* Closing panel: a system holding its parts. The vertices drift off the form,
-   then are drawn back onto it; the edges brighten as it resolves. */
-export default function ClosingCta() {
+type Action = { href: string; label: string; tear?: string };
+
+const Act = ({ className, action }: { className: string; action: Action }) =>
+  action.href.startsWith("/") ? (
+    <Link className={className} href={action.href} data-t={action.tear}>
+      {action.label}
+    </Link>
+  ) : (
+    <a className={className} href={action.href} data-t={action.tear}>
+      {action.label}
+    </a>
+  );
+
+/* The panel every page closes on. Three of them — the landing page, /pricing
+   and /changelog — carry the field behind it: a system holding its parts, whose
+   vertices drift off the form and are then drawn back onto it, the edges
+   brightening as it resolves. */
+export default function ClosingCta({
+  headline,
+  lede,
+  primary,
+  secondary,
+  field = false,
+  note = "Built for Claude Design · plain markdown · nothing to run",
+}: {
+  headline: ReactNode;
+  lede: string;
+  primary: Action;
+  secondary: Action;
+  field?: boolean;
+  note?: string;
+}) {
   const boxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const box = boxRef.current;
-    if (!box) return;
+    if (!box || !field) return;
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     // A fresh canvas per mount: a disposed WebGL context cannot be re-acquired
@@ -203,27 +233,20 @@ export default function ClosingCta() {
     });
 
     return bail;
-  }, []);
+  }, [field]);
 
   return (
     <div className="band">
       <div className="cta-wrap">
         <div className="cta-box" ref={boxRef}>
           <p className="eyebrow">Reckon</p>
-          <h2>
-            Ship the screen.
-            <br />
-            Not the guesswork.
-          </h2>
-          <p className="lede">
-            Components are the easy part. What you are missing is the layer that decides what gets computed, what gets shown, and what gets refused.
-          </p>
+          <h2>{headline}</h2>
+          <p className="lede">{lede}</p>
           <div className="cta-acts">
-            <a className="cta" href="#what">Connect your design agent</a>
-            {' '}
-            <a className="cta-alt" href="#templates">See a worked product</a>
+            <Act className="cta" action={primary} />
+            <Act className="cta-alt" action={secondary} />
           </div>
-          <div className="cta-note">Built for Claude Design · plain markdown · nothing to run</div>
+          <div className="cta-note">{note}</div>
         </div>
       </div>
     </div>

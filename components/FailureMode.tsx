@@ -1,114 +1,46 @@
+/* Problem */
 export default function FailureMode() {
   return (
-    <div className="band">
-      <div className="sec" id="problem">
-        <div className="srail">
-          <span className="l">The failure mode</span>
-          <span className="r">Semantic, not cosmetic</span>
-        </div>
-        <div className="shead">
-          <h2>A plausible number is worse than no number.</h2>
-          <div>
-            <p className="lede">
-              Ask an agent for an operations screen and you get something that photographs well. Then you read it. The expensive rework here is semantic — a figure that will not reconcile, a control that lies about when it applies — and no component library touches any of it.
-            </p>
-            <a className="snum" href="#what">
-              <i>01</i>
-              <u>What the rules add →</u>
-            </a>
-          </div>
-        </div>
-        <div className="stage">
-          <div className="sgrid">
-            <div className="panel">
-              <h4>
-                Assessed payable by month{' '}
-                <span className="key">
-                  <i className="k1" />
-                  derived
-                  <i className="k2" />
-                  capped
-                </span>
-              </h4>
-              <div className="chart">
-                <div className="bars">
-                  <span className="bar">
-                    <u className="b" style={{ height: "10px" }} />
-                    <u style={{ height: "91px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "12px" }} />
-                    <u style={{ height: "110px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "14px" }} />
-                    <u style={{ height: "98px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "16px" }} />
-                    <u style={{ height: "139px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "12px" }} />
-                    <u style={{ height: "124px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "18px" }} />
-                    <u style={{ height: "160px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "14px" }} />
-                    <u style={{ height: "146px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "20px" }} />
-                    <u style={{ height: "177px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "16px" }} />
-                    <u style={{ height: "165px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "22px" }} />
-                    <u style={{ height: "199px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "18px" }} />
-                    <u style={{ height: "187px" }} />
-                  </span>
-                  {' '}
-                  <span className="bar">
-                    <u className="b" style={{ height: "26px" }} />
-                    <u style={{ height: "218px" }} />
-                  </span>
-                </div>
-                <div className="yax">
-                  <span>240k</span>
-                  <span>180k</span>
-                  <span>120k</span>
-                  <span>60k</span>
-                  <span>0</span>
-                </div>
-              </div>
-              <div className="xax">
-                <span>Sep 2025</span>
-                <span>Mar 2026</span>
-                <span>Aug 2026</span>
-              </div>
+    <>
+      <div className="band">
+        <div className="sec" id="problem">
+          <div className="srail"><span className="l">The failure mode</span><span className="r">Semantic, not cosmetic</span></div>
+
+          <div className="shead">
+            <h2>A plausible number is worse than no number.</h2>
+            <div>
+              <p className="lede">Ask an agent for an operations screen and you get something that photographs well. Then you read it. The expensive rework here is semantic — a figure that will not reconcile, a control that lies about when it applies — and no component library touches any of it.</p>
+              <a className="snum" href="#what"><i>01</i><u>What the rules add →</u></a>
             </div>
-            <div className="panel">
-              <h4>Time to decision, by queue state</h4>
-              <svg className="swarm" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          </div>
+
+          <div className="stage">
+            <div className="sgrid">
+              <div className="panel">
+                <h4>Assessed payable by month <span className="key"><i className="k1"></i>derived<i className="k2"></i>capped</span></h4>
+                <div className="chart">
+                  <div className="bars">
+                  <span className="bar"><u className="b" style={{ height: "10px" }}></u><u style={{ height: "91px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "12px" }}></u><u style={{ height: "110px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "14px" }}></u><u style={{ height: "98px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "16px" }}></u><u style={{ height: "139px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "12px" }}></u><u style={{ height: "124px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "18px" }}></u><u style={{ height: "160px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "14px" }}></u><u style={{ height: "146px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "20px" }}></u><u style={{ height: "177px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "16px" }}></u><u style={{ height: "165px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "22px" }}></u><u style={{ height: "199px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "18px" }}></u><u style={{ height: "187px" }}></u></span>
+                  <span className="bar"><u className="b" style={{ height: "26px" }}></u><u style={{ height: "218px" }}></u></span>
+                  </div>
+                  <div className="yax"><span>240k</span><span>180k</span><span>120k</span><span>60k</span><span>0</span></div>
+                </div>
+                <div className="xax"><span>Sep 2025</span><span>Mar 2026</span><span>Aug 2026</span></div>
+              </div>
+
+              <div className="panel">
+                <h4>Time to decision, by queue state</h4>
+                <svg className="swarm" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                 <path className="gl2" d="M40,60 H760" />
                 <path className="gl2" d="M40,120 H760" />
                 <path className="gl2" d="M40,180 H760" />
@@ -256,69 +188,44 @@ export default function FailureMode() {
                 <text x="150" y="296" textAnchor="middle" fill="rgba(249,122,92,.82)">With rules</text>
                 <text x="400" y="296" textAnchor="middle" fill="rgba(142,150,255,.8)">Reviewed</text>
                 <text x="650" y="296" textAnchor="middle">Unruled</text>
-              </svg>
+                </svg>
+              </div>
+            </div>
+
+            <div className="float">
+              <div className="fh"><b>Audit for Aug 20</b><span>3 findings</span></div>
+              <div className="lbl">Screens</div>
+
+              <div className="fitem">
+                <h5>Work queue</h5>
+                <div className="fmeta"><span className="tag bad"><i></i>At risk</span> · generated 1 hour ago</div>
+                <ul>
+                  <li>The payable figure above the table is a literal; it matches none of the rows beneath it.</li>
+                  <li>One claim is missing a mandatory document and is still counted as ready.</li>
+                </ul>
+              </div>
+
+              <div className="fitem">
+                <h5>Recovery detail</h5>
+                <div className="fmeta"><span className="tag ok"><i></i>Reconciles</span> · generated 1 hour ago</div>
+                <ul>
+                  <li>Every figure names the data it comes from.</li>
+                  <li>Expired, rejected and empty states all render.</li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className="float">
-            <div className="fh">
-              <b>Audit for Aug 20</b>
-              <span>3 findings</span>
-            </div>
-            <div className="lbl">Screens</div>
-            <div className="fitem">
-              <h5>Work queue</h5>
-              <div className="fmeta">
-                <span className="tag bad">
-                  <i />
-                  At risk
-                </span>
-                {' '}· generated 1 hour ago
-              </div>
-              <ul>
-                <li>The payable figure above the table is a literal; it matches none of the rows beneath it.</li>
-                <li>One claim is missing a mandatory document and is still counted as ready.</li>
-              </ul>
-            </div>
-            <div className="fitem">
-              <h5>Recovery detail</h5>
-              <div className="fmeta">
-                <span className="tag ok">
-                  <i />
-                  Reconciles
-                </span>
-                {' '}· generated 1 hour ago
-              </div>
-              <ul>
-                <li>Every figure names the data it comes from.</li>
-                <li>Expired, rejected and empty states all render.</li>
-              </ul>
-            </div>
+
+          <div className="idx">
+            <a href="#what"><span className="n">01</span><span className="t">Untraceable figures</span>
+              <p>A total written as a literal, sitting above rows that contradict it, that nobody can trace back to any data.</p></a>
+            <a href="#what"><span className="n">02</span><span className="t">Controls that lie</span>
+              <p>The same action on every row — including a record the data settled fourteen minutes ago.</p></a>
+            <a href="#what"><span className="n">03</span><span className="t">Undesigned states</span>
+              <p>Loading, empty, filtered-to-nothing, error, permission-denied — the screens an engineer has to invent later.</p></a>
           </div>
-        </div>
-        <div className="idx">
-          <a href="#what">
-            <span className="n">01</span>
-            <span className="t">Untraceable figures</span>
-            <p>
-              A total written as a literal, sitting above rows that contradict it, that nobody can trace back to any data.
-            </p>
-          </a>
-          {' '}
-          <a href="#what">
-            <span className="n">02</span>
-            <span className="t">Controls that lie</span>
-            <p>The same action on every row — including a record the data settled fourteen minutes ago.</p>
-          </a>
-          {' '}
-          <a href="#what">
-            <span className="n">03</span>
-            <span className="t">Undesigned states</span>
-            <p>
-              Loading, empty, filtered-to-nothing, error, permission-denied — the screens an engineer has to invent later.
-            </p>
-          </a>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,51 +1,31 @@
-"use client";
+import HeroField from "@/components/HeroField";
+import Glitch from "@/components/Glitch";
 
-import { useEffect, useRef } from "react";
-import HeroField from "./HeroField";
-
+/* The landing hero reveals piece by piece rather than through the shared .rin
+   stagger, because its four pieces sit inside a plain wrapper div — the delays
+   are named individually in globals.css against these exact elements. */
 export default function Hero() {
-  const gl = useRef<HTMLSpanElement>(null);
-
-  /* the headline word gives out at irregular intervals */
-  useEffect(() => {
-    const w = gl.current;
-    if (!w) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let next: ReturnType<typeof setTimeout>;
-    let clear: ReturnType<typeof setTimeout>;
-    const fire = () => {
-      w.classList.add("hit");
-      clear = setTimeout(() => w.classList.remove("hit"), 760);
-      next = setTimeout(fire, 3200 + Math.random() * 3600); // 3.2s – 6.8s apart
-    };
-    next = setTimeout(fire, 1400 + Math.random() * 1600);
-
-    return () => {
-      clearTimeout(next);
-      clearTimeout(clear);
-      w.classList.remove("hit");
-    };
-  }, []);
-
   return (
-    <div className="band" id="top">
-      <div className="hero">
+    <div className="band hband" id="top">
+      <div className="hero rin">
         <HeroField />
         <div>
           <p className="eyebrow">A design system for business applications</p>
           <h1>
-            Your agent’s first screen is usually{' '}
-            <span className="gl" data-t="wrong" ref={gl}>wrong</span>
-            .
+            Your agent’s first screen is usually <Glitch word="wrong" />.
           </h1>
           <p className="lede">
-            Not ugly — wrong underneath. Totals that trace to nothing, two screens disagreeing about the same record, states that exist in the data and nowhere on screen. That costs you twice: once when a client signs off on fiction, again when an engineer has to work out which figures were real.
+            Reckon is a rules layer for design agents building the software nobody demos: every
+            figure traces to real data, every action fits the record it sits on, every state is
+            drawn before a user finds it.
           </p>
           <div className="hero-actions">
-            <a className="cta" href="#what">Connect your design agent</a>
-            {' '}
-            <a className="cta-alt" href="#pairs">See what goes wrong</a>
+            <a className="cta" href="/how-it-works" data-t="See how it works">
+              See how it works
+            </a>
+            <a className="cta-alt" href="#pairs">
+              See what goes wrong
+            </a>
           </div>
         </div>
       </div>

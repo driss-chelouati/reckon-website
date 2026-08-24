@@ -20,15 +20,26 @@ export default function Home() {
       <WhatItIs />
       <FailureMode />
       <InPractice />
-      <div style={{ height: "clamp(64px,7vw,104px)" }} />
       <WorkedProducts />
       <FailureModes />
       <Machinery />
       <WhoItIsFor />
       <Pricing />
       <Testimonials />
-      <Faq />
-      <ClosingCta />
+      <Faq num="08" href="#top" label="Back to the top →" />
+      <ClosingCta
+        field
+        headline={
+          <>
+            Ship the screen.
+            <br />
+            Not the guesswork.
+          </>
+        }
+        lede="Components are the easy part. What you are missing is the layer that decides what gets computed, what gets shown, and what gets refused."
+        primary={{ href: "/how-it-works", label: "See how it works", tear: "See how it works" }}
+        secondary={{ href: "#templates", label: "See a worked product" }}
+      />
     </>
   );
 }

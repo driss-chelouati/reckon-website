@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Aura from "@/components/Aura";
+import RouteFlag from "@/components/RouteFlag";
 
 // The three families, self-hosted and preloaded via next/font/local.
 //
@@ -64,7 +66,9 @@ const description =
   "A design system whose product is the rules: it tells a design agent how to assemble a screen and derive the numbers on it, for dense, record-centric software.";
 
 export const metadata: Metadata = {
-  title,
+  // Every other page carries "… — Reckon"; the landing page is the exception
+  // and uses the full line on its own.
+  title: { default: title, template: "%s — Reckon" },
   description,
   openGraph: {
     title,
@@ -91,11 +95,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${newsreader.variable} ${instrumentSans.variable} ${jetbrainsMono.variable}`}
       >
-        <div className="aura">
-          <i className="a1" />
-          <i className="a2" />
-          <i className="a3" />
-        </div>
+        <RouteFlag />
+        <Aura />
         <div className="wrap">
           <Nav />
           {children}

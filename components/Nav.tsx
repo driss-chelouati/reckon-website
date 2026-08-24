@@ -1,47 +1,179 @@
 "use client";
 
+import Link from "next/link";
+import SiteLink from "@/components/SiteLink";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { icons } from "@/components/icons";
+import {
+  drawerGroups,
+  layerLinks,
+  productStartHere,
+  showcaseStartHere,
+  PAGE_HEADER_SELECTOR,
+  type FeatureLink,
+  type MegaLink,
+} from "@/lib/nav";
+import { bySlug, menuProducts } from "@/lib/products";
 
-/* nav dissolves in only once the page has moved */
+function MegaItem({ href, label, icon }: MegaLink) {
+  return (
+    <SiteLink className="mmi" href={href}>
+      {icons[icon]}
+      {label}
+    </SiteLink>
+  );
+}
+
+function Feature({ href, title, note, icon }: FeatureLink) {
+  return (
+    <SiteLink className="mmf" href={href}>
+      <span className="ic">{icons[icon]}</span>
+      <span>
+        <b>{title}</b>
+        <i>{note}</i>
+      </span>
+    </SiteLink>
+  );
+}
+
+const Chev = (
+  <svg className="chev" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
 export default function Nav() {
   const bar = useRef<HTMLDivElement>(null);
+  const tog = useRef<HTMLInputElement>(null);
+  const pathname = usePathname();
 
+  /* The nav dissolves in once the page has moved, and its button becomes the
+     primary action once the header has gone by — reverting if you scroll back
+     up. The header is a different element on every route, so the lookup runs
+     again whenever the route changes; the nav itself never remounts. */
   useEffect(() => {
     const el = bar.current;
     if (!el) return;
+    const header = document.querySelector(PAGE_HEADER_SELECTOR) ?? document.querySelector("h1");
     let on = false;
+    let past = false;
+
     const check = () => {
       const want = window.scrollY > 10;
       if (want !== on) {
         on = want;
         el.classList.toggle("stuck", on);
       }
+      if (header) {
+        // past the header once its lower edge has cleared the bar
+        const wantPast = header.getBoundingClientRect().bottom - 64 < 0;
+        if (wantPast !== past) {
+          past = wantPast;
+          el.classList.toggle("past", past);
+        }
+      }
     };
+
     window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check, { passive: true });
     check();
-    return () => window.removeEventListener("scroll", check);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
+  }, [pathname]);
+
+  /* The drawer is a checkbox and stays a checkbox — but a client-side
+     navigation does not reload the document, so nothing would uncheck it.
+     Untick it on route change and the CSS-only mechanism is unchanged. */
+  useEffect(() => {
+    if (tog.current) tog.current.checked = false;
+  }, [pathname]);
 
   return (
     <div className="navbar" ref={bar}>
-      <input type="checkbox" id="navtog" className="navtog" aria-label="Menu" />
+      <input type="checkbox" id="navtog" className="navtog" aria-label="Menu" ref={tog} />
       <div className="band">
         <nav>
           <a className="mark" href="#top">
-            Reckon
-            <span>.</span>
+            Reckon<span>.</span>
           </a>
           <div className="navlinks">
-            <a href="#what">What it is</a>
-            {' '}
-            <a href="#templates">Products</a>
-            {' '}
-            <a href="#pairs">Failure modes</a>
-            {' '}
-            <a href="#pricing">Pricing</a>
+            <span className="hasmega">
+              <Link href="/how-it-works">Product {Chev}</Link>
+              <span className="megaveil" aria-hidden="true" />
+              <div className="mega">
+                <div className="mega-in">
+                  <div className="mmside mmside--first">
+                    <div className="mmhead">
+                      <span>Start here</span>
+                    </div>
+                    {productStartHere.map((f) => (
+                      <Feature key={f.href} {...f} />
+                    ))}
+                  </div>
+                  <div>
+                    <div className="mmhead">
+                      <span>The layer</span>
+                      <SiteLink href="/rules">Read the rules</SiteLink>
+                    </div>
+                    <div className="mmgrid">
+                      {layerLinks.map((l) => (
+                        <MegaItem key={l.href} {...l} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+            <span className="hasmega">
+              <Link href="/products">Showcase {Chev}</Link>
+              <span className="megaveil" aria-hidden="true" />
+              <div className="mega">
+                <div className="mega-in">
+                  <div>
+                    <div className="mmhead">
+                      <span>Worked products</span>
+                      <Link href="/products">Browse all</Link>
+                    </div>
+                    <div className="mmgrid">
+                      {menuProducts.map((p) => (
+                        <MegaItem
+                          key={p.slug}
+                          href={`/products/${p.slug}`}
+                          label={p.name}
+                          icon={p.icon}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mmside">
+                    <div className="mmhead">
+                      <span>Start here</span>
+                    </div>
+                    {showcaseStartHere.map((slug) => {
+                      const p = bySlug.get(slug)!;
+                      return (
+                        <Feature
+                          key={slug}
+                          href={`/products/${p.slug}`}
+                          title={p.name}
+                          note={p.menuNote!}
+                          icon={p.icon}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </span>
+            <Link href="/pricing">Pricing</Link>
+            <Link href="/changelog">Changelog</Link>
           </div>
-          <a className="navcta" href="#templates">See a product</a>
-          {' '}
+          <Link className="navcta" href="/pricing" data-t="Get Reckon">
+            Get Reckon
+          </Link>
           <label className="burger" htmlFor="navtog">
             <span />
             <span />
@@ -49,47 +181,23 @@ export default function Nav() {
         </nav>
       </div>
       <div className="navdrawer">
-        <a href="#what-it-is">
-          <i>01</i>
-          What it is
-        </a>
-        {' '}
-        <a href="#problem">
-          <i>02</i>
-          The failure mode
-        </a>
-        {' '}
-        <a href="#templates">
-          <i>03</i>
-          Products
-        </a>
-        {' '}
-        <a href="#pairs">
-          <i>04</i>
-          Failure modes
-        </a>
-        {' '}
-        <a href="#machinery">
-          <i>05</i>
-          Machinery
-        </a>
-        {' '}
-        <a href="#teams">
-          <i>06</i>
-          Who it is for
-        </a>
-        {' '}
-        <a href="#pricing">
-          <i>07</i>
-          Pricing
-        </a>
-        {' '}
-        <a href="#faq">
-          <i>08</i>
-          Questions
-        </a>
-        {' '}
-        <a className="cta" href="#what-it-is">Connect your design agent</a>
+        {drawerGroups.map((g) => (
+          <div className="ndgrp" key={g.title}>
+            <b>{g.title}</b>
+            <div className="ndsub">
+              {g.links.map((l) => (
+                <SiteLink href={l.href} key={l.href}>
+                  {"emphasis" in l && l.emphasis ? <em>{l.label}</em> : l.label}
+                </SiteLink>
+              ))}
+            </div>
+          </div>
+        ))}
+        <Link href="/pricing">Pricing</Link>
+        <Link href="/changelog">Changelog</Link>
+        <Link className="cta" href="/pricing" data-t="Get Reckon">
+          Get Reckon
+        </Link>
       </div>
     </div>
   );

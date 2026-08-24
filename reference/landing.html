@@ -142,7 +142,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   font-size:15px; font-weight:600; color:#1A0B06; background:var(--fire);
   box-shadow:0 1px 2px rgba(0,0,0,.45), 0 18px 44px -22px rgba(249,122,92,.9);
   transition:background-color .18s ease, transform .18s ease}
-.cta:hover{background:var(--fire-hi); transform:translateY(-1px)}
+.cta:hover{background:var(--fire-hi);}
 .cta--quiet{background:transparent; color:var(--ink); border:1px solid var(--edge); box-shadow:none}
 .cta--quiet:hover{background:var(--surface-2); border-color:rgba(255,255,255,.1)}
 .cta-alt{display:inline-block; margin-left:26px; font-size:15px; color:var(--ink-2);
@@ -178,6 +178,11 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
   padding:7px 14px; white-space:nowrap;
   transition:color .18s ease, border-color .18s ease, background-color .18s ease}
 .navcta:hover{color:var(--ink); border-color:var(--edge); background:rgba(255,255,255,.04)}
+/* once the hero is behind you, the ask becomes the primary action */
+.navbar.past .navcta{color:#1A0B06; font-weight:600; border-color:transparent;
+  background:var(--fire);
+  box-shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 20px -12px rgba(249,122,92,.7)}
+.navbar.past .navcta:hover{background:var(--fire-hi); border-color:transparent; color:#1A0B06}
 @media(max-width:860px){
   nav{grid-template-columns:1fr auto; padding:14px 0}
   .navlinks{display:none}
@@ -199,7 +204,8 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
 @media(max-width:860px){ .burger{display:block} }
 
 .navdrawer{position:fixed; inset:0 0 auto 0; z-index:25; display:none;
-  padding:74px var(--gut) 30px; background:rgba(8,8,11,.92);
+  max-height:100dvh; overflow-y:auto; overscroll-behavior:contain;
+  padding:74px var(--gut) 34px; background:rgba(8,8,11,.92);
   -webkit-backdrop-filter:blur(22px) saturate(120%); backdrop-filter:blur(22px) saturate(120%);
   border-bottom:1px solid var(--hair);
   opacity:0; visibility:hidden; pointer-events:none;
@@ -224,20 +230,32 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
   opacity:0; transform:translateY(-7px);
   transition:opacity .34s ease, transform .44s cubic-bezier(.2,.8,.3,1), color .2s ease}
 .navtog:checked ~ .navdrawer a{opacity:1; transform:none}
-.navdrawer a:nth-child(1){transition-delay:.05s}
-.navdrawer a:nth-child(2){transition-delay:.09s}
-.navdrawer a:nth-child(3){transition-delay:.13s}
-.navdrawer a:nth-child(4){transition-delay:.17s}
-.navdrawer a:nth-child(5){transition-delay:.21s}
-.navdrawer a:nth-child(6){transition-delay:.25s}
-.navdrawer a:nth-child(7){transition-delay:.29s}
-.navdrawer a:nth-child(8){transition-delay:.33s}
-.navdrawer a:nth-child(9){transition-delay:.38s}
+.navdrawer > *:nth-child(1){transition-delay:.05s}
+.navdrawer > *:nth-child(2){transition-delay:.1s}
+.navdrawer > *:nth-child(3){transition-delay:.15s}
+.navdrawer > *:nth-child(4){transition-delay:.2s}
+.navdrawer > *:nth-child(5){transition-delay:.25s}
+.navdrawer > *:nth-child(6){transition-delay:.3s}
 .navdrawer a:active{color:var(--fire-lt)}
 .navdrawer a i{font-family:"JetBrains Mono",monospace; font-size:10px; font-style:normal;
   letter-spacing:.1em; color:var(--ink-3); transition:color .2s ease}
 .navdrawer a:active i{color:var(--fire-lt)}
 .navdrawer .cta{display:block; text-align:center; margin-top:22px; border-top:0}
+
+/* groups, so the hierarchy survives the collapse */
+.ndgrp{opacity:0; transform:translateY(-7px);
+  transition:opacity .34s ease, transform .44s cubic-bezier(.2,.8,.3,1)}
+.navtog:checked ~ .navdrawer .ndgrp{opacity:1; transform:none}
+.ndgrp > b{display:flex; align-items:baseline; gap:14px; padding:15px 0 12px;
+  border-top:1px solid var(--hair); font-family:"JetBrains Mono",monospace; font-size:10px;
+  font-weight:400; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.ndsub{margin:0 0 4px 3px; padding-left:17px; border-left:1px solid var(--hair)}
+.ndsub a{font-size:14.5px; padding:11px 0; border-top:0; color:var(--ink-2);
+  opacity:1; transform:none}
+.ndsub a + a{border-top:1px solid rgba(255,255,255,.028)}
+.ndsub a:active{color:var(--fire-lt)}
+.ndsub a em{margin-left:auto; font-style:normal; font-family:"JetBrains Mono",monospace;
+  font-size:9px; letter-spacing:.1em; color:var(--ink-3)}
 
 /* the button itself: bars cross, and the frame warms */
 .burger{transition:border-color .3s ease, background-color .3s ease}
@@ -260,7 +278,7 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
   mask-image:linear-gradient(to right, transparent 0%, transparent 20%, #000 58%, #000 100%)}
 @media(max-width:640px){ .herofx{opacity:.65} }
 .hero h1{max-width:16ch}
-.hero .lede{margin-top:32px}
+.hero .lede{margin-top:32px; max-width:50ch}
 .hero-actions{margin-top:44px; display:flex; align-items:center; flex-wrap:wrap}
 @media(max-width:480px){ .cta{display:block; text-align:center} .cta-alt{margin:18px 0 0; display:block} }
 
@@ -271,8 +289,7 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
   min-width:0; min-height:252px;
   transition:transform .38s cubic-bezier(.2,.7,.3,1), border-color .25s ease,
     background-color .25s ease, box-shadow .38s ease}
-.bt:hover{transform:translateY(-2px);
-  box-shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 34px -26px rgba(249,122,92,.16)}
+.bt:hover{box-shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 34px -26px rgba(249,122,92,.16)}
 .bp{grid-column:1 / span 4; grid-row:1 / span 2}
 .b1{grid-column:5 / span 4; grid-row:1}
 .b2{grid-column:9 / span 4; grid-row:1}
@@ -311,11 +328,9 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
 .who{display:flex; align-items:center; gap:13px; margin-bottom:20px}
 .ava{width:46px; height:46px; border-radius:12px; flex:none; position:relative;
   display:grid; place-items:center; overflow:hidden;
-  background:linear-gradient(150deg, rgba(249,122,92,.5), rgba(10,10,16,.9) 70%);
-  border:1px solid rgba(255,142,114,.4);
-  font-family:"JetBrains Mono",monospace; font-size:14px; color:#FFD9CB; letter-spacing:.02em}
-.ava::after{content:""; position:absolute; inset:0;
-  background:repeating-linear-gradient(115deg, rgba(255,255,255,.07) 0 2px, transparent 2px 7px)}
+  background:linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+  border:1px solid var(--edge-2)}
+.ava svg{width:24px; height:24px; display:block}
 .ava img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1}
 .who .nm{font-size:15px; font-weight:600; color:var(--ink); line-height:1.2}
 .who .rl{font-family:"JetBrains Mono",monospace; font-size:9.5px; letter-spacing:.09em;
@@ -324,7 +339,7 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
   transition:background-color .5s ease}
 .bp.fixed .who .rl u{background:var(--tie)}
 
-.gauge{position:relative; margin:auto auto 2px; width:100%; max-width:250px}
+.gauge{position:relative; margin:auto auto 26px; width:100%; max-width:250px}
 .gauge svg{display:block; width:100%; height:auto; overflow:visible}
 .gauge .trk{fill:none; stroke:rgba(255,255,255,.07); stroke-width:11; stroke-linecap:round}
 .gauge .val{fill:none; stroke:var(--fire); stroke-width:11; stroke-linecap:round;
@@ -334,13 +349,13 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
 .bp.fixed .gauge .val{stroke-dashoffset:11; stroke:var(--fire-hi);
   filter:drop-shadow(0 0 14px rgba(249,122,92,.7))}
 .gauge .tick{stroke:rgba(255,255,255,.16); stroke-width:1}
-.gnum{position:absolute; left:0; right:0; bottom:2px; text-align:center}
+.gnum{position:absolute; left:0; right:0; bottom:-6px; text-align:center}
 .gnum .v{font-family:"JetBrains Mono",monospace; font-variant-numeric:tabular-nums;
   font-size:clamp(28px,2.6vw,36px); font-weight:500; letter-spacing:-.04em;
   color:var(--fire-hi); transition:color .5s ease; line-height:1}
 .bp.fixed .gnum .v{color:var(--ink)}
 .gnum .k{font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--ink-3); margin-top:7px}
+  text-transform:uppercase; color:var(--ink-3); margin-top:14px}
 
 /* stats: hairline rows, tabular, no boxes */
 .pstat{margin-top:auto; padding-top:20px}
@@ -408,8 +423,8 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
 .qnum .gd{color:var(--ink-3)}
 .qrow > .swap{display:grid; width:100%}
 .qchip{display:block; width:100%; text-align:center; box-sizing:border-box;
-  font-family:"JetBrains Mono",monospace; font-size:8px; letter-spacing:.08em;
-  text-transform:uppercase; padding:5px 3px; border-radius:5px; white-space:nowrap;
+  font-family:"Instrument Sans",sans-serif; font-size:11px; font-weight:500; letter-spacing:0;
+  padding:6px 4px; border-radius:5px; white-space:nowrap;
   border:1px solid var(--edge-2); color:var(--ink-2); background:rgba(255,255,255,.04)}
 .qchip.act{color:var(--fire-lt); border-color:var(--fire); background:rgba(249,122,92,.22);
   box-shadow:0 0 0 1px rgba(249,122,92,.18)}
@@ -865,7 +880,7 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
   background:linear-gradient(172deg, rgba(255,255,255,.16), rgba(255,255,255,.02) 42%, rgba(255,255,255,0) 76%);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor; mask-composite:exclude}
-.pcd:hover{transform:translateY(-2px); border-color:var(--edge);
+.pcd:hover{border-color:var(--edge);
   box-shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 34px -26px rgba(249,122,92,.18)}
 .pcd .no{position:absolute; top:24px; right:24px; font-family:"JetBrains Mono",monospace;
   font-size:9.5px; letter-spacing:.12em; color:var(--ink-3)}
@@ -885,7 +900,8 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
 .pcd h3{font-size:15px; font-weight:600; color:var(--ink); margin:0 0 11px; letter-spacing:-.01em}
 .pcd p{font-size:13.5px; line-height:1.6; color:var(--ink-2); margin:0 0 22px}
 .pcd .m2{margin-top:auto; padding-top:16px; border-top:1px solid var(--hair);
-  font-family:"JetBrains Mono",monospace; font-size:9.5px; letter-spacing:.05em; color:var(--ink-3)}
+  font-family:"JetBrains Mono",monospace; font-size:9.5px; letter-spacing:.04em;
+  color:var(--ink-3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 @media(prefers-reduced-motion:reduce){ .pcd:hover{transform:none} }
 
 /* the pairs, set as a ledger rather than cards */
@@ -1052,14 +1068,36 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
 
 
 /* ---------- pricing ---------- */
-.tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.5vw,16px); align-items:stretch}
-@media(max-width:860px){ .tiers{grid-template-columns:1fr} }
+.tiers{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(12px,1.5vw,16px); align-items:stretch}
+.tier--wide{grid-column:span 2}
+@media(max-width:860px){ .tiers{grid-template-columns:1fr} .tier--wide{grid-column:auto} }
+
+/* the free tier lists what is in the box, in two columns */
+.tcols{display:grid; grid-template-columns:1fr 1fr; gap:0 clamp(20px,2.4vw,36px);
+  margin-bottom:24px}
+@media(max-width:620px){ .tcols{grid-template-columns:1fr} }
+.tcols ul{margin:0}
+.tgrp{font-family:"JetBrains Mono",monospace; font-size:8.5px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--ink-3); padding:0 0 11px}
+.tcols > div + div .tgrp{padding-top:0}
+@media(max-width:620px){ .tcols > div + div .tgrp{padding-top:22px} }
+
+/* the hire card: services, each with a mark */
+.svc{display:grid; gap:0; margin:4px 0 22px; border-top:1px solid var(--hair)}
+.svc div{display:grid; grid-template-columns:26px minmax(0,1fr); gap:11px; align-items:center;
+  padding:12px 0; border-bottom:1px solid var(--hair); font-size:13.5px; color:var(--ink-2)}
+.svc .fi{width:15px; height:15px; fill:none; stroke:var(--fire-lt); stroke-width:1.7;
+  stroke-linecap:round; stroke-linejoin:round}
+.tavail{display:inline-flex; align-items:center; gap:8px; font-family:"JetBrains Mono",monospace;
+  font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);
+  border:1px solid var(--edge-2); border-radius:999px; padding:5px 11px; background:rgba(255,255,255,.03)}
+.tavail u{width:5px; height:5px; border-radius:50%; text-decoration:none; background:var(--tie)}
 
 .tier{--mx:50%; --my:0%;
   display:flex; flex-direction:column; padding:clamp(28px,2.6vw,36px);
   overflow:hidden; isolation:isolate;
   transition:border-color .25s ease, background-color .25s ease, transform .35s cubic-bezier(.2,.7,.3,1)}
-.tier:hover{transform:translateY(-3px)}
 .tier--mid{background:var(--surface-2); border-color:var(--edge)}
 
 /* layer 1 — dot mesh, revealed only under the cursor */
@@ -1091,9 +1129,13 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
 
 .tn{font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
 .thead{display:flex; align-items:center; justify-content:space-between; gap:12px}
-.tbadge{font-family:"JetBrains Mono",monospace; font-size:8.5px; letter-spacing:.13em;
-  text-transform:uppercase; color:var(--fire-lt); border:1px solid rgba(249,122,92,.28);
-  background:rgba(249,122,92,.09); padding:3px 7px; border-radius:4px}
+.tbadge{position:relative; display:inline-flex; align-items:center; gap:7px;
+  font-family:"JetBrains Mono",monospace; font-size:8.5px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--fire-lt); padding-left:16px}
+.tbadge::before{content:""; position:absolute; left:0; top:50%; width:9px; height:9px;
+  margin-top:-4.5px; border-radius:50%;
+  background:var(--fire); box-shadow:0 0 0 3px rgba(249,122,92,.16)}
+.tbadge b{font-weight:400; color:var(--ink-3); letter-spacing:.12em}
 .tp{font-family:"Newsreader",serif; font-size:40px; margin:22px 0 6px; letter-spacing:-.034em; color:var(--ink)}
 .tt{font-size:12.5px; color:var(--ink-3); margin-bottom:30px}
 
@@ -1122,10 +1164,11 @@ nav{position:relative; z-index:30; display:grid; grid-template-columns:1fr auto 
   0%   {-webkit-mask-position:130% -20%; mask-position:130% -20%}
   100% {-webkit-mask-position:-50% 120%; mask-position:-50% 120%}
 }
-.tier--mid .tdots{opacity:.8;
+.tier--wide .tdots{opacity:.8;
   background-image:radial-gradient(rgba(249,122,92,.32) 1px, transparent 1px)}
 
-.tpitch{font-size:13px; line-height:1.55; color:var(--ink-2); margin:0 0 22px; position:relative}
+.tpitch{font-size:13px; line-height:1.55; color:var(--ink-2); margin:0 0 22px;
+  position:relative; max-width:44ch}
 .tspec{position:relative; border:1px solid var(--edge-2); border-radius:9px;
   background:rgba(255,255,255,.02); padding:4px 13px; margin-bottom:22px}
 .tspec div{display:flex; align-items:baseline; justify-content:space-between; gap:12px;
@@ -1200,7 +1243,7 @@ details p{margin:16px 0 2px; font-size:15px; color:var(--ink-2); max-width:64ch}
     radial-gradient(120% 84% at 82% -16%, rgba(249,122,92,.085), transparent 60%),
     linear-gradient(180deg, rgba(255,255,255,.036), rgba(255,255,255,.008));
   transition:transform .34s cubic-bezier(.2,.7,.3,1), border-color .25s ease, box-shadow .34s ease}
-.tq:hover{transform:translateY(-2px); border-color:var(--edge);
+.tq:hover{border-color:var(--edge);
   box-shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 34px -26px rgba(249,122,92,.18)}
 .tq::before{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
   padding:1px; z-index:2;
@@ -1337,6 +1380,90 @@ details p{margin:16px 0 2px; font-size:15px; color:var(--ink-2); max-width:64ch}
   .hero-actions{width:100%}
 }
 
+/* ---------- products megamenu ---------- */
+.hasmega{position:relative; display:inline-flex; align-items:center}
+.hasmega > a{display:inline-flex; align-items:center; gap:8px}
+.chev{width:14px; height:14px; flex:none; color:var(--ink-3);
+  transition:transform .3s cubic-bezier(.2,.8,.3,1), color .2s ease}
+.chev{fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+.hasmega:hover .chev, .hasmega:focus-within .chev{transform:rotate(180deg); color:var(--ink)}
+
+/* the page goes back and out of focus behind it */
+.megaveil{position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:rgba(5,5,9,.6);
+  -webkit-backdrop-filter:blur(7px) saturate(80%); backdrop-filter:blur(7px) saturate(80%);
+  opacity:0; visibility:hidden;
+  transition:opacity .3s ease, visibility 0s linear .3s}
+.hasmega:hover .megaveil, .hasmega:focus-within .megaveil{
+  opacity:1; visibility:visible; transition-delay:0s, 0s}
+
+.mega{position:absolute; top:100%; left:50%; margin-top:14px;
+  transform:translateX(-50%) translateY(-4px);
+  width:min(880px, calc(100vw - 2 * var(--gut))); z-index:26;
+  opacity:0; visibility:hidden; pointer-events:none;
+  border:1px solid var(--edge-2); border-radius:24px; overflow:hidden;
+  background:rgba(10,10,15,.98);
+  -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
+  box-shadow:0 30px 70px -30px rgba(0,0,0,1);
+  transition:opacity .24s ease, transform .3s cubic-bezier(.2,.8,.3,1), visibility 0s linear .24s}
+.hasmega:hover .mega, .hasmega:focus-within .mega{
+  opacity:1; visibility:visible; pointer-events:auto;
+  transform:translateX(-50%) translateY(0); transition-delay:0s, 0s, 0s}
+.hasmega::after{content:""; position:absolute; left:-18px; right:-18px; top:100%; height:16px}
+
+.mega-in{display:grid; grid-template-columns:minmax(0,1fr) 320px;
+  align-items:stretch; padding:0}
+/* when the inset panel leads, it takes the left track */
+.mega-in:has(.mmside--first){grid-template-columns:320px minmax(0,1fr)}
+.mmside--first{margin:10px}
+/* with the panel on the left, the list needs its own inset from it */
+.mmside--first + div .mmhead{padding-left:10px}
+.mmside--first + div .mmgrid{padding-left:2px; padding-right:12px}
+@media(max-width:1080px){ .mega{display:none} .chev{display:none} }
+
+.mmhead{display:flex; align-items:center; justify-content:space-between; gap:14px;
+  box-sizing:border-box; height:46px; padding:0 18px; border-bottom:1px solid var(--hair)}
+.mmhead span{font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3)}
+.mmhead a{font-size:12.5px; font-weight:500; color:var(--ink-2); text-decoration:none;
+  border:1px solid var(--edge-2); border-radius:6px; padding:6px 12px; white-space:nowrap;
+  transition:color .18s ease, border-color .18s ease, background-color .18s ease}
+.mmhead a:hover{color:var(--ink); border-color:var(--edge); background:rgba(255,255,255,.04)}
+
+.mmgrid{display:grid; grid-template-columns:1fr 1fr; padding:8px}
+.mmi{display:flex; align-items:center; gap:11px; padding:10px 11px; border-radius:5px;
+  text-decoration:none; font-size:13px; color:var(--ink-2);
+  transition:background-color .16s ease, color .16s ease}
+.mmi:hover{background:rgba(255,255,255,.04); color:var(--ink)}
+.mmi svg{width:15px; height:15px; flex:none; color:var(--ink-3); transition:color .16s ease;
+  fill:none; stroke:currentColor; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round}
+.mmi:hover svg{color:var(--fire-lt)}
+
+/* the second panel */
+.mmside{margin:10px; border:1px solid var(--edge-2); border-radius:14px;
+  background:rgba(255,255,255,.026); overflow:hidden}
+.mmside .mmhead{height:46px; padding:0 16px}
+.mega-in > div:not(.mmside) > .mmhead{margin-top:11px}
+.mmf{display:grid; grid-template-columns:34px minmax(0,1fr); gap:12px; align-items:center;
+  margin:6px 8px; padding:11px 10px; border-radius:9px; text-decoration:none;
+  transition:background-color .16s ease}
+.mmf:hover{background:rgba(255,255,255,.05)}
+.mmf:hover b{color:var(--fire-lt)}
+.mmf:hover .ic svg{color:var(--fire-lt)}
+.mmf:hover .ic{background:rgba(249,122,92,.15)}
+.mmf .ic{width:34px; height:34px; border-radius:9px; display:grid; place-items:center;
+  border:0; background:rgba(255,255,255,.05); transition:background-color .18s ease}
+.mmf .ic svg{width:16px; height:16px; color:var(--ink-3); transition:color .18s ease;
+  fill:none; stroke:currentColor; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round}
+.mmf b{display:block; font-size:13px; font-weight:600; color:var(--ink-2);
+  letter-spacing:-.01em; transition:color .18s ease}
+.mmf i{display:block; font-style:normal; font-size:11.5px; color:var(--ink-3);
+  margin-top:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+@media(prefers-reduced-motion:reduce){
+  .mega, .megaveil{transition:opacity .01s} .chev{transition:none}
+  .hasmega:hover .mega{transform:translateX(-50%)}
+}
+
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--hair); padding:46px 0 66px; font-size:13.5px; color:var(--ink-3)}
 .footrow{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap}
@@ -1353,6 +1480,82 @@ footer a:hover{color:var(--ink)}
   html{scroll-behavior:auto}
   .circle path{stroke-dashoffset:0}
 }
+
+/* primary buttons tear briefly on hover, the way the headline word does */
+.cta{position:relative; isolation:isolate}
+.cta::before, .cta::after{content:attr(data-t); position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:inherit; background:inherit; font:inherit; letter-spacing:inherit;
+  pointer-events:none; opacity:0}
+.cta::before{color:#FFF3EE}
+.cta::after{color:#7A2C14}
+.cta:not(.cta--quiet):hover::before{animation:tearA .46s steps(3,end) 1}
+.cta:not(.cta--quiet):hover::after{animation:tearB .46s steps(3,end) 1}
+@keyframes tearA{
+  0%  {opacity:1; clip-path:inset(10% 0 64% 0); transform:translateX(-3px)}
+  25% {opacity:1; clip-path:inset(40% 0 42% 0); transform:translateX(3px)}
+  50% {opacity:1; clip-path:inset(68% 0 16% 0); transform:translateX(-2px)}
+  75% {opacity:1; clip-path:inset(26% 0 58% 0); transform:translateX(2px)}
+  100%{opacity:0; transform:none}
+}
+@keyframes tearB{
+  0%  {opacity:1; clip-path:inset(52% 0 30% 0); transform:translateX(2px)}
+  25% {opacity:1; clip-path:inset(18% 0 66% 0); transform:translateX(-3px)}
+  50% {opacity:1; clip-path:inset(74% 0 12% 0); transform:translateX(3px)}
+  75% {opacity:1; clip-path:inset(34% 0 50% 0); transform:translateX(-2px)}
+  100%{opacity:0; transform:none}
+}
+/* the nav button tears too, once it has become primary */
+.navbar.past .navcta{position:relative; isolation:isolate}
+.navbar.past .navcta::before, .navbar.past .navcta::after{content:attr(data-t);
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  border-radius:inherit; background:inherit; font:inherit; pointer-events:none; opacity:0}
+.navbar.past .navcta::before{color:#FFF3EE}
+.navbar.past .navcta::after{color:#7A2C14}
+.navbar.past .navcta:hover::before{animation:tearA .46s steps(3,end) 1}
+.navbar.past .navcta:hover::after{animation:tearB .46s steps(3,end) 1}
+@media(prefers-reduced-motion:reduce){
+  .cta::before, .cta::after,
+  .navbar.past .navcta::before, .navbar.past .navcta::after{animation:none !important; display:none}
+}
+
+/* page headers rise in once, on load. Decorative layers are excluded by aria-hidden. */
+@keyframes rise{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
+.rin > *:not([aria-hidden]){animation:rise .7s cubic-bezier(.2,.78,.28,1) both}
+.rin > *:nth-child(1){animation-delay:.05s}
+.rin > *:nth-child(2){animation-delay:.19s}
+.rin > *:nth-child(3){animation-delay:.33s}
+.rin > *:nth-child(4){animation-delay:.47s}
+.rin > *:nth-child(5){animation-delay:.61s}
+.rin > *:nth-child(6){animation-delay:.75s}
+/* the field behind the header fades up on its own, slower */
+.rin > [aria-hidden]{animation:fadein 1.6s ease .15s both}
+@keyframes fadein{from{opacity:0} to{opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  .rin > *, .rin > [aria-hidden]{animation:none !important}
+}
+
+/* the landing hero reveals piece by piece: pill, headline, copy, then each button */
+.hero.rin > div{animation:none}
+.hero.rin .eyebrow,
+.hero.rin h1,
+.hero.rin .lede,
+.hero.rin .hero-actions > *{animation:rise .7s cubic-bezier(.2,.78,.28,1) both}
+.hero.rin .eyebrow{animation-delay:.05s}
+.hero.rin h1{animation-delay:.22s}
+.hero.rin .lede{animation-delay:.39s}
+.hero.rin .hero-actions > *:nth-child(1){animation-delay:.56s}
+.hero.rin .hero-actions > *:nth-child(2){animation-delay:.70s}
+@media(prefers-reduced-motion:reduce){
+  .hero.rin .eyebrow, .hero.rin h1, .hero.rin .lede,
+  .hero.rin .hero-actions > *{animation:none !important}
+}
+
+/* Nothing below the header shows until the header has finished arriving —
+   on a tall screen the next section is in view before the page has settled. */
+@keyframes pagein{from{opacity:0} to{opacity:1}}
+.hband ~ *{animation:pagein .75s ease .82s both}
+@media(prefers-reduced-motion:reduce){ .hband ~ *{animation:none} }
 </style>
 <script>/* three.js r128 (MIT) — inlined so the page has no external dependency */
 /**
@@ -1373,38 +1576,113 @@ footer a:hover{color:var(--ink)}
     <nav>
       <a class="mark" href="#top">Reckon<span>.</span></a>
       <div class="navlinks">
-        <a href="#what">What it is</a>
-        <a href="#templates">Products</a>
-        <a href="#pairs">Failure modes</a>
-        <a href="#pricing">Pricing</a>
+        <span class="hasmega"><a href="/how-it-works">Product
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+        <span class="megaveil" aria-hidden="true"></span>
+        <div class="mega">
+          <div class="mega-in">
+            <div class="mmside mmside--first">
+              <div class="mmhead"><span>Start here</span></div>
+              <a class="mmf" href="/how-it-works"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg></span>
+                <span><b>How it works</b><i>The three layers, in order</i></span></a>
+              <a class="mmf" href="/failure-modes"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /> <path d="M12 9v4" /> <path d="M12 17h.01" /></svg></span>
+                <span><b>Failure modes</b><i>What goes wrong, and why</i></span></a>
+              <a class="mmf" href="/design-system"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></svg></span>
+                <span><b>Design system</b><i>Components and tokens</i></span></a>
+            </div>
+            <div>
+              <div class="mmhead"><span>The layer</span><a href="/rules">Read the rules</a></div>
+              <div class="mmgrid">
+                <a class="mmi" href="/how-it-works"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v16" /> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg>How it works</a>
+                <a class="mmi" href="/rules"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 17V5a2 2 0 0 0-2-2H4" /> <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>The rules file</a>
+                <a class="mmi" href="/rules#compiled"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="14" y="14" width="4" height="6" rx="2" /> <rect x="6" y="4" width="4" height="6" rx="2" /> <path d="M6 20h4" /> <path d="M14 10h4" /> <path d="M6 14h2v6" /> <path d="M14 4h2v6" /></svg>Compiled rules</a>
+                <a class="mmi" href="/rules#audit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 11 2 2 4-4" /> <circle cx="11" cy="11" r="8" /> <path d="m21 21-4.3-4.3" /></svg>The audit pass</a>
+                <a class="mmi" href="/failure-modes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /> <path d="M12 9v4" /> <path d="M12 17h.01" /></svg>Failure modes</a>
+                <a class="mmi" href="/design-system"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></svg>The design system</a>
+                <a class="mmi" href="/design-system#tokens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" /> <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" /> <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" /> <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" /> <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" /></svg>Tokens and theming</a>
+                <a class="mmi" href="/design-system#shells"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" /> <path d="M3 9h18" /> <path d="M9 21V9" /></svg>Shells and archetypes</a>
+                <a class="mmi" href="/rules#fixtures"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3" /> <path d="M3 5V19A9 3 0 0 0 21 19V5" /> <path d="M3 12A9 3 0 0 0 21 12" /></svg>Fixtures and states</a>
+                <a class="mmi" href="/setup"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H3" /> <path d="M12 19H3" /> <path d="M14 3v4" /> <path d="M16 17v4" /> <path d="M21 12h-9" /> <path d="M21 19h-5" /> <path d="M21 5h-7" /> <path d="M8 10v4" /> <path d="M8 12H3" /></svg>Claude Design setup</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+        <span class="hasmega"><a href="/products">Showcase
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></a>
+        <span class="megaveil" aria-hidden="true"></span>
+        <div class="mega">
+          <div class="mega-in">
+            <div>
+              <div class="mmhead"><span>Worked products</span><a href="/products">Browse all</a></div>
+              <div class="mmgrid">
+                <a class="mmi" href="/products/cargo-claims"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z" /> <path d="M10 21.9V14L2.1 9.1" /> <path d="m10 14 11.9-6.9" /> <path d="M14 19.8v-8.1" /> <path d="M18 17.5V9.4" /></svg>Cargo claims</a>
+                <a class="mmi" href="/products/billing"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17V7" /> <path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8" /> <path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z" /></svg>Billing and invoicing</a>
+                <a class="mmi" href="/products/talent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></svg>Talent representation</a>
+                <a class="mmi" href="/products/support"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z" /> <path d="M21 16v2a4 4 0 0 1-4 4h-5" /></svg>Support desk</a>
+                <a class="mmi" href="/products/clinical"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2v2" /> <path d="M5 2v2" /> <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1" /> <path d="M8 15a6 6 0 0 0 12 0v-3" /> <circle cx="20" cy="10" r="2" /></svg>Clinical practice</a>
+                <a class="mmi" href="/products/hr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 15H6a4 4 0 0 0-4 4v2" /> <path d="m14.305 16.53.923-.382" /> <path d="m15.228 13.852-.923-.383" /> <path d="m16.852 12.228-.383-.923" /> <path d="m16.852 17.772-.383.924" /> <path d="m19.148 12.228.383-.923" /> <path d="m19.53 18.696-.382-.924" /> <path d="m20.772 13.852.924-.383" /> <path d="m20.772 16.148.924.383" /> <circle cx="18" cy="15" r="3" /> <circle cx="9" cy="7" r="4" /></svg>HR and people ops</a>
+                <a class="mmi" href="/products/grants"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="m9 15 2 2 4-4" /></svg>Grant review</a>
+                <a class="mmi" href="/products/auth"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /></svg>Authentication</a>
+                <a class="mmi" href="/products/admin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 17H5" /> <path d="M19 7h-9" /> <circle cx="17" cy="17" r="3" /> <circle cx="7" cy="7" r="3" /></svg>Admin console</a>
+                <a class="mmi" href="/products/device"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 12V8.964" /> <path d="M14 12V8.964" /> <path d="M15 12a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2a1 1 0 0 1 1-1z" /> <path d="M8.5 21H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-2" /></svg>Device and home</a>
+              </div>
+            </div>
+            <div class="mmside">
+              <div class="mmhead"><span>Start here</span></div>
+              <a class="mmf" href="/products/cargo-claims"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z" /> <path d="M10 21.9V14L2.1 9.1" /> <path d="m10 14 11.9-6.9" /> <path d="M14 19.8v-8.1" /> <path d="M18 17.5V9.4" /></svg></span>
+                <span><b>Cargo claims</b><i>Eight screens, fully audited</i></span></a>
+              <a class="mmf" href="/products/support"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z" /> <path d="M21 16v2a4 4 0 0 1-4 4h-5" /></svg></span>
+                <span><b>Support desk</b><i>Where the AI parts are shown</i></span></a>
+              <a class="mmf" href="/products/auth"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /></svg></span>
+                <span><b>Authentication</b><i>Including the ways in that fail</i></span></a>
+            </div>
+          </div>
+        </div>
+      </span>
+        <a href="/pricing">Pricing</a>
+        <a href="/changelog">Changelog</a>
       </div>
-      <a class="navcta" href="#templates">See a product</a>
+      <a class="navcta" href="/pricing" data-t="Get Reckon">Get Reckon</a>
       <label class="burger" for="navtog"><span></span><span></span></label>
     </nav>
   </div>
   <div class="navdrawer">
-    <a href="#what-it-is"><i>01</i>What it is</a>
-    <a href="#problem"><i>02</i>The failure mode</a>
-    <a href="#templates"><i>03</i>Products</a>
-    <a href="#pairs"><i>04</i>Failure modes</a>
-    <a href="#machinery"><i>05</i>Machinery</a>
-    <a href="#teams"><i>06</i>Who it is for</a>
-    <a href="#pricing"><i>07</i>Pricing</a>
-    <a href="#faq"><i>08</i>Questions</a>
-    <a class="cta" href="#what-it-is">Connect your design agent</a>
+    <div class="ndgrp">
+      <b>Product</b>
+      <div class="ndsub">
+        <a href="/how-it-works">How it works</a>
+        <a href="/rules">The rules file</a>
+        <a href="/failure-modes">Failure modes</a>
+        <a href="/design-system">The design system</a>
+        <a href="/setup">Claude Design setup</a>
+      </div>
+    </div>
+    <div class="ndgrp">
+      <b>Showcase</b>
+      <div class="ndsub">
+        <a href="/products/cargo-claims">Cargo claims</a>
+        <a href="/products/support">Support desk</a>
+        <a href="/products/auth">Authentication</a>
+        <a href="/products"><em>Browse all &#8594;</em></a>
+      </div>
+    </div>
+    <a href="/pricing">Pricing</a>
+    <a href="/changelog">Changelog</a>
+    <a class="cta" href="/pricing" data-t="Get Reckon">Get Reckon</a>
   </div>
 </div>
 
 <!-- HERO -->
-<div class="band" id="top">
-  <div class="hero">
+<div class="band hband" id="top">
+  <div class="hero rin">
     <div class="herofx" aria-hidden="true"><canvas id="fx"></canvas></div>
     <div>
       <p class="eyebrow">A design system for business applications</p>
       <h1>Your agent&#8217;s first screen is usually <span class="gl" data-t="wrong">wrong</span>.</h1>
-      <p class="lede">Not ugly &#8212; wrong underneath. Totals that trace to nothing, two screens disagreeing about the same record, states that exist in the data and nowhere on screen. That costs you twice: once when a client signs off on fiction, again when an engineer has to work out which figures were real.</p>
+      <p class="lede">Reckon is a rules layer for design agents building the software nobody demos: every figure traces to real data, every action fits the record it sits on, every state is drawn before a user finds it.</p>
       <div class="hero-actions">
-        <a class="cta" href="#what">Connect your design agent</a>
+        <a class="cta" href="/how-it-works" data-t="See how it works">See how it works</a>
         <a class="cta-alt" href="#pairs">See what goes wrong</a>
       </div>
     </div>
@@ -1421,8 +1699,7 @@ footer a:hover{color:var(--ink)}
           <div class="bstat"><span class="swap"><span class="bd">no rules</span><span class="gd">&#10003; rules loaded</span></span></div></div>
 
         <div class="who">
-          <!-- swap the text node for <img src="..." alt=""> to use a real portrait -->
-          <span class="ava">CD</span>
+          <span class="ava"><svg viewBox="0 0 256 257" aria-hidden="true"><path fill="#d97757" d="m50.228 170.321l50.357-28.257l.843-2.463l-.843-1.361h-2.462l-8.426-.518l-28.775-.778l-24.952-1.037l-24.175-1.296l-6.092-1.297L0 125.796l.583-3.759l5.12-3.434l7.324.648l16.202 1.101l24.304 1.685l17.629 1.037l26.118 2.722h4.148l.583-1.685l-1.426-1.037l-1.101-1.037l-25.147-17.045l-27.22-18.017l-14.258-10.37l-7.713-5.25l-3.888-4.925l-1.685-10.758l7-7.713l9.397.649l2.398.648l9.527 7.323l20.35 15.75L94.817 91.9l3.889 3.24l1.555-1.102l.195-.777l-1.75-2.917l-14.453-26.118l-15.425-26.572l-6.87-11.018l-1.814-6.61c-.648-2.723-1.102-4.991-1.102-7.778l7.972-10.823L71.42 0l10.63 1.426l4.472 3.888l6.61 15.101l10.694 23.786l16.591 32.34l4.861 9.592l2.592 8.879l.973 2.722h1.685v-1.556l1.36-18.211l2.528-22.36l2.463-28.776l.843-8.1l4.018-9.722l7.971-5.25l6.222 2.981l5.12 7.324l-.713 4.73l-3.046 19.768l-5.962 30.98l-3.889 20.739h2.268l2.593-2.593l10.499-13.934l17.628-22.036l7.778-8.749l9.073-9.657l5.833-4.601h11.018l8.1 12.055l-3.628 12.443l-11.342 14.388l-9.398 12.184l-13.48 18.147l-8.426 14.518l.778 1.166l2.01-.194l30.46-6.481l16.462-2.982l19.637-3.37l8.88 4.148l.971 4.213l-3.5 8.62l-20.998 5.184l-24.628 4.926l-36.682 8.685l-.454.324l.519.648l16.526 1.555l7.065.389h17.304l32.21 2.398l8.426 5.574l5.055 6.805l-.843 5.184l-12.962 6.611l-17.498-4.148l-40.83-9.721l-14-3.5h-1.944v1.167l11.666 11.406l21.387 19.314l26.767 24.887l1.36 6.157l-3.434 4.86l-3.63-.518l-23.526-17.693l-9.073-7.972l-20.545-17.304h-1.36v1.814l4.73 6.935l25.017 37.59l1.296 11.536l-1.814 3.76l-6.481 2.268l-7.13-1.297l-14.647-20.544l-15.1-23.138l-12.185-20.739l-1.49.843l-7.194 77.448l-3.37 3.953l-7.778 2.981l-6.48-4.925l-3.436-7.972l3.435-15.749l4.148-20.544l3.37-16.333l3.046-20.285l1.815-6.74l-.13-.454l-1.49.194l-15.295 20.999l-23.267 31.433l-18.406 19.702l-4.407 1.75l-7.648-3.954l.713-7.064l4.277-6.286l25.47-32.405l15.36-20.092l9.917-11.6l-.065-1.686h-.583L44.07 198.125l-12.055 1.555l-5.185-4.86l.648-7.972l2.463-2.593l20.35-13.999z"/></svg></span>
           <span><span class="nm">Claude Design</span>
             <span class="rl"><u></u><span class="swap"><span class="bd">unaudited</span><span class="gd">auditing every figure</span></span></span></span>
         </div>
@@ -1446,7 +1723,7 @@ footer a:hover{color:var(--ink)}
           <div><small>States drawn</small><b><span class="swap"><span class="bd">4 / 9</span><span class="gd">9 / 9</span></span></b></div>
         </div>
 
-        <div class="ptags"><span>shadcn</span><span>AGENTS.md</span><span>fixtures</span><span>derivation</span></div>
+        <div class="ptags"><span>components</span><span>AGENTS.md</span><span>fixtures</span><span>derivation</span></div>
         <div class="bfix">&#10003; same model, same brief, one rules layer added</div>
       </div>
 
@@ -1574,7 +1851,7 @@ footer a:hover{color:var(--ink)}
             </svg>
         </div>
         <h3>Rules for the shell, and room inside them</h3>
-        <p>Specialised guidance for the parts every business app grows: shells, work queues, record pages, decision surfaces. But a system that only constrains produces identical products &#8212; so every shell must name three expressive choices, with a reason for each.</p>
+        <p>Specialised guidance for the parts every business app grows: shells, work queues, record pages, decision surfaces. Each one names three expressive choices and a reason for each &#8212; the room where your product becomes recognisably yours.</p>
       </div>
 
       <div class="fig">
@@ -1961,46 +2238,46 @@ footer a:hover{color:var(--ink)}
       <h2>Whole products, not screens.</h2>
       <div>
         <p class="lede">Billing, clinical practice, cargo claims, talent representation, home automation, authentication, grant review &#8212; more in progress. Each has its own routes, status values and data. And the data is deliberately hostile: the awkward cases a client finds in week one.</p>
-        <a class="snum" href="#pairs"><i>03</i><u>What goes wrong &#8594;</u></a>
+        <a class="snum" href="/products"><i>03</i><u>Browse the showcase &#8594;</u></a>
       </div>
     </div>
 
     <div class="pcards">
-      <a class="pcd" href="#pairs">
+      <a class="pcd" href="/products">
         <span class="no">01</span>
         <span class="hex"><i></i><u></u>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.2 7.6 12 3.4l8.8 4.2v8.8L12 20.6l-8.8-4.2z"/><path d="M12 3.4v17.2M3.2 7.6 12 11.8l8.8-4.2"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z" /> <path d="M10 21.9V14L2.1 9.1" /> <path d="m10 14 11.9-6.9" /> <path d="M14 19.8v-8.1" /> <path d="M18 17.5V9.4" /></svg>
         </span>
         <h3>Cargo claims</h3>
         <p>Damage claims against a container line. Liability caps, filing deadlines that cannot be extended, evidence that gates the decision.</p>
-        <span class="m2">a claim time-barred before you open it</span>
+        <span class="m2">Time-barred before you open it</span>
       </a>
-      <a class="pcd" href="#pairs">
+      <a class="pcd" href="/products">
         <span class="no">02</span>
         <span class="hex"><i></i><u></u>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.4 20.4c.7-3.6 3.4-5.6 6.6-5.6s5.9 2 6.6 5.6"/><path d="M18.6 3.2l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <path d="M16 3.128a4 4 0 0 1 0 7.744" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <circle cx="9" cy="7" r="4" /></svg>
         </span>
         <h3>Talent representation</h3>
         <p>Matching a roster to brand briefs. A creator locked by exclusivity while a matching brief is open; a held payment traced to an overdue invoice.</p>
-        <span class="m2">a brief nobody fits, every reason named</span>
+        <span class="m2">A brief nobody on the roster fits</span>
       </a>
-      <a class="pcd" href="#pairs">
+      <a class="pcd" href="/products">
         <span class="no">03</span>
         <span class="hex"><i></i><u></u>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.4 12h3.5l1.8-4.6 3 9.6 2.2-6 1.5 3h5.2"/><circle cx="18" cy="6.4" r="2.3"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2v2" /> <path d="M5 2v2" /> <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1" /> <path d="M8 15a6 6 0 0 0 12 0v-3" /> <circle cx="20" cy="10" r="2" /></svg>
         </span>
         <h3>Clinical practice</h3>
         <p>Scheduling, records and results against a duty of care, where a stale figure is a clinical risk rather than an inconvenience.</p>
-        <span class="m2">permission-denied is a designed screen</span>
+        <span class="m2">Permission-denied, designed</span>
       </a>
-      <a class="pcd" href="#pairs">
+      <a class="pcd" href="/products">
         <span class="no">04</span>
         <span class="hex"><i></i><u></u>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.2h14v17.6l-2.6-1.7-2.4 1.7-2.5-1.7-2.4 1.7L5 20.8z"/><path d="M8.6 8.4h6.8M8.6 12.2h6.8M8.6 16h4"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17V7" /> <path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8" /> <path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z" /></svg>
         </span>
         <h3>Billing and invoicing</h3>
         <p>Subscriptions, dunning and failed payments. The invoice on the list is the same invoice on the detail screen &#8212; same amount, same state.</p>
-        <span class="m2">no footer count anyone typed</span>
+        <span class="m2">No footer count anyone typed</span>
       </a>
     </div>
   </div>
@@ -2209,74 +2486,62 @@ footer a:hover{color:var(--ink)}
 <!-- PRICING -->
 <div class="band">
   <div class="sec" id="pricing">
-    <div class="srail"><span class="l">Pricing</span><span class="r">One-time &#183; per team &#183; no renewal</span></div>
+    <div class="srail"><span class="l">Pricing</span><span class="r">The layer is free &#183; the expertise is not</span></div>
     <div>
       <div class="shead">
-        <h2>Bought once.</h2>
+        <h2 style="max-width:none; white-space:nowrap">Free. Take all of it.</h2>
         <div>
-          <p class="lede">No seats to count, no renewal to forget, no telemetry going anywhere. What you pay for is the judgement, because the judgement is the product.</p>
+          <p class="lede">No tiers, no seats, no renewal. Reckon is free and stays free &#8212; what I sell is the work of applying it to a product that already exists.</p>
           <a class="snum" href="#faq"><i>07</i><u>Straight answers &#8594;</u></a>
         </div>
       </div>
       <div class="tiers">
-      <div class="tier card">
+      <div class="tier card tier--wide">
         <span class="tdots" aria-hidden="true"></span><span class="tmesh" aria-hidden="true"></span><span class="tglow" aria-hidden="true"></span>
-        <div class="thead"><div class="tn">Core</div></div>
+        <div class="thead"><div class="tn">Reckon</div><span class="tbadge">MIT <b>&#183; use it anywhere</b></span></div>
         <div class="tp">Free</div>
-        <div class="tt">MIT &#183; no account</div>
-        <p class="tpitch">Enough to see whether the rules change what your agent produces.</p>
-        <div class="tspec">
-          <div><dt>License</dt><dd>MIT</dd></div>
-          <div><dt>Support</dt><dd>Issues</dd></div>
+        <div class="tt">All of it &#183; no account &#183; no telemetry</div>
+        <p class="tpitch">The rules, the components and every worked product. Clone it, point the tokens at your brand, and use it on client work without asking me.</p>
+        <div class="tcols">
+          <div>
+            <div class="tgrp">The layer</div>
+            <ul>
+              <li>The full rules file<em>stated, compiled, checked</em></li>
+              <li>Shell and archetype recipes</li>
+              <li>Fixtures that carry the awkward cases</li>
+            </ul>
+          </div>
+          <div>
+            <div class="tgrp">The system</div>
+            <ul>
+              <li>Components and tokens<em>on your own primitives</em></li>
+              <li>Every worked product, end to end</li>
+              <li>Claude Design setup, ready to load</li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li>Components and tokens</li>
-          <li>Base agent instructions</li>
-          <li>One worked product, end to end</li>
-        </ul>
-        <p class="tfine">Clone it and go.</p>
-        <div class="go"><a class="cta cta--quiet" href="#">Get the core</a></div>
+        <p class="tfine"><b>Free because the rules are worth more once people use them.</b></p>
+        <div class="go"><a class="cta" href="/products" data-t="Get Reckon">Get Reckon</a></div>
       </div>
       <div class="tier card tier--mid">
         <span class="tdots" aria-hidden="true"></span><span class="tmesh" aria-hidden="true"></span><span class="tglow" aria-hidden="true"></span>
-        <div class="thead"><div class="tn">Pro</div><span class="tbadge">Most teams</span></div>
-        <div class="tp">One-time</div>
-        <div class="tt">Per team &#183; no renewal</div>
-        <p class="tpitch">The judgement layer in full, plus every product worked against it.</p>
-        <div class="tspec">
-          <div><dt>License</dt><dd>Team, perpetual</dd></div>
-          <div><dt>Support</dt><dd>Direct email</dd></div>
+        <div class="thead"><div class="tn">Work with me</div></div>
+        <div class="tp">Hire me</div>
+        <div class="tt">Freelance &#183; by the engagement</div>
+        <p class="tpitch">I wrote these rules over twelve years of building this kind of software. The layer is free; the judgement behind it is what I do for a living.</p>
+        <div class="svc">
+          <div><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z" /> <path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18" /> <path d="m2.3 2.3 7.286 7.286" /> <circle cx="11" cy="11" r="2" /></svg><span>Product and UI design</span></div>
+          <div><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1" /> <rect width="7" height="5" x="14" y="3" rx="1" /> <rect width="7" height="9" x="14" y="12" rx="1" /> <rect width="7" height="5" x="3" y="16" rx="1" /></svg><span>UX for dense, record-heavy screens</span></div>
+          <div><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></svg><span>Design systems and tokens</span></div>
+          <div><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></svg><span>Getting real output from design agents</span></div>
+          <div><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 17V5a2 2 0 0 0-2-2H4" /> <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg><span>A rules layer written for your codebase</span></div>
         </div>
-        <ul>
-          <li>The full rules layer<em>stated, compiled, checked</em></li>
-          <li>Every worked product</li>
-          <li>Hostile fixtures and responsive checks</li>
-        </ul>
-        <p class="tfine"><b>It keeps working whether or not I do.</b></p>
-        <div class="go"><a class="cta" href="#">Buy Pro</a></div>
-      </div>
-      <div class="tier card">
-        <span class="tdots" aria-hidden="true"></span><span class="tmesh" aria-hidden="true"></span><span class="tglow" aria-hidden="true"></span>
-        <div class="thead"><div class="tn">Private</div></div>
-        <div class="tp">Talk</div>
-        <div class="tt">For a house style</div>
-        <p class="tpitch">Your conventions written as rules, against your own codebase.</p>
-        <div class="tspec">
-          <div><dt>License</dt><dd>Bespoke</dd></div>
-          <div><dt>Support</dt><dd>Direct line</dd></div>
-        </div>
-        <ul>
-          <li>Your tokens and conventions</li>
-          <li>Rules against your codebase</li>
-          <li>A fixed window, no retainer</li>
-        </ul>
-        <p class="tfine">A few at a time. <b>Ask before you plan around it.</b></p>
-        <div class="go"><a class="cta cta--quiet" href="#">Start a conversation</a></div>
+        <div class="go"><a class="cta cta--quiet" href="#contact">Come and say hi</a></div>
       </div>
       </div>
       <div class="tpricefoot">
-        <span>Same components in every tier &#8212; <b>what changes is how much judgement comes with them</b></span>
-        <span>No seats &#183; no telemetry &#183; no runtime</span>
+        <span>Everything in the box &#8212; <b>rules, components, tokens and every worked product</b></span>
+        <span>MIT &#183; no account &#183; no runtime</span>
       </div>
     </div>
   </div>
@@ -2389,7 +2654,7 @@ footer a:hover{color:var(--ink)}
       <h2>Ship the screen.<br>Not the guesswork.</h2>
       <p class="lede">Components are the easy part. What you are missing is the layer that decides what gets computed, what gets shown, and what gets refused.</p>
       <div class="cta-acts">
-        <a class="cta" href="#what">Connect your design agent</a>
+        <a class="cta" href="/how-it-works" data-t="See how it works">See how it works</a>
         <a class="cta-alt" href="#templates">See a worked product</a>
       </div>
       <div class="cta-note">Built for Claude Design &#183; plain markdown &#183; nothing to run</div>
@@ -2645,16 +2910,27 @@ footer a:hover{color:var(--ink)}
   setTimeout(fire, 1400 + Math.random() * 1600);
 })();
 
-/* nav dissolves in only once the page has moved */
+/* The nav dissolves in once the page has moved, and its button becomes the
+   primary action once the hero has gone by — reverting if you scroll back up. */
 (function(){
   var bar = document.querySelector(".navbar");
   if (!bar) return;
-  var on = false;
+  var hero = document.querySelector(".hero") || document.querySelector("h1");
+  var on = false, past = false;
+
   function check(){
     var want = window.scrollY > 10;
     if (want !== on){ on = want; bar.classList.toggle("stuck", on); }
+
+    if (hero){
+      // past the hero once its lower edge has cleared the bar
+      var edge = hero.getBoundingClientRect().bottom - 64;
+      var wantPast = edge < 0;
+      if (wantPast !== past){ past = wantPast; bar.classList.toggle("past", past); }
+    }
   }
   window.addEventListener("scroll", check, { passive:true });
+  window.addEventListener("resize", check, { passive:true });
   check();
 })();
 </script>
