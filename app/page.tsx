@@ -24,7 +24,7 @@ export default function Home() {
       <FailureModes />
       <Machinery />
       <WhoItIsFor />
-      <Pricing />
+      <Pricing num="07" href="#faq" label="Straight answers →" />
       <Testimonials />
       <Faq num="08" href="#top" label="Back to the top →" />
       <ClosingCta

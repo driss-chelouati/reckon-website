@@ -9,20 +9,31 @@ import { usePointerLight } from "@/components/usePointerLight";
 
    The hire card's button points at #contact, which does not exist anywhere on
    the site. Left as the source has it. */
-export default function Pricing() {
+export default function Pricing({
+  num,
+  href,
+  label,
+  flush = false,
+}: {
+  num: string;
+  href: string;
+  label: string;
+  /* /pricing runs this straight under its header, with no rule on top */
+  flush?: boolean;
+}) {
   const tiers = useRef<HTMLDivElement>(null);
   usePointerLight(tiers, ".tier");
 
   return (
     <div className="band">
-      <div className="sec" id="pricing">
+      <div className="sec" id="pricing" style={flush ? { borderTop: 0 } : undefined}>
         <div className="srail"><span className="l">Pricing</span><span className="r">The layer is free · the expertise is not</span></div>
         <div>
           <div className="shead">
             <h2 style={{ maxWidth: "none", whiteSpace: "nowrap" }}>Free. Take all of it.</h2>
             <div>
               <p className="lede">No tiers, no seats, no renewal. Reckon is free and stays free — what I sell is the work of applying it to a product that already exists.</p>
-              <a className="snum" href="#faq"><i>07</i><u>Straight answers →</u></a>
+              <a className="snum" href={href}><i>{num}</i><u>{label}</u></a>
             </div>
           </div>
           <div className="tiers" ref={tiers}>

@@ -44,7 +44,11 @@ const quotes = [
   },
 ];
 
-export default function Testimonials() {
+export default function Testimonials({
+  link,
+}: {
+  link?: { num: string; href: string; label: string };
+}) {
   return (
     <div className="band">
       <div className="sec" id="said">
@@ -59,6 +63,12 @@ export default function Testimonials() {
               Not that it looked better. That the screen agreed with itself, and nobody had to
               check.
             </p>
+            {link && (
+              <a className="snum" href={link.href}>
+                <i>{link.num}</i>
+                <u>{link.label}</u>
+              </a>
+            )}
           </div>
         </div>
 
