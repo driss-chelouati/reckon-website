@@ -1,0 +1,138 @@
+/* ---------- showcase index ---------- */
+.xhero{position:relative; padding:clamp(52px,6.5vw,96px) 0 0}
+.xhero > *{position:relative; z-index:1}
+.xhero h1{font-size:clamp(38px,6vw,74px); line-height:1.02; letter-spacing:-.036em; max-width:14ch}
+.xhero .lede{margin-top:26px; max-width:58ch}
+.xfx{position:absolute; z-index:0 !important; left:50%; transform:translateX(-50%);
+  top:-120px; width:100vw; height:600px; pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 30%, #000 66%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  mask-image:linear-gradient(to bottom, transparent 0%, #000 30%, #000 66%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  -webkit-mask-composite:source-in; mask-composite:intersect}
+.xfx canvas{display:block; width:100%; height:100%}
+
+/* filters, on a rule rather than in a box */
+.xbar{display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  margin-top:clamp(30px,3.6vw,46px); padding-bottom:16px; border-bottom:1px solid var(--hair)}
+.xsearch{position:relative; flex:0 1 300px; min-width:0}
+.xsearch svg{position:absolute; left:12px; top:50%; transform:translateY(-50%);
+  width:15px; height:15px; fill:none; stroke:var(--ink-3); stroke-width:1.7;
+  stroke-linecap:round; stroke-linejoin:round; pointer-events:none;
+  transition:stroke .2s ease}
+.xsearch:focus-within svg{stroke:var(--fire-lt)}
+.xbar input[type=search]{
+  appearance:none; -webkit-appearance:none; width:100%; box-sizing:border-box;
+  font-family:var(--font-instrument-sans),sans-serif; font-size:13px; color:var(--ink);
+  background:rgba(255,255,255,.03); border:1px solid var(--edge-2); border-radius:8px;
+  padding:8px 12px; transition:border-color .18s ease, background-color .18s ease}
+.xbar input[type=search]{padding-left:36px}
+.xbar input[type=search]::placeholder{color:var(--ink-3)}
+.xbar input[type=search]:focus{outline:none; border-color:var(--edge);
+  background:rgba(255,255,255,.055)}
+.xbar input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none}
+.xcount{margin-left:auto; font-family:var(--font-jetbrains-mono),monospace; font-size:10px;
+  letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
+@media(max-width:560px){ .xsearch{flex:1 1 100%} .xcount{margin-left:0; padding-top:2px} }
+
+/* one product per row: a wide plate, and a card of metadata beside it */
+.xgrid{display:grid; gap:clamp(14px,1.8vw,26px); margin-top:clamp(20px,2.4vw,30px)}
+.xc{display:grid; grid-template-columns:2fr 1fr; gap:clamp(12px,1.4vw,18px);
+  text-decoration:none; transition:opacity .3s ease}
+.xc[hidden]{display:none}
+@media(max-width:900px){ .xc{grid-template-columns:1fr} }
+
+/* the plate */
+.xshot{position:relative; overflow:hidden; aspect-ratio:16 / 9;
+  border:1px solid var(--edge-2); border-radius:16px;
+  background:linear-gradient(180deg, rgba(255,255,255,.032), rgba(255,255,255,.005));
+  transition:border-color .26s ease, box-shadow .34s ease}
+.xshot::before{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  z-index:3; padding:1px;
+  background:linear-gradient(168deg, rgba(255,255,255,.18), rgba(255,255,255,.02) 42%,
+    rgba(255,255,255,0) 78%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude}
+.xc:hover .xshot{border-color:var(--edge);
+  box-shadow:0 1px 2px rgba(0,0,0,.5), 0 30px 56px -34px rgba(249,122,92,.22)}
+.xshot img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  object-position:top left; transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+.xc:hover .xshot img{transform:scale(1.02)}
+.xph{position:absolute; inset:16px; border:1px dashed var(--edge-2); border-radius:11px;
+  display:grid; place-items:center; gap:7px; align-content:center; text-align:center}
+.xph span{font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--ink-3)}
+.xph em{font-style:normal; font-size:13px; color:var(--ink-2)}
+.xglow{position:absolute; inset:0; pointer-events:none; opacity:0;
+  background:radial-gradient(52% 60% at var(--mx,50%) var(--my,40%),
+    rgba(249,122,92,.18), transparent 70%);
+  transition:opacity .34s ease}
+.xc:hover .xglow{opacity:1}
+
+/* the metadata card */
+.xinfo{display:flex; flex-direction:column; padding:clamp(20px,1.8vw,26px);
+  border:1px solid var(--edge-2); border-radius:16px; position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.006));
+  transition:border-color .26s ease, background-color .26s ease}
+.xc:hover .xinfo{border-color:var(--edge); background:rgba(255,255,255,.038)}
+.xhd{display:flex; align-items:center; gap:11px; margin-bottom:20px}
+.xic{width:32px; height:32px; border-radius:9px; flex:none; display:grid; place-items:center;
+  background:rgba(255,255,255,.05); transition:background-color .2s ease}
+.xic svg{width:16px; height:16px; fill:none; stroke:var(--ink-3); stroke-width:1.6;
+  stroke-linecap:round; stroke-linejoin:round; transition:stroke .2s ease}
+.xc:hover .xic{background:rgba(249,122,92,.15)}
+.xc:hover .xic svg{stroke:var(--fire-lt)}
+.xdom{font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3)}
+.xstate{margin-left:auto; display:inline-flex; align-items:center; gap:7px;
+  font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
+.xstate u{width:5px; height:5px; border-radius:50%; background:var(--tie); text-decoration:none}
+.xstate.soon u{background:transparent; border:1px solid var(--ink-3)}
+
+.xc h3{font-family:var(--font-newsreader),serif; font-weight:400; font-size:clamp(21px,1.9vw,26px);
+  line-height:1.16; letter-spacing:-.024em; color:var(--ink); margin:0 0 12px; max-width:16ch}
+.xc p{font-size:13.5px; line-height:1.6; color:var(--ink-2); margin:0 0 22px}
+
+/* metadata, as hairline rows */
+.xmeta{margin-top:auto; border-top:1px solid var(--hair)}
+.xmeta div{display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+  padding:10px 0; border-bottom:1px solid var(--hair); font-size:12.5px; color:var(--ink-3)}
+.xmeta div:last-child{border-bottom:0}
+.xmeta b{font-family:var(--font-jetbrains-mono),monospace; font-size:11.5px; font-weight:400;
+  color:var(--ink-2); text-align:right}
+.xmeta b.hot2{display:inline-block; font-family:var(--font-instrument-sans),sans-serif; font-size:12px;
+  color:var(--ink-2); border:1px solid var(--edge-2); border-radius:6px; padding:5px 10px;
+  background:rgba(255,255,255,.035); text-align:left; line-height:1.4;
+  transition:border-color .2s ease, color .2s ease}
+.xc:hover .xmeta b.hot2{border-color:var(--edge); color:var(--ink)}
+.xmeta div:last-child{align-items:center; padding:12px 0}
+.xgo{display:inline-flex; align-items:center; gap:8px; margin-top:20px;
+  font-size:13.5px; font-weight:500; color:var(--ink-2); transition:color .2s ease}
+.xgo svg{width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.8;
+  stroke-linecap:round; stroke-linejoin:round;
+  transition:transform .3s cubic-bezier(.2,.8,.3,1)}
+.xc:hover .xgo{color:var(--tie)}
+.xc:hover .xgo svg{transform:translate(2px,-2px)}
+
+/* every second row leads with the card */
+.xc:nth-child(even){grid-template-columns:1fr 2fr}
+.xc:nth-child(even) .xshot{order:2}
+.xc:nth-child(even) .xinfo{order:1}
+@media(max-width:900px){
+  .xc:nth-child(even){grid-template-columns:1fr}
+  .xc:nth-child(even) .xshot{order:0}
+  .xc:nth-child(even) .xinfo{order:0}
+}
+
+/* nothing matched is a screen, not an absence */
+.xempty{border:1px dashed var(--edge-2); border-radius:14px; padding:48px 20px; text-align:center;
+  margin-top:clamp(18px,2vw,26px)}
+.xempty b{display:block; font-size:15px; color:var(--ink); margin-bottom:8px}
+.xempty span{font-size:13.5px; color:var(--ink-3)}
+
+/* the closing note */
+.xnote{margin-top:clamp(30px,3.6vw,48px); padding-top:22px; border-top:1px solid var(--hair);
+  display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9.5px; letter-spacing:.07em; color:var(--ink-3)}
+.xnote b{color:var(--ink-2); font-weight:400}
