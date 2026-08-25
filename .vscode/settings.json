@@ -1,0 +1,23 @@
+{
+  // Use the TypeScript that ships with the project rather than the one bundled
+  // with the editor. A mismatch is the usual cause of .tsx files reporting
+  // "Cannot use JSX unless the '--jsx' flag is provided" while `tsc` on the
+  // command line is perfectly happy.
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // ESLint here is flat config (eslint.config.mjs) and covers ts/tsx.
+  "eslint.useFlatConfig": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+
+  // The stylesheets use modern CSS the built-in validator does not always know
+  // — mask-composite, text-wrap, overflow-x:clip, dvh units — and the two
+  // module files use :global(), which is CSS Modules syntax rather than CSS.
+  // Unknown-property noise is off; genuine syntax errors are still reported.
+  "css.lint.unknownProperties": "ignore",
+  "css.lint.unknownAtRules": "ignore",
+  "css.lint.vendorPrefix": "ignore",
+
+  "search.exclude": { "**/.next": true, "**/node_modules": true },
+  "files.watcherExclude": { "**/.next/**": true }
+}
