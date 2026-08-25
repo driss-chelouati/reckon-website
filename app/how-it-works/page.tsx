@@ -24,7 +24,7 @@ export default function HowItWorks() {
               <div className="hch"><u></u>Stated</div>
               <div className="hcb">
                 <span className="hln"><span>14</span><i style={{ width: "76%" }}></i></span>
-                <span className="hln mk"><span>15</span><i style={{ width: "90%" }}></i></span>
+                <span className="hln hlit"><span>15</span><i style={{ width: "90%" }}></i></span>
                 <span className="hln"><span>16</span><i style={{ width: "54%" }}></i></span>
               </div>
             </div>
