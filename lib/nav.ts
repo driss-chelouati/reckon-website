@@ -8,10 +8,6 @@ import type { IconKey } from "@/components/icons";
 export type MegaLink = { href: string; label: string; icon: IconKey };
 export type FeatureLink = { href: string; title: string; note: string; icon: IconKey };
 
-/* Three of these point at anchors /rules does not carry — #compiled, #audit
-   and #fixtures. The source HTML has the same gap: its own megamenu links to
-   them and its only ids are anatomy, moments, covers, loading and faq. They
-   land at the top of /rules rather than 404ing. Left as the design has them. */
 export const layerLinks: MegaLink[] = [
   { href: "/how-it-works", label: "Overview", icon: "howItWorks" },
   { href: "/rules", label: "The rules layer", icon: "rules" },

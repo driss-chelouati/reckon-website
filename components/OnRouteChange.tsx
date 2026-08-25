@@ -17,7 +17,11 @@ import { useEffect, useRef } from "react";
 
    So smooth comes off for as long as a navigation is in flight — the click is
    the only signal available before the router acts, which is why this listens
-   in the capture phase — and the arrival is a jump, not a journey. */
+   in the capture phase — and the arrival is a jump, not a journey.
+
+   None of that should apply to a link that stays on the page you are already
+   on. Those are anchor jumps, they keep their smooth scroll, and they must not
+   raise the veil: see the pathname comparison below. */
 export default function OnRouteChange() {
   const path = usePathname();
   const previous = useRef<string | null>(null);
@@ -39,7 +43,25 @@ export default function OnRouteChange() {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
       const link = (e.target as Element | null)?.closest?.("a");
       const href = link?.getAttribute("href");
-      if (href?.startsWith("/")) routing();
+      if (!href) return;
+
+      /* Resolve against the current document so "/rules", "/rules#faq" and
+         "#faq" all normalise to a pathname we can compare. Testing the raw
+         string instead treated a link to the page you are already on as a
+         navigation: the veil closed, the router never moved, and nothing
+         cleared it until the 1200ms fallback — a second of black over an
+         anchor jump that had already happened underneath it. */
+      let url: URL;
+      try {
+        url = new URL(href, window.location.href);
+      } catch {
+        return;
+      }
+      if (url.origin !== window.location.origin) return;
+      // same page: an anchor jump or a no-op, and smooth scrolling should keep working
+      if (url.pathname === window.location.pathname) return;
+
+      routing();
     };
 
     document.addEventListener("click", onClick, true);
@@ -55,7 +77,8 @@ export default function OnRouteChange() {
     const changed = previous.current !== null && previous.current !== path;
     previous.current = path;
     if (!changed) return;
-    window.scrollTo({ top: 0, behavior: "instant" });
+    // a URL that names a section asked for that section, not for the top
+    if (!window.location.hash) window.scrollTo({ top: 0, behavior: "instant" });
     delete document.documentElement.dataset.routing;
   }, [path]);
 
