@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="hero rin">
         <HeroField />
         <div>
-          <p className="eyebrow">A design system for business applications</p>
+          <p className="eyebrow">A rules layer for AI-generated interfaces</p>
           <h1>
             Your agent’s first screen is usually <Glitch word="wrong" />.
           </h1>
@@ -24,9 +24,9 @@ export default function Hero() {
             <Link className="cta" href="/how-it-works" data-t="See how it works">
               See how it works
             </Link>
-            <a className="cta-alt" href="#pairs">
+            <Link className="cta-alt" href="/failure-modes">
               See what goes wrong
-            </a>
+            </Link>
           </div>
         </div>
       </div>

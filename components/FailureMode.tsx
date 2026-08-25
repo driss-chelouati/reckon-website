@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 /* Problem */
 export default function FailureMode() {
   return (
@@ -10,7 +12,7 @@ export default function FailureMode() {
             <h2>A plausible number is worse than no number.</h2>
             <div>
               <p className="lede">Ask an agent for an operations screen and you get something that photographs well. Then you read it. The expensive rework here is semantic — a figure that will not reconcile, a control that lies about when it applies — and no component library touches any of it.</p>
-              <a className="snum" href="#what"><i>01</i><u>What the rules add →</u></a>
+              <Link className="snum" href="/rules"><i>01</i><u>What the rules add →</u></Link>
             </div>
           </div>
 

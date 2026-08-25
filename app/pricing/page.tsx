@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PriceField from "@/components/fx/PriceField";
 import PracticeFigure from "@/components/PracticeFigure";
 import Pricing from "@/components/Pricing";
@@ -35,7 +36,7 @@ export default function PricingPage() {
             <h2>Four ways this usually starts.</h2>
             <div>
               <p className="lede">Each one begins the same way: a call, then a written scope with a fixed shape. No discovery phase billed by the hour.</p>
-              <a className="snum" href="#said"><i>02</i><u>What it changed →</u></a>
+              <Link className="snum" href="/how-to-use"><i>02</i><u>How to use →</u></Link>
             </div>
           </div>
 
@@ -67,7 +68,7 @@ export default function PricingPage() {
         }
         lede="Components are the easy part. What you are missing is the layer that decides what gets computed, what gets shown, and what gets refused."
         primary={{ href: "/how-it-works", label: "See how it works", tear: "See how it works" }}
-        secondary={{ href: "#templates", label: "See a worked product" }}
+        secondary={{ href: "/products", label: "See a worked product" }}
       />
     </>
   );

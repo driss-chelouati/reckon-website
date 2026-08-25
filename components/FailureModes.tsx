@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 /* Three failure modes, read across: what goes wrong, then the rule that closes
    it. The full set lives on /failure-modes; these three are the landing page's
    sample. */
@@ -41,10 +43,10 @@ export default function FailureModes() {
               Not hypotheticals. Each is a specific way generated business UI goes wrong underneath
               a finished-looking surface — and each has a rule written against it.
             </p>
-            <a className="snum" href="#machinery">
+            <Link className="snum" href="/failure-modes">
               <i>04</i>
               <u>How the rules hold →</u>
-            </a>
+            </Link>
           </div>
         </div>
 

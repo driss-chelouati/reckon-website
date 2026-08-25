@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 /* Machinery */
 export default function Machinery() {
   return (
@@ -10,7 +12,7 @@ export default function Machinery() {
             <h2>A rule nobody can check is a preference.</h2>
             <div>
               <p className="lede">Written guidance drifts. The model reads it, agrees with it, then violates it on the fourth screen. So the rules are held three ways — and the strongest do not depend on the model’s judgement at all.</p>
-              <a className="snum" href="#teams"><i>05</i><u>Who it is for →</u></a>
+              <Link className="snum" href="/how-it-works"><i>05</i><u>How it works →</u></Link>
             </div>
           </div>
 

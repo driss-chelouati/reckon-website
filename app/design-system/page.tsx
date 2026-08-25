@@ -56,7 +56,7 @@ export default function DesignSystem() {
             <h2>The inventory is the easy half.</h2>
             <div>
               <p className="lede">The inventory is unremarkable and deliberately so. What is added is the part that is usually left to the person implementing it: what each control means, and when it may not be offered.</p>
-              <a className="snum" href="#shells"><i>02</i><u>Shells and archetypes →</u></a>
+              <Link className="snum" href="/shells"><i>02</i><u>Shells and archetypes →</u></Link>
             </div>
           </div>
 

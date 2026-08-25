@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 /* Teams */
 export default function WhoItIsFor() {
   return (
@@ -10,7 +12,7 @@ export default function WhoItIsFor() {
             <h2>You are paying for less rework.</h2>
             <div>
               <p className="lede">Everyone generating business UI already has components. What they lack is anything that makes the output true underneath. The standard here is what a real team has to undo before it can build.</p>
-              <a className="snum" href="#pricing"><i>06</i><u>What it costs →</u></a>
+              <Link className="snum" href="/pricing"><i>06</i><u>What it costs →</u></Link>
             </div>
           </div>
 

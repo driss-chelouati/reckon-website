@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import HowField from "@/components/fx/HowField";
 import Faq from "@/components/Faq";
 import ClosingCta from "@/components/ClosingCta";
@@ -100,7 +101,7 @@ export default function HowItWorks() {
             <h2>Written, built in, and read back.</h2>
             <div>
               <p className="lede">A file the model loads, a component that will not accept a wrong value, and a pass that reads the result before anybody else has to.</p>
-              <a className="snum" href="#worked"><i>01</i><u>One figure, all three →</u></a>
+              <Link className="snum" href="/rules"><i>01</i><u>One figure, all three →</u></Link>
             </div>
           </div>
 

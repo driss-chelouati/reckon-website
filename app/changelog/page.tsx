@@ -121,7 +121,7 @@ export default function Changelog() {
         }
         lede="Components are the easy part. What you are missing is the layer that decides what gets computed, what gets shown, and what gets refused."
         primary={{ href: "/how-it-works", label: "See how it works", tear: "See how it works" }}
-        secondary={{ href: "#templates", label: "See a worked product" }}
+        secondary={{ href: "/products", label: "See a worked product" }}
       />
     </>
   );
