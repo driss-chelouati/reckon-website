@@ -218,13 +218,17 @@ export default function FailureMode() {
             </div>
           </div>
 
+          {/* Each of the three goes to the section that actually documents it:
+              the first two match a numbered mode on /failure-modes word for
+              word, and the third is the whole argument of /fixtures. They all
+              pointed at #what, which the landing page has never carried. */}
           <div className="idx">
-            <a href="#what"><span className="n">01</span><span className="t">Untraceable figures</span>
-              <p>A total written as a literal, sitting above rows that contradict it, that nobody can trace back to any data.</p></a>
-            <a href="#what"><span className="n">02</span><span className="t">Controls that lie</span>
-              <p>The same action on every row — including a record the data settled fourteen minutes ago.</p></a>
-            <a href="#what"><span className="n">03</span><span className="t">Undesigned states</span>
-              <p>Loading, empty, filtered-to-nothing, error, permission-denied — the screens an engineer has to invent later.</p></a>
+            <Link href="/failure-modes#m01"><span className="n">01</span><span className="t">Untraceable figures</span>
+              <p>A total written as a literal, sitting above rows that contradict it, that nobody can trace back to any data.</p></Link>
+            <Link href="/failure-modes#m06"><span className="n">02</span><span className="t">Controls that lie</span>
+              <p>The same action on every row — including a record the data settled fourteen minutes ago.</p></Link>
+            <Link href="/fixtures#states"><span className="n">03</span><span className="t">Undesigned states</span>
+              <p>Loading, empty, filtered-to-nothing, error, permission-denied — the screens an engineer has to invent later.</p></Link>
           </div>
         </div>
       </div>

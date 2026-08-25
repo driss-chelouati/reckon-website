@@ -1018,8 +1018,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 /* The navbar is sticky and 72px tall, so an anchored section scrolled to by an
    index link or a numbered link lands with its heading underneath it. Every
    section that carries an id leaves room for the bar plus a little air.
-   /legal and /privacy do the same for their own .lsec[id] blocks. */
-.sec[id]{scroll-margin-top:104px}
+   /legal and /privacy do the same for their own .lsec[id] blocks, and the
+   numbered mode blocks on /failure-modes are .fm rather than .sec. */
+.sec[id], .fm[id]{scroll-margin-top:104px}
 
 .sec{border-top:1px solid var(--hair); padding:clamp(30px,3.2vw,42px) 0 clamp(112px,12vw,180px)}
 .prose{max-width:68ch}
