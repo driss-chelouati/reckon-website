@@ -10,14 +10,8 @@ import { usePointerLight } from "@/components/usePointerLight";
    The hire card's button points at #contact, which does not exist anywhere on
    the site. Left as the source has it. */
 export default function Pricing({
-  num,
-  href,
-  label,
   flush = false,
 }: {
-  num: string;
-  href: string;
-  label: string;
   /* /pricing runs this straight under its header, with no rule on top */
   flush?: boolean;
 }) {

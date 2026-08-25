@@ -24,9 +24,9 @@ export default function Home() {
       <FailureModes />
       <Machinery />
       <WhoItIsFor />
-      <Pricing num="07" href="#faq" label="Straight answers →" />
+      <Pricing />
       <Testimonials />
-      <Faq num="08" href="#top" label="Back to the top →" />
+      <Faq num="07" href="#top" label="Back to the top →" />
       <ClosingCta
         field
         headline={

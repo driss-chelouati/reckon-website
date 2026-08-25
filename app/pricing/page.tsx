@@ -27,7 +27,7 @@ export default function PricingPage() {
 
       <PracticeFigure />
 
-      <Pricing flush num="01" href="#engagement" label="Working together →" />
+      <Pricing flush />
 
       <div className="band">
         <div className="sec" id="engagement">
@@ -36,7 +36,7 @@ export default function PricingPage() {
             <h2>Four ways this usually starts.</h2>
             <div>
               <p className="lede">Each one begins the same way: a call, then a written scope with a fixed shape. No discovery phase billed by the hour.</p>
-              <Link className="snum" href="/how-to-use"><i>02</i><u>How to use →</u></Link>
+              <Link className="snum" href="/how-to-use"><i>01</i><u>How to use →</u></Link>
             </div>
           </div>
 
@@ -55,8 +55,8 @@ export default function PricingPage() {
         </div>
       </div>
 
-      <Testimonials link={{ num: "03", href: "#faq", label: "Straight answers →" }} />
-      <Faq num="04" href="#top" label="Back to the top →" />
+      <Testimonials link={{ num: "02", href: "#faq", label: "Straight answers →" }} />
+      <Faq num="03" href="#top" label="Back to the top →" />
       <ClosingCta
         field
         headline={
