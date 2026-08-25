@@ -8,23 +8,26 @@ import type { IconKey } from "@/components/icons";
 export type MegaLink = { href: string; label: string; icon: IconKey };
 export type FeatureLink = { href: string; title: string; note: string; icon: IconKey };
 
+/* Three of these point at anchors /rules does not carry — #compiled, #audit
+   and #fixtures. The source HTML has the same gap: its own megamenu links to
+   them and its only ids are anatomy, moments, covers, loading and faq. They
+   land at the top of /rules rather than 404ing. Left as the design has them. */
 export const layerLinks: MegaLink[] = [
-  { href: "/how-it-works", label: "How it works", icon: "howItWorks" },
-  { href: "/rules", label: "The rules file", icon: "rules" },
-  { href: "/rules#compiled", label: "Compiled rules", icon: "compiled" },
-  { href: "/rules#audit", label: "The audit pass", icon: "audit" },
+  { href: "/how-it-works", label: "Overview", icon: "howItWorks" },
+  { href: "/rules", label: "The rules layer", icon: "rules" },
   { href: "/failure-modes", label: "Failure modes", icon: "failureModes" },
-  { href: "/design-system", label: "The design system", icon: "designSystem" },
-  { href: "/design-system#tokens", label: "Tokens and theming", icon: "tokens" },
-  { href: "/design-system#shells", label: "Shells and archetypes", icon: "shells" },
-  { href: "/rules#fixtures", label: "Fixtures and states", icon: "fixtures" },
-  { href: "/setup", label: "Claude Design setup", icon: "setup" },
+  { href: "/fixtures", label: "Fixtures", icon: "check" },
+  { href: "/audit", label: "The audit phase", icon: "audit" },
+  { href: "/shells", label: "Shells and archetypes", icon: "shells" },
+  { href: "/how-to-use", label: "How to use", icon: "howToUse" },
+  { href: "/design-system", label: "Design system", icon: "github" },
+  { href: "/download", label: "Download files", icon: "download" },
 ];
 
 export const productStartHere: FeatureLink[] = [
-  { href: "/how-it-works", title: "How it works", note: "The three layers, in order", icon: "howItWorks" },
-  { href: "/failure-modes", title: "Failure modes", note: "What goes wrong, and why", icon: "failureModes" },
-  { href: "/design-system", title: "Design system", note: "Components and tokens", icon: "designSystem" },
+  { href: "/how-it-works", title: "How it works", note: "The three layers, in order", icon: "rules" },
+  { href: "/how-to-use", title: "How to use", note: "How to setup your project", icon: "check" },
+  { href: "/download", title: "Download", note: "Download the project files", icon: "download" },
 ];
 
 /* the three products the Showcase menu opens with */
@@ -52,10 +55,16 @@ export const drawerGroups = [
   },
 ];
 
-/* Every page's header carries one of these class names. The nav measures
-   whichever one is on the page to decide when its button turns primary. */
+/* Every page's header carries one of these class names, and the nav measures
+   whichever one is on the page to decide when its button turns primary.
+
+   Pages whose CSS is a module cannot be named here — their class names are
+   rewritten at build time — so they mark their header with data-page-header
+   instead. Prefer the attribute on anything new; the class list is kept for the
+   pages that predate it. */
 export const PAGE_HEADER_SELECTOR =
-  ".hero, .prhero, .chero, .phero, .xhero, .fhero, .hhero, .dhero";
+  "[data-page-header], .hero, .prhero, .chero, .phero, .xhero, .fhero, .hhero, .dhero," +
+  " .ohero, .rhero, .whero, .khero, .hthero";
 
 /* The routes that exist. Eleven more are in the menu on purpose and are coming;
    until they do they stay plain anchors, so the router does not prefetch a 404
@@ -69,6 +78,15 @@ export const liveRoutes = new Set([
   "/changelog",
   "/products",
   "/products/cargo-claims",
+  "/download",
+  "/rules",
+  "/who-its-for",
+  "/fixtures",
+  "/shells",
+  "/audit",
+  "/legal",
+  "/privacy",
+  "/how-to-use",
 ]);
 
 export const isLive = (href: string) => liveRoutes.has(href.split("#")[0] || "/");

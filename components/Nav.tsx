@@ -241,7 +241,7 @@ export default function Nav() {
             <Link href="/pricing">Pricing</Link>
             <Link href="/changelog">Changelog</Link>
           </div>
-          <Link className="navcta" href="/pricing" data-t="Get Reckon">
+          <Link className="navcta" href="/download" data-t="Get Reckon">
             Get Reckon
           </Link>
           <label className="burger" htmlFor="navtog">
