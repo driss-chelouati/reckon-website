@@ -1,0 +1,258 @@
+/* ---------- who it is for ---------- */
+.whero{position:relative; padding:clamp(52px,6.5vw,96px) 0 clamp(34px,4vw,58px)}
+.whero > *{position:relative; z-index:1}
+.whero h1{font-size:clamp(36px,5.6vw,70px); line-height:1.04; letter-spacing:-.034em}
+.whero .lede{margin-top:26px; max-width:58ch}
+.wfx{position:absolute; z-index:0 !important; right:calc(-2.2 * var(--gut)); top:-170px;
+  width:min(900px,68vw); height:760px; pointer-events:none;
+  -webkit-mask-image:radial-gradient(74% 68% at 72% 44%, #000 16%, rgba(0,0,0,.45) 60%, transparent 100%);
+  mask-image:radial-gradient(74% 68% at 72% 44%, #000 16%, rgba(0,0,0,.45) 60%, transparent 100%)}
+.wfx canvas{display:block; width:100%; height:100%}
+@media(max-width:1080px){ .wfx{opacity:.5; width:86vw} }
+@media(max-width:760px){ .wfx{display:none} }
+
+/* the three readings, stated once under the header */
+.wtri{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  margin-top:clamp(32px,3.6vw,46px); border-top:1px solid var(--hair)}
+@media(max-width:760px){ .wtri{grid-template-columns:1fr} }
+.wtri > div{padding:22px clamp(16px,1.8vw,26px) 22px 0; border-bottom:1px solid var(--hair)}
+.wtri > div + div{border-left:1px solid var(--hair); padding-left:clamp(16px,1.8vw,26px)}
+@media(max-width:760px){ .wtri > div + div{border-left:0; padding-left:0} }
+.wtri i{display:block; font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:9px;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); margin-bottom:11px}
+.wtri b{display:block; font-family:var(--font-newsreader),serif; font-weight:400;
+  font-size:clamp(17px,1.7vw,21px); line-height:1.24; letter-spacing:-.022em; color:var(--ink);
+  max-width:24ch; text-wrap:balance; -webkit-text-wrap:balance}
+.wtri span{display:block; margin-top:9px; font-size:12.5px; line-height:1.55; color:var(--ink-3)}
+
+/* the source carries this inline on the three row headlines */
+#designers .shead h2, #developers .shead h2, #teams .shead h2{max-width:none; text-wrap:balance}
+
+/* one audience per row, with the view they get */
+.wstack{margin-top:clamp(24px,2.8vw,38px); border-top:1px solid var(--hair)}
+.wrow{display:grid; grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+  gap:clamp(24px,3.4vw,64px); align-items:center;
+  padding:clamp(28px,3.2vw,44px) 0; border-bottom:1px solid var(--hair)}
+@media(max-width:900px){ .wrow{grid-template-columns:1fr; gap:24px} }
+.wrow .lbl{display:flex; align-items:center; gap:10px; margin-bottom:14px;
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--ink-3)}
+.wrow .lbl u{width:5px; height:5px; border-radius:50%; text-decoration:none; background:var(--fire)}
+.wrow h3{font-family:var(--font-newsreader),serif; font-weight:400; font-size:clamp(20px,2vw,26px);
+  max-width:22ch; text-wrap:balance; -webkit-text-wrap:balance;
+  line-height:1.18; letter-spacing:-.024em; color:var(--ink); margin:0 0 12px}
+.wrow > div > p{font-size:14px; line-height:1.65; color:var(--ink-2); margin:0 0 18px;
+  max-width:50ch}
+.wgain{list-style:none; margin:0; padding:0; border-top:1px solid var(--hair)}
+.wgain li{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:baseline;
+  padding:11px 0; border-bottom:1px solid var(--hair); font-size:13px; color:var(--ink-2)}
+.wgain em{font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); white-space:nowrap}
+
+/* the figure well */
+/* no card around the figure — just its label and a ruled ground behind it */
+.wfig{padding:0; border:0; border-radius:0; background:none}
+.wfigin{border:0; border-radius:0; background:none; overflow:visible}
+.wfh{display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:0 0 14px; border-bottom:0;
+  font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--ink-3)}
+.wfb{position:relative; padding:26px 0 10px; display:grid; gap:11px; min-height:168px;
+  align-content:center}
+/* the ruled tracks, as on the pricing illustration */
+.wfb::before{content:""; position:absolute; inset:-14px -6px -4px;
+  background-image:linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+  background-size:clamp(52px,6.4vw,88px) 100%;
+  -webkit-mask-image:radial-gradient(78% 72% at 50% 46%, #000 18%, transparent 84%);
+  mask-image:radial-gradient(78% 72% at 50% 46%, #000 18%, transparent 84%);
+  pointer-events:none}
+.wfb > *{position:relative; z-index:1}
+
+/* one figure is a panel rather than an open ground */
+.wfig.boxed{padding:4px; border:1px solid var(--edge-2); border-radius:16px;
+  background:rgba(255,255,255,.022)}
+.wfig.boxed .wfigin{border:1px solid var(--edge-2); border-radius:12px;
+  background:rgba(255,255,255,.03); overflow:hidden}
+.wfig.boxed .wfh{padding:12px 16px; border-bottom:1px solid var(--hair)}
+.wfig.boxed .wfb{padding:20px 16px 22px; min-height:0}
+.wfig.boxed .wfb::before{display:none}
+
+/* the designers' figure: one shell, branching into two products.
+   Prefixed w so nothing in the shared stylesheet can reach it. */
+.wdep{position:relative; width:100%; aspect-ratio:16/10; min-height:210px}
+.wlink{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.wlink path{fill:none; stroke-width:1.4; stroke-linecap:round}
+.wlink .lnk{stroke:rgba(255,255,255,.18)}
+.wlink .lnk.on{stroke:var(--fire); opacity:.85}
+
+.wbar{position:absolute; display:flex; align-items:center; justify-content:center; gap:0;
+  height:34px; border-radius:9px; border:1px solid var(--edge-2);
+  background:linear-gradient(90deg, rgba(255,255,255,.075), rgba(255,255,255,.02));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.wbar.on{border-color:rgba(249,122,92,.45);
+  background:linear-gradient(90deg, rgba(249,122,92,.14), rgba(249,122,92,.03));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 0 22px -8px rgba(249,122,92,.5)}
+/* the base: the shell everything comes from */
+.wbar.b0{left:0; top:44%; width:44%}
+.wbar.b1{left:52%; top:14%; width:48%}
+.wbar.b2{left:58%; top:70%; width:42%}
+
+.wdia{position:absolute; top:50%; width:11px; height:11px; margin-top:-5.5px;
+  transform:rotate(45deg); border-radius:2px;
+  border:1px solid rgba(255,255,255,.4); background:#0B0B11}
+.wdia.a{left:26%} .wdia.b{right:16%}
+.wdia.mid{left:50%; margin-left:-5.5px}
+.wbar.on .wdia{border-color:rgba(255,178,150,.9); background:rgba(249,122,92,.35)}
+
+/* labels: beneath the base, above the branches */
+.wlab{position:absolute; display:flex; font-family:var(--font-instrument-sans),sans-serif;
+  font-size:11.5px; color:var(--ink-3); white-space:nowrap}
+.wlab.l0{left:0; top:calc(44% + 42px); width:44%}
+.wlab.l0 span{position:absolute}
+.wlab.l0 span:first-child{left:26%; transform:translateX(-50%)}
+.wlab.l0 span:last-child{right:16%; transform:translateX(50%)}
+.wcap{position:absolute; font-family:var(--font-instrument-sans),sans-serif; font-size:11.5px;
+  color:var(--ink-3); white-space:nowrap}
+.wcap.c1{left:52%; top:calc(14% - 22px)}
+.wcap.c2{left:58%; top:calc(70% - 22px)}
+.wcap.on{color:var(--ink-2)}
+
+/* the developers' figure: a figure that names the rows it came from.
+   Prefixed wp so nothing in the shared stylesheet can reach it. */
+.wprov{width:100%; max-width:340px; font-family:var(--font-instrument-sans),sans-serif}
+
+/* the derived figure, and whose it is */
+.wphd{display:grid; grid-template-columns:44px minmax(0,1fr) auto; gap:13px;
+  align-items:center; padding-bottom:16px}
+.wpav{width:44px; height:44px; border-radius:50%; overflow:hidden; flex:0 0 auto;
+  display:flex; align-items:center; justify-content:center;
+  position:static; transform:none; border:0; padding:0; margin:0;
+  background:rgba(255,255,255,.09); color:var(--ink-2);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:11px; line-height:1; letter-spacing:.02em}
+.wpav img{width:100%; height:100%; object-fit:cover; display:block}
+.wpav.sm{width:22px; height:22px; font-size:8px}
+.wphd .who3{min-width:0}
+.wphd .who3 b{display:block; font-size:13.5px; font-weight:500; color:var(--ink);
+  line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.wphd .who3 span{display:block; margin-top:3px; font-size:11.5px; line-height:1.2;
+  color:var(--ink-3)}
+.wphd .fig{text-align:right}
+.wphd .fig b{display:block; font-family:var(--font-jetbrains-mono),monospace;
+  font-variant-numeric:tabular-nums; font-size:17px; font-weight:500; color:var(--ink);
+  letter-spacing:-.028em; line-height:1}
+.wphd .fig em{display:inline-flex; align-items:center; gap:6px; margin-top:8px;
+  font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--fire-lt)}
+.wphd .fig em u{width:5px; height:5px; border-radius:50%; text-decoration:none;
+  background:var(--fire)}
+
+/* the rows it is derived from */
+.wpsrc{padding:12px 0 4px; border-top:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3)}
+.wprow{display:grid; grid-template-columns:22px minmax(0,1fr) auto; gap:11px;
+  align-items:center; padding:9px 0; border-bottom:1px solid var(--hair);
+  font-size:12.5px; color:var(--ink-2)}
+.wprow .nm3{min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.wprow .amt3{font-family:var(--font-jetbrains-mono),monospace; font-variant-numeric:tabular-nums;
+  font-size:12px; color:var(--ink)}
+
+/* the sum, which the component works out for itself */
+.wpsum{display:grid; grid-template-columns:22px minmax(0,1fr) auto; gap:11px;
+  align-items:center; padding:12px 0 0; font-size:12.5px; color:var(--ink-2)}
+.wpsum .tick{width:22px; height:22px; border-radius:50%; display:flex; align-items:center;
+  justify-content:center; background:rgba(142,150,255,.14)}
+.wpsum .tick svg{width:12px; height:12px; fill:none; stroke:var(--tie); stroke-width:2.4;
+  stroke-linecap:round; stroke-linejoin:round}
+.wpsum .amt3{font-family:var(--font-jetbrains-mono),monospace; font-variant-numeric:tabular-nums;
+  font-size:12px; font-weight:500; color:var(--ink)}
+.wpnote{margin-top:14px; padding-top:12px; border-top:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.06em;
+  color:var(--ink-3)}
+.wpnote s{color:var(--ink-3); text-decoration-color:rgba(249,122,92,.8)}
+
+/* the teams figure: four products, each its own row, all agreeing.
+   Prefixed w so nothing in the shared stylesheet can reach it. */
+.wlist{display:grid; gap:9px; width:100%; max-width:none}
+.wcrd{display:grid; grid-template-columns:28px minmax(0,1fr) auto auto; gap:14px;
+  align-items:center; padding:12px 14px; border-radius:11px;
+  border:1px solid var(--edge-2);
+  background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012)), #0B0B11;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 1px 2px rgba(0,0,0,.4);
+  transition:border-color .24s ease}
+.wcrd:hover{border-color:var(--edge)}
+@media(max-width:520px){
+  .wcrd{grid-template-columns:28px minmax(0,1fr) auto; gap:11px}
+  .wcrd .wact{display:none}
+}
+
+/* the company mark, unboxed */
+.wcav{width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+  position:static; transform:none; border:0; border-radius:0; padding:0; margin:0;
+  background:none; overflow:visible}
+.wcav svg{width:20px; height:20px; display:block}
+
+.wcrd .info{min-width:0}
+.wcrd .info b{display:block; font-size:12.5px; font-weight:500; color:var(--ink);
+  line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.wcrd .info span{display:block; margin-top:3px; font-family:var(--font-jetbrains-mono),monospace;
+  font-size:9px; line-height:1.2; color:var(--ink-3)}
+
+/* status, stated as a word */
+.wstat{display:inline-flex; align-items:center; gap:7px; border-radius:999px;
+  padding:4px 10px; font-size:10.5px; font-weight:500; white-space:nowrap;
+  background:rgba(255,255,255,.07); color:var(--ink-3)}
+.wstat u{width:5px; height:5px; border-radius:50%; text-decoration:none;
+  background:var(--ink-3); flex:0 0 auto}
+.wstat.live{color:#7FC7A8; background:rgba(127,199,168,.14)}
+.wstat.live u{background:#7FC7A8}
+.wstat.draft{color:#F0B36B; background:rgba(224,160,80,.15)}
+.wstat.draft u{background:#F0B36B}
+
+/* the actions: one neutral, one white */
+.wact{display:flex; align-items:center; gap:7px}
+.wbtn{display:inline-flex; align-items:center; justify-content:center; height:26px;
+  padding:0 11px; border-radius:7px; font-size:11px; font-weight:500; white-space:nowrap;
+  border:1px solid var(--edge); background:rgba(255,255,255,.07); color:var(--ink);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07), 0 1px 2px rgba(0,0,0,.4);
+  transition:background-color .18s ease}
+.wbtn:hover{background:rgba(255,255,255,.1)}
+.wbtn.solid{border-color:transparent; background:#E6E7EC; color:#141419;
+  box-shadow:0 1px 2px rgba(0,0,0,.45)}
+.wbtn.solid:hover{background:#F2F3F6}
+
+.wkey{display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding-top:13px;
+  margin-top:3px; border-top:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-3)}
+.wkey span{display:inline-flex; align-items:center; gap:7px}
+.wkey u{width:12px; height:4px; border-radius:2px; text-decoration:none}
+.wkey u.a{background:rgba(255,255,255,.3)}
+.wkey u.b{background:rgba(249,122,92,.75)}
+.wkey u.c{background:rgba(255,255,255,.16)}
+
+/* made for, and not */
+.wfor{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(14px,1.8vw,24px); margin-top:clamp(24px,2.8vw,38px)}
+@media(max-width:860px){ .wfor{grid-template-columns:1fr} }
+.wfc{padding:4px; border:1px solid var(--edge-2); border-radius:16px;
+  background:rgba(255,255,255,.022)}
+.wfcin{border:1px solid var(--edge-2); border-radius:12px; background:rgba(255,255,255,.022);
+  padding:clamp(20px,2.2vw,28px); height:100%}
+.wfc h3{display:flex; align-items:center; gap:9px; font-size:14px; font-weight:600;
+  color:var(--ink); margin:0 0 6px}
+.wfc h3 svg{width:15px; height:15px; flex:none; fill:none; stroke-width:1.9;
+  stroke-linecap:round; stroke-linejoin:round}
+.wfc.yes h3 svg{stroke:#7FC7A8}
+.wfc.no h3 svg{stroke:#F58AA4}
+/* the paragraph sits inside .wfcin > div, not directly under .wfc */
+.wfc .wfcin p{font-size:13.5px; line-height:1.62; color:var(--ink-2); margin:0 0 16px;
+  max-width:48ch}
+.wfl{list-style:none; margin:0; padding:0; border-top:1px solid var(--hair)}
+.wfl li{padding:11px 0; border-bottom:1px solid var(--hair); font-size:13.5px; line-height:1.55;
+  color:var(--ink-2)}
+.wfl li:last-child{border-bottom:0}
+.wfc.no .wfl li{color:var(--ink-3)}
+.wnote{margin-top:clamp(26px,3vw,38px); padding-top:20px; border-top:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.09em; line-height:1.8;
+  color:var(--ink-3); max-width:74ch}
