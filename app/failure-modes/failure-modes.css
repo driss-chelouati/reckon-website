@@ -58,6 +58,7 @@
   background:linear-gradient(168deg, rgba(255,255,255,.16), rgba(255,255,255,.02) 44%,
     rgba(255,255,255,0) 78%);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor; mask-composite:exclude}
 .pnh{display:flex; align-items:center; gap:9px; padding:12px 15px; border-bottom:1px solid var(--hair);
   font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.13em;

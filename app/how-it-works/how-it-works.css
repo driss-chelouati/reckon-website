@@ -100,6 +100,7 @@
   background:linear-gradient(168deg, rgba(255,255,255,.2), rgba(255,255,255,.025) 42%,
     rgba(255,255,255,0) 78%);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor; mask-composite:exclude}
 .c2h{display:flex; align-items:center; gap:9px; height:42px; padding:0 15px;
   border-bottom:1px solid var(--hair); font-family:var(--font-jetbrains-mono),monospace; font-size:9px;
