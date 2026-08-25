@@ -4,7 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Aura from "@/components/Aura";
-import RouteFlag from "@/components/RouteFlag";
+import OnRouteChange from "@/components/OnRouteChange";
 
 // The three families, self-hosted and preloaded via next/font/local.
 //
@@ -95,7 +95,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${newsreader.variable} ${instrumentSans.variable} ${jetbrainsMono.variable}`}
       >
-        <RouteFlag />
+        <OnRouteChange />
         <Aura />
         <div className="wrap">
           <Nav />

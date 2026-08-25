@@ -47,8 +47,8 @@ function Feature({ href, title, note, icon }: FeatureLink) {
    stays that way. What the stylesheet cannot know is that a click no longer
    reloads the document: the pointer is still sitting inside the menu when the
    next page paints, so the panel would hang open over the page it just took you
-   to. A click marks the menu shut; NAV_SHUT_RESET below decides when it may
-   open again. */
+   to. A click marks the menu shut; the pointermove effect in Nav decides when it
+   may open again. */
 function shut(e: MouseEvent<HTMLElement>) {
   e.currentTarget.dataset.shut = "";
   // A pointer click leaves focus on the link, inside a panel that is now
@@ -70,6 +70,10 @@ function Mega({ children }: { children: ReactNode }) {
       {children}
     </span>
   );
+}
+
+function toTop() {
+  window.scrollTo({ top: 0, behavior: "instant" });
 }
 
 /* the invisible strip under the trigger that keeps hover alive on the way down
@@ -96,8 +100,11 @@ export default function Nav() {
     const el = bar.current;
     if (!el) return;
     const header = document.querySelector(PAGE_HEADER_SELECTOR) ?? document.querySelector("h1");
-    let on = false;
-    let past = false;
+    // Seeded from the element, not from false: the nav does not remount on a
+    // navigation, so a fresh run of this effect inherits whatever classes the
+    // last one left on it. Assume they are off and it will never take them off.
+    let on = el.classList.contains("stuck");
+    let past = el.classList.contains("past");
 
     const check = () => {
       const want = window.scrollY > 10;
@@ -156,9 +163,12 @@ export default function Nav() {
       <input type="checkbox" id="navtog" className="navtog" aria-label="Menu" ref={tog} />
       <div className="band">
         <nav>
-          <a className="mark" href="#top">
+          {/* Clicking it on the home page is a navigation to where you already
+              are, which the router treats as nothing at all — so take yourself
+              to the top, which is what the mark used to do with #top. */}
+          <Link className="mark" href="/" onClick={toTop}>
             Reckon<span>.</span>
-          </a>
+          </Link>
           <div className="navlinks">
             <Mega>
               <Link href="/how-it-works">Product {Chev}</Link>
