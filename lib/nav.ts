@@ -16,7 +16,7 @@ export const layerLinks: MegaLink[] = [
   { href: "/audit", label: "The audit phase", icon: "audit" },
   { href: "/shells", label: "Shells and archetypes", icon: "shells" },
   { href: "/how-to-use", label: "How to use", icon: "howToUse" },
-  { href: "/design-system", label: "Design system", icon: "github" },
+  { href: "/design-system", label: "Design system", icon: "tokens" },
   { href: "/download", label: "Download files", icon: "download" },
 ];
 
