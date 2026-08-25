@@ -1,15 +1,23 @@
+import Link from "next/link";
+
+const currentYear = new Date().getFullYear();
+
 export default function Footer() {
   return (
     <div className="band">
-      <footer>
+      <footer className="sitefoot">
         <div className="footrow">
-          <div>Reckon — a rules layer for AI-generated interfaces</div>
+          <div>&copy; Reckon — 2025-{currentYear}</div>
           <div>
-            <a href="#what">What it is</a>
+            <Link href="/how-to-use">How to use</Link>
             {' '}
-            <a href="#pricing">Pricing</a>
+            <Link href="/download">Download</Link>
             {' '}
-            <a href="#">Changelog</a>
+            <Link href="/legal">Legal notice</Link>
+            {' '}
+            <Link href="/privacy">Privacy</Link>
+            {' '}
+            <Link href="https://drisschelouati.framer.website/" target="_blank">Hire me</Link>
           </div>
         </div>
       </footer>
