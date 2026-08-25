@@ -32,6 +32,7 @@ export default function Products() {
       </div>
 
       <ClosingCta
+        field
         headline={
           <>
             One brief in.

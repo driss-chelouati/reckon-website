@@ -109,6 +109,7 @@ export default function DesignSystem() {
       </div>
 
       <ClosingCta
+        field
         headline={
           <>
             Your look.

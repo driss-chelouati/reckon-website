@@ -189,6 +189,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
       </div>
 
       <ClosingCta
+        field
         headline={
           <>
             {page.closing.headline[0]}

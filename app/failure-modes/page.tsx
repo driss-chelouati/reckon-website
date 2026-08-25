@@ -368,6 +368,7 @@ export default function FailureModesPage() {
 
       <Faq num="11" href="#top" label="Back to the top →" />
       <ClosingCta
+        field
         headline={
           <>
             A plausible number
