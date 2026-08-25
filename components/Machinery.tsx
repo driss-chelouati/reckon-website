@@ -23,11 +23,11 @@ export default function Machinery() {
                   <div className="ui-h"><u>Ledger</u><em>August</em></div>
                   <div className="ui-b">
                     <div className="ksub">Movements</div>
-                    <div className="frow"><span>Opening balance</span><b>96,200.00</b></div>
-                    <div className="frow"><span>Invoiced</span><b>64,300.00</b></div>
-                    <div className="frow"><span>Credit notes</span><b>(12,600.00)</b></div>
-                    <div className="frow"><span>Collected</span><b>(19,500.00)</b></div>
-                    <div className="frow tot"><span>Closing</span><b>128,400.00</b></div>
+                    <div className="frow"><span>Opening balance</span><b>$96,200.00</b></div>
+                    <div className="frow"><span>Invoiced</span><b>$64,300.00</b></div>
+                    <div className="frow"><span>Credit notes</span><b>($12,600.00)</b></div>
+                    <div className="frow"><span>Collected</span><b>($19,500.00)</b></div>
+                    <div className="frow tot"><span>Closing</span><b>$128,400.00</b></div>
                     <svg className="bspark" viewBox="0 0 240 46" preserveAspectRatio="none" aria-hidden="true">
                       <path className="ba" d="M0,34 L34,30 L68,33 L102,24 L136,27 L170,16 L204,12 L240,6 L240,46 L0,46 Z" />
                       <path className="bl" d="M0,34 L34,30 L68,33 L102,24 L136,27 L170,16 L204,12 L240,6" />

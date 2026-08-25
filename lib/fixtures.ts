@@ -99,7 +99,7 @@ export const values: Value[] = [
     rule: "Unset and zero are drawn differently. **Always.**",
   },
   {
-    value: "-2,400.00",
+    value: "-$2,400.00",
     exposes:
       "A clawback that reads as a payment, because the only thing separating them is a minus sign eight pixels wide.",
     rule: "Direction is legible without the sign. **Colour is not enough.**",

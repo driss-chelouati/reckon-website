@@ -148,19 +148,19 @@ function Queue() {
           <Av src={portrait.nordvik} initials="MI" />
           <span className={s.who}><span className={s.nm}>Nordvik Shipping</span><span>CLM-0121 · 2 days left</span></span>
           <span className={`${s.pill3} ${s.crit}`}>Urgent</span>
-          <span className={s.amt}>20,600.00</span>
+          <span className={s.amt}>$20,600.00</span>
         </div>
         <div className={s.row}>
           <Av src={portrait.baltic} initials="DO" />
           <span className={s.who}><b>Baltic Freight Group</b><span>CLM-0114 · 6 days left</span></span>
           <span className={`${s.pill3} ${s.warn}`}>Due soon</span>
-          <span className={s.amt}>32,160.00</span>
+          <span className={s.amt}>$32,160.00</span>
         </div>
         <div className={s.row}>
           <Av src={portrait.meridian} initials="AF" />
           <span className={s.who}><span className={s.nm}>Meridian Cargo</span><span>CLM-0108 · 19 days left</span></span>
           <span className={s.pill3}>Assessed</span>
-          <span className={s.amt}>14,800.00</span>
+          <span className={s.amt}>$14,800.00</span>
         </div>
       </div>
     </div>
@@ -177,7 +177,7 @@ function RecordPage() {
         <span className={`${s.pill3} ${s.ok}`}>Assessed</span>
       </div>
       <div className={s.stats}>
-        <div className={s.stat}><em>Assessed payable</em><b>20,600.00</b></div>
+        <div className={s.stat}><em>Assessed payable</em><b>$20,600.00</b></div>
         <div className={s.stat}><em>Recovered</em><b className={s.mut}>—</b></div>
       </div>
       <div className={s.meta2}>
@@ -243,10 +243,10 @@ function Reconciliation() {
   return (
     <div className={s.hf}>
       <div className={s.cols2}>
-        {side("Assessed", [["Cargo", "96,400.00"], ["Survey", "8,200.00"], ["Handling", "23,800.00"]], "128,400.00")}
-        {side("Paid", [["Cargo", "96,400.00"], ["Survey", "8,200.00"], ["Handling", "22,560.00"]], "127,160.00")}
+        {side("Assessed", [["Cargo", "$96,400.00"], ["Survey", "$8,200.00"], ["Handling", "$23,800.00"]], "$128,400.00")}
+        {side("Paid", [["Cargo", "$96,400.00"], ["Survey", "$8,200.00"], ["Handling", "$22,560.00"]], "$127,160.00")}
       </div>
-      <div className={s.diff2}><span>Unreconciled</span><b>1,240.00</b></div>
+      <div className={s.diff2}><span>Unreconciled</span><b>$1,240.00</b></div>
     </div>
   );
 }

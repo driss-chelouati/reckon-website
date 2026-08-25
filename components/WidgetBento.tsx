@@ -95,9 +95,9 @@ export default function WidgetBento() {
               <div className="bstat"><span className="swap"><span className="bd">no source</span><span className="gd">✓ sums 3 rows</span></span></div></div>
             <div className="tfig"><span className="swap"><span className="bd">$268,500.00</span><span className="gd">$256,482.00</span></span></div>
             <div className="rows">
-              <div className="mrow"><span>Ready for decision</span><b>174,960.00</b></div>
-              <div className="mrow"><span>Approved, unpaid</span><b>67,050.00</b></div>
-              <div className="mrow"><span>Held by legal</span><b>14,472.00</b></div>
+              <div className="mrow"><span>Ready for decision</span><b>$174,960.00</b></div>
+              <div className="mrow"><span>Approved, unpaid</span><b>$67,050.00</b></div>
+              <div className="mrow"><span>Held by legal</span><b>$14,472.00</b></div>
             </div>
             <div className="bfix">✓ the figure names the array it came from</div>
           </div>
@@ -128,7 +128,7 @@ export default function WidgetBento() {
                 <span className="qid">CLM-2026-0114</span>
                 <span className="qcg">Dry-type transformer</span>
                 <span className="qst">evidence complete</span>
-                <span className="qnum">32,160.00</span>
+                <span className="qnum">$32,160.00</span>
                 <span className="qchip">Decide</span>
               </div>
 
@@ -136,7 +136,7 @@ export default function WidgetBento() {
                 <span className="qid">CLM-2026-0121</span>
                 <span className="qcg">Woven fabric rolls</span>
                 <span className="qst"><span className="swap"><span className="bd">1 document missing</span><span className="gd">1 document missing</span></span></span>
-                <span className="qnum">20,600.00</span>
+                <span className="qnum">$20,600.00</span>
                 <span className="swap"><span className="qchip bd">Decide</span><span className="qchip act gd">Evidence</span></span>
               </div>
 
@@ -144,7 +144,7 @@ export default function WidgetBento() {
                 <span className="qid">CLM-2026-0093</span>
                 <span className="qcg">Deck winch, two crates</span>
                 <span className="qst"><span className="swap"><span className="bd">escalated to legal</span><span className="gd">escalated to legal</span></span></span>
-                <span className="qnum"><span className="swap"><span className="bd">64,000.00</span><span className="gd">—</span></span></span>
+                <span className="qnum"><span className="swap"><span className="bd">$64,000.00</span><span className="gd">—</span></span></span>
                 <span className="swap"><span className="qchip bd">Decide</span><span className="qchip mute gd">No offer</span></span>
               </div>
 
@@ -152,7 +152,7 @@ export default function WidgetBento() {
                 <span className="qid">CLM-2026-0140</span>
                 <span className="qcg">Ceramic tableware</span>
                 <span className="qst"><span className="swap"><span className="bd">delivered Aug 2025</span><span className="gd">time-barred 11 days</span></span></span>
-                <span className="qnum"><span className="swap"><span className="bd">18,900.00</span><span className="gd">0.00</span></span></span>
+                <span className="qnum"><span className="swap"><span className="bd">$18,900.00</span><span className="gd">$0.00</span></span></span>
                 <span className="swap"><span className="qchip bd">Decide</span><span className="qchip mute gd">Closed</span></span>
               </div>
 

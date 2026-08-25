@@ -33,7 +33,7 @@ export const records: Record[] = [
     name: "Baltic Freight",
     status: "Assessed",
     cover: "Marine",
-    exposure: "32,160.00",
+    exposure: "$32,160.00",
     claims: 8,
     rows: [
       { group: "Urgent", text: "Survey report outstanding", age: "4d" },
@@ -46,7 +46,7 @@ export const records: Record[] = [
     name: "Meridian Cargo",
     status: "In review",
     cover: "Inland",
-    exposure: "14,800.00",
+    exposure: "$14,800.00",
     claims: 14,
     rows: [
       { group: "Urgent", text: "Deadline within 48 hours", age: "1d" },
@@ -59,7 +59,7 @@ export const records: Record[] = [
     name: "Nordvik Shipping",
     status: "Assessed",
     cover: "Marine",
-    exposure: "20,600.00",
+    exposure: "$20,600.00",
     claims: 11,
     sourceIcon: true,
     rows: [

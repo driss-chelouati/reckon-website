@@ -181,7 +181,7 @@ export default function FailureModesPage() {
                 <div className="pnb"><div className="kl">Results</div>
                   <div className="tbl2">
                     <div className="th2" style={{ gridTemplateColumns: "82px minmax(0,1fr) 78px" }}><span>Invoice</span><span>Customer</span><span className="num2">Amount</span></div>
-                    <div className="tr2" style={{ gridTemplateColumns: "82px minmax(0,1fr) 78px" }}><span className="id3">INV-4471</span><span>Vondel Machinery</span><span className="num2">24,100.00</span></div>
+                    <div className="tr2" style={{ gridTemplateColumns: "82px minmax(0,1fr) 78px" }}><span className="id3">INV-4471</span><span>Vondel Machinery</span><span className="num2">$24,100.00</span></div>
                   </div>
                   <div className="pg"><span>Showing 1–1 of 1</span>
                     <span className="pgs"><span className="on">1</span><span className="bad">2</span><span className="gh">›</span></span></div>
@@ -192,7 +192,7 @@ export default function FailureModesPage() {
                 <div className="pnb"><div className="kl">Results</div>
                   <div className="tbl2">
                     <div className="th2" style={{ gridTemplateColumns: "82px minmax(0,1fr) 78px" }}><span>Invoice</span><span>Customer</span><span className="num2">Amount</span></div>
-                    <div className="tr2" style={{ gridTemplateColumns: "82px minmax(0,1fr) 78px" }}><span className="id3">INV-4471</span><span>Vondel Machinery</span><span className="num2">24,100.00</span></div>
+                    <div className="tr2" style={{ gridTemplateColumns: "82px minmax(0,1fr) 78px" }}><span className="id3">INV-4471</span><span>Vondel Machinery</span><span className="num2">$24,100.00</span></div>
                   </div>
                   <div className="pg"><span>Showing 1–1 of 1</span>
                     <span className="pgs"><span className="on">1</span></span></div>
