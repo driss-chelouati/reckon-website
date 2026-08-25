@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { money } from "@/lib/format";
 import { absent, derivable, notDerivable, type Row } from "@/lib/fixtures";
 
@@ -10,12 +11,22 @@ import { absent, derivable, notDerivable, type Row } from "@/lib/fixtures";
 
 /* One row. The nulls arrive from the fixture and this decides how they look:
    a name that is withheld says so, a salary that was never set says that rather
-   than 0.00, and an avatar with no initials to derive draws the dashed circle
-   instead of an empty one. That decision belongs here, not in the data. */
+   than 0.00, and an avatar with no photograph and no initials to derive draws
+   the dashed circle instead of an empty one. That decision belongs here, not in
+   the data. */
 function RosterRow({ row, hit }: { row: Row; hit?: boolean }) {
   return (
     <div className={hit ? "krow hit" : "krow"}>
-      {row.initials ? (
+      {/* A portrait where there is one, initials where there is not, and the
+          dashed circle where there is neither — the withheld row has no name to
+          derive initials from, which is the fixture. .kxav is a 26px circle
+          with overflow:hidden and .kxav img covers it, so the photograph needs
+          no sizing of its own beyond what next/image asks for. */}
+      {row.photo ? (
+        <span className="kxav">
+          <Image src={row.photo} alt="" width={26} height={26} />
+        </span>
+      ) : row.initials ? (
         <span className="kxav">{row.initials}</span>
       ) : (
         <span className="kxav blank">—</span>

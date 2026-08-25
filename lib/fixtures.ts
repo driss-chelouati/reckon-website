@@ -18,6 +18,9 @@ export type Tone = "warn" | "crit";
 export type Row = {
   /** null when there is no name to derive initials from — draws the blank avatar */
   initials: string | null;
+  /** a portrait in /public/img/people. Absent means the initials stand in;
+      the withheld row has neither, and draws the dashed circle instead. */
+  photo?: string;
   /** null when the record is withheld */
   name: string | null;
   /** null when no salary has been set, which is not the same fact as zero */
@@ -27,9 +30,9 @@ export type Row = {
 };
 
 export const demoRows: Row[] = [
-  { initials: "AB", name: "Amina Berrada", salary: 42000, status: "Offer sent" },
-  { initials: "TN", name: "Tomás Novak", salary: 51500, status: "Interviewing" },
-  { initials: "LF", name: "Lena Fischer", salary: 38900, status: "Offer sent" },
+  { initials: "AB", name: "Amina Berrada", photo: "/img/people/amina-berrada.jpg", salary: 42000, status: "Offer sent" },
+  { initials: "TN", name: "Tomás Novak", photo: "/img/people/tomas-novak.jpg", salary: 51500, status: "Interviewing" },
+  { initials: "LF", name: "Lena Fischer", photo: "/img/people/lena-fischer.jpg", salary: 38900, status: "Offer sent" },
 ];
 
 export const hostileRows: Row[] = [
@@ -37,6 +40,7 @@ export const hostileRows: Row[] = [
     // 38 characters, double-barrelled, with diacritics — the column overflow case
     initials: "MF",
     name: "Maria-Alejandra Fernández-Villalobos",
+    photo: "/img/people/maria-alejandra.jpg",
     salary: 96750,
     status: "Notice served",
     tone: "warn",
@@ -53,6 +57,7 @@ export const hostileRows: Row[] = [
     // a clawback: negative, and it reads as a payment if only the sign says so
     initials: "JO",
     name: "Joy Okonkwo",
+    photo: "/img/people/joy-onkonkwo.jpg",
     salary: -2400,
     status: "Clawback",
   },
