@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Fragment, type ReactElement } from "react";
 import { records, type LogoKey, type Record } from "@/lib/shells";
 import s from "./shells.module.css";
@@ -92,6 +93,35 @@ export function RecordStack() {
   );
 }
 
+/* ---------- the people in the specimens ---------- */
+
+/* Portraits, named for the claim they belong to. The Nordvik claim carries
+   four: the one on the record itself, which is also the face beside it in the
+   queue, and the three people working it who stack on the record's footer.
+
+   .hf .av is a 22px circle with overflow:hidden and .hf .av img already covers
+   it, so these need no styling of their own; .lg is the 30px variant. */
+const portrait = {
+  nordvik: "/img/people/nordvik-1.jpg",
+  baltic: "/img/people/baltic.jpg",
+  meridian: "/img/people/meridian.jpg",
+  onClaim: [
+    "/img/people/nordvik-2.jpg",
+    "/img/people/nordvik-3.png",
+    "/img/people/nordvik-4.jpg",
+  ],
+};
+
+/** an avatar: the portrait where there is one, the initials where there is not */
+const Av = ({ src, initials, lg }: { src?: string; initials: string; lg?: boolean }) => {
+  const px = lg ? 30 : 22;
+  return (
+    <span className={lg ? `${s.av} ${s.lg}` : s.av}>
+      {src ? <Image src={src} alt="" width={px} height={px} /> : initials}
+    </span>
+  );
+};
+
 /* ---------- the four archetype specimens ---------- */
 
 /* NOTE ON .nm — the source markup writes the company name as
@@ -115,19 +145,19 @@ function Queue() {
       </div>
       <div className={s.rows}>
         <div className={s.row}>
-          <span className={s.av}>MI</span>
+          <Av src={portrait.nordvik} initials="MI" />
           <span className={s.who}><span className={s.nm}>Nordvik Shipping</span><span>CLM-0121 · 2 days left</span></span>
           <span className={`${s.pill3} ${s.crit}`}>Urgent</span>
           <span className={s.amt}>20,600.00</span>
         </div>
         <div className={s.row}>
-          <span className={s.av}>DO</span>
+          <Av src={portrait.baltic} initials="DO" />
           <span className={s.who}><b>Baltic Freight Group</b><span>CLM-0114 · 6 days left</span></span>
           <span className={`${s.pill3} ${s.warn}`}>Due soon</span>
           <span className={s.amt}>32,160.00</span>
         </div>
         <div className={s.row}>
-          <span className={s.av}>AF</span>
+          <Av src={portrait.meridian} initials="AF" />
           <span className={s.who}><span className={s.nm}>Meridian Cargo</span><span>CLM-0108 · 19 days left</span></span>
           <span className={s.pill3}>Assessed</span>
           <span className={s.amt}>14,800.00</span>
@@ -142,7 +172,7 @@ function RecordPage() {
   return (
     <div className={s.hf}>
       <div className={s.rec2}>
-        <span className={`${s.av} ${s.lg}`}>NS</span>
+        <Av src={portrait.nordvik} initials="NS" lg />
         <span className={s.t}><span className={s.nm}>Nordvik Shipping</span><span>CLM-0121 · opened 14 Aug</span></span>
         <span className={`${s.pill3} ${s.ok}`}>Assessed</span>
       </div>
@@ -152,7 +182,9 @@ function RecordPage() {
       </div>
       <div className={s.meta2}>
         <span className={s.avs}>
-          <span className={s.av}>MI</span><span className={s.av}>DO</span><span className={s.av}>AF</span>
+          <Av src={portrait.onClaim[0]} initials="MI" />
+          <Av src={portrait.onClaim[1]} initials="DO" />
+          <Av src={portrait.onClaim[2]} initials="AF" />
         </span>
         <span className={s.acts2}>
           <span className={s.btn2}>Evidence</span>
