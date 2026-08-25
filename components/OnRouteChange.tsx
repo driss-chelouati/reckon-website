@@ -3,37 +3,60 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-/* The two things that have to happen on a client navigation and would happen by
-   themselves on a full page load.
+/* What has to happen on a client navigation and would happen by itself on a
+   full page load: land at the top of the new page, without travelling there.
 
-   One: stand the per-page entrance animations down. Every page animates itself
-   on mount — `.rin > *` staggers the header pieces and `.hband ~ *` fades in
-   everything below them — and that is right for a first load, where no route
-   transition has happened. Run them again on top of the transition in
-   app/template.tsx and you get a double fade and about a second and a half of
-   the page assembling itself; it reads as broken and the cause is not obvious.
-   So each entrance gets one owner, and `html[data-navigated]` is what tells the
-   stylesheet which one is running.
+   The router scrolls the top of the arriving segment into view, and that
+   segment starts below the nav — so a navigation landed 78px down, far enough
+   for the nav to be wearing its scrolled backdrop on a page you had only just
+   opened. And because the stylesheet sets scroll-behavior:smooth for in-page
+   anchors, the router's scroll inherits it: leaving from the bottom of a long
+   page, the document whips several thousand pixels upward in view before the
+   new page settles. Neither is a transition; both are the old page leaving
+   badly.
 
-   Two: land at the top of the page, which is not where the router leaves you.
-   It scrolls the top of the arriving segment into view, and that segment starts
-   below the nav — so every navigation landed 78px down, far enough for the nav
-   to be wearing its scrolled backdrop on a page you had only just opened.
-   Instant on purpose: the stylesheet sets scroll-behavior:smooth for in-page
-   anchors, and inheriting it here would animate the correction.
-
-   This lives in the layout rather than the template because the template
-   remounts on every navigation and would forget which arrival this was. */
+   So smooth comes off for as long as a navigation is in flight — the click is
+   the only signal available before the router acts, which is why this listens
+   in the capture phase — and the arrival is a jump, not a journey. */
 export default function OnRouteChange() {
   const path = usePathname();
   const previous = useRef<string | null>(null);
 
   useEffect(() => {
+    const root = document.documentElement;
+    let clear: ReturnType<typeof setTimeout>;
+
+    const routing = () => {
+      root.dataset.routing = "";
+      // A click that turns out not to navigate (a link to the page you are
+      // already on) never reaches the effect below, so it cannot be the only
+      // thing that puts smooth back.
+      clearTimeout(clear);
+      clear = setTimeout(() => delete root.dataset.routing, 1200);
+    };
+
+    const onClick = (e: globalThis.MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      const link = (e.target as Element | null)?.closest?.("a");
+      const href = link?.getAttribute("href");
+      if (href?.startsWith("/")) routing();
+    };
+
+    document.addEventListener("click", onClick, true);
+    window.addEventListener("popstate", routing);
+    return () => {
+      clearTimeout(clear);
+      document.removeEventListener("click", onClick, true);
+      window.removeEventListener("popstate", routing);
+    };
+  }, []);
+
+  useEffect(() => {
     const changed = previous.current !== null && previous.current !== path;
     previous.current = path;
     if (!changed) return;
-    document.documentElement.dataset.navigated = "";
     window.scrollTo({ top: 0, behavior: "instant" });
+    delete document.documentElement.dataset.routing;
   }, [path]);
 
   return null;

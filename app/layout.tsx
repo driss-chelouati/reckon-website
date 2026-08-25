@@ -97,8 +97,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       >
         <OnRouteChange />
         <Aura />
-        <div className="wrap">
+        <div className="wrap" id="top">
           <Nav />
+          <div className="routeveil" aria-hidden="true" />
           {children}
           <Footer />
         </div>

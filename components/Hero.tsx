@@ -7,7 +7,7 @@ import Glitch from "@/components/Glitch";
    are named individually in globals.css against these exact elements. */
 export default function Hero() {
   return (
-    <div className="band hband" id="top">
+    <div className="band hband">
       <div className="hero rin">
         <HeroField />
         <div>

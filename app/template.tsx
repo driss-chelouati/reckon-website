@@ -2,22 +2,15 @@
 
 import { usePathname } from "next/navigation";
 
-/* The wipe between routes. This is a template, not a layout: a template
-   re-renders on every navigation, which is what the animation needs, while the
-   nav, footer and aura stay put in the layout above it and never re-enter.
+/* A template, not a layout: it is keyed by the path, so the page tree is torn
+   down and rebuilt on every navigation and each page plays its own entrance —
+   the header stagger and the fade below it — exactly as it does on a first
+   load. A root template is otherwise keyed by its own segment and would not
+   remount between /products and a product page.
 
-   Keyed by path so the wipe also runs between /products and a product page — a
-   root template is keyed by its own segment, so it does not remount when only a
-   deeper segment changes, and the key is what makes that navigation animate
-   like every other one.
-
-   Which entrance owns a given arrival is decided in RouteFlag, next to the
-   layout that outlives it. */
+   The transition itself is the veil in the layout; there is deliberately no
+   animation on this wrapper, because fading in a page whose content is already
+   animating from zero only adds dead time in front of it. */
 export default function Template({ children }: { children: React.ReactNode }) {
-  const path = usePathname();
-  return (
-    <div key={path} className="route-enter">
-      {children}
-    </div>
-  );
+  return <div key={usePathname()}>{children}</div>;
 }

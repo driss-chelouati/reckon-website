@@ -28,6 +28,8 @@
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+/* …but not while the router is moving you between pages — see OnRouteChange */
+html[data-routing]{scroll-behavior:auto}
 body{
   margin:0; background:var(--bg); color:var(--ink);
   font-family:var(--font-instrument-sans),-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -1556,20 +1558,17 @@ footer a:hover{color:var(--ink)}
 @media(prefers-reduced-motion:reduce){ .hband ~ *{animation:none} }
 
 /* ---------- between routes ---------- */
-/* Short on purpose. This is a wipe between pages, not a performance: anything
-   longer and the site feels slow on the second click. */
-@keyframes routeEnter{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
-.route-enter{animation:routeEnter .26s cubic-bezier(.2,.78,.28,1) both}
+/* The wipe. Every page animates its own arrival — the header staggers in and
+   everything below it follows — so the transition's job is not to fade the new
+   page in a second time. It is to cover the cut: the moment the old page is
+   replaced and the scroll drops back to the top, which without it is a hard
+   jump from wherever you were reading to a blank page.
 
-/* On a client navigation the wipe above owns the entrance. The header stagger
-   and the fade below it are first-load animations; running both at once reads
-   as the page assembling itself twice. */
-html[data-navigated] .rin > *,
-html[data-navigated] .rin > [aria-hidden],
-html[data-navigated] .hband ~ *,
-html[data-navigated] .hero.rin .eyebrow,
-html[data-navigated] .hero.rin h1,
-html[data-navigated] .hero.rin .lede,
-html[data-navigated] .hero.rin .hero-actions > *{animation:none}
+   So the veil closes over the old page while the router works and lifts off the
+   new one, which then assembles underneath it. It sits inside .wrap, below the
+   nav's z-index, because the nav is the one thing that must not transition. */
+.routeveil{position:fixed; inset:0; z-index:15; pointer-events:none;
+  background:var(--bg); opacity:0; transition:opacity .2s ease}
+html[data-routing] .routeveil{opacity:1; transition-duration:.12s}
 
-@media(prefers-reduced-motion:reduce){ .route-enter{animation:none} }
+@media(prefers-reduced-motion:reduce){ .routeveil{transition:none; opacity:0 !important} }
