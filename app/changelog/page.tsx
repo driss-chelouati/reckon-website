@@ -2,7 +2,15 @@ import type { Metadata } from "next";
 import LogField from "@/components/fx/LogField";
 import Faq from "@/components/Faq";
 import ClosingCta from "@/components/ClosingCta";
-import { changeLabel, releases, roadmap } from "@/lib/changelog";
+import {
+  changeLabel,
+  foundations,
+  now,
+  releases,
+  roadmap,
+  shippedNote,
+  unbuilt,
+} from "@/lib/changelog";
 import "./changelog.css";
 
 export const metadata: Metadata = {
@@ -20,9 +28,9 @@ export default function Changelog() {
           <p className="lede">Every change to the layer is written down here, with what moved and why. What is coming is on the same page, because a roadmap kept somewhere else is a wish list.</p>
 
           <div className="cnow">
-            <div><i>Current</i><b>0.6</b><span>The audit pass, and the first four worked products.</span></div>
-            <div><i>Rules</i><b>Stated · compiled</b><span>Two layers enforced, the third checked on demand.</span></div>
-            <div><i>Cadence</i><b>When it is ready</b><span>No release train. Nothing ships to hit a date.</span></div>
+            {now.map((n) => (
+              <div key={n.label}><i>{n.label}</i><b>{n.value}</b><span>{n.note}</span></div>
+            ))}
           </div>
         </div>
       </div>
@@ -37,6 +45,8 @@ export default function Changelog() {
               <a className="snum" href="#next"><i>01</i><u>What is coming →</u></a>
             </div>
           </div>
+
+          <p className="cfound">{foundations}</p>
 
           <div className="log">
             {releases.map((r) => (
@@ -59,17 +69,17 @@ export default function Changelog() {
             ))}
           </div>
 
-          <div className="cnote">Versions before 0.3 were private. Nothing from them is documented here because nothing from them survived.</div>
+          <div className="cnote">{shippedNote}</div>
         </div>
       </div>
 
       <div className="band">
         <div className="sec" id="next">
-          <div className="srail"><span className="l">Next</span><span className="r">With how sure I am about each</span></div>
+          <div className="srail"><span className="l">Next</span><span className="r">In the order it blocks other work</span></div>
           <div className="shead">
-            <h2>What is coming, and how likely.</h2>
+            <h2>What is coming, and what it waits on.</h2>
             <div>
-              <p className="lede">Confidence is marked rather than implied. Three bars means it is being built now; one means it is an idea I have not earned yet.</p>
+              <p className="lede">In the order it blocks other work rather than by date. The licence answer is first, because nothing goes public until it is settled.</p>
               <a className="snum" href="#faq"><i>02</i><u>Straight answers →</u></a>
             </div>
           </div>
@@ -100,7 +110,7 @@ export default function Changelog() {
             ))}
           </div>
 
-          <div className="cnote">Nothing here has a date attached. Dates on a one-person roadmap are a promise made with somebody else’s time.</div>
+          <div className="cnote">{unbuilt}</div>
         </div>
       </div>
 

@@ -12,9 +12,10 @@
 @media(max-width:760px){ .cfx{display:none} }
 
 /* the state of things, across the top */
-.cnow{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+.cnow{display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
   margin-top:clamp(32px,3.6vw,46px); border-top:1px solid var(--hair)}
-@media(max-width:760px){ .cnow{grid-template-columns:1fr} }
+@media(max-width:1000px){ .cnow{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media(max-width:600px){ .cnow{grid-template-columns:1fr} }
 .cnow > div{padding:22px clamp(18px,2vw,28px) 0 0}
 .cnow > div + div{border-left:1px solid var(--hair); padding-left:clamp(18px,2vw,28px)}
 @media(max-width:760px){
@@ -56,9 +57,22 @@
 .rl2 em.add{color:#8FD0AC}
 .rl2 em.chg{color:var(--fire-lt)}
 .rl2 em.fix{color:var(--tie)}
+/* A breaking change is a failure state for anyone downstream, which is what
+   --pen is for and the only thing it is for. A known gap is a warning, not a
+   failure, so it takes the amber the status chips use. Unchanged is neutral by
+   definition — it is there to say nothing moved. */
+.rl2 em.breaking{color:var(--pen)}
+.rl2 em.known{color:#F0B36B}
+.rl2 em.same{color:var(--ink-3)}
+
+/* the two foundations, set before the log so 0.7 reads as a floor moving */
+.cfound{margin:clamp(22px,2.4vw,30px) 0 0; max-width:74ch;
+  font-size:13.5px; line-height:1.7; color:var(--ink-3)}
 
 /* what is next, and how sure it is */
-.road{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+/* Two across rather than three: there are four of these now, and three columns
+   left the fourth stranded beside two empty ones. */
+.road{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
   gap:clamp(12px,1.5vw,18px); margin-top:clamp(24px,2.8vw,38px)}
 @media(max-width:940px){ .road{grid-template-columns:1fr} }
 .rdc{position:relative; display:flex; flex-direction:column; padding:4px;
