@@ -1,4 +1,5 @@
-import HeroField from "@/components/HeroField";
+import Link from "next/link";
+import HeroField from "@/components/fx/HeroField";
 import Glitch from "@/components/Glitch";
 
 /* The landing hero reveals piece by piece rather than through the shared .rin
@@ -20,9 +21,9 @@ export default function Hero() {
             drawn before a user finds it.
           </p>
           <div className="hero-actions">
-            <a className="cta" href="/how-it-works" data-t="See how it works">
+            <Link className="cta" href="/how-it-works" data-t="See how it works">
               See how it works
-            </a>
+            </Link>
             <a className="cta-alt" href="#pairs">
               See what goes wrong
             </a>
