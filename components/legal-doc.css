@@ -1,0 +1,78 @@
+/* ---------- legal documents: quiet, readable, no ornament ---------- */
+
+/* Shared by /legal and /privacy, imported once from components/LegalDoc.tsx.
+   No WebGL, no scene, no three.js — these pages are documents.
+
+   Two fixes that were real bugs live elsewhere now:
+     - body{overflow-x:hidden} disabled position:sticky everywhere, so the index
+       would not stick. Moved to app/globals.css as body:visible + .wrap:clip,
+       because it applies to any sticky element added anywhere later.
+     - a bare nav{} rule in the shared sheet captured .lnav and spread its links
+       across three grid tracks. app/globals.css now scopes that to .navbar nav,
+       so the root cause is gone; the resets below stay as belt and braces and
+       should move with this file if it is ever re-scoped. */
+.lhero{position:relative; padding:clamp(48px,5.4vw,80px) 0 clamp(24px,2.6vw,34px)}
+.lhero h1{font-size:clamp(30px,4vw,50px); line-height:1.06; letter-spacing:-.032em}
+.lhero .lede{margin-top:20px; max-width:60ch}
+.lmeta{display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  margin-top:clamp(22px,2.4vw,30px); padding-top:18px; border-top:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-3)}
+
+.ldoc{display:grid; grid-template-columns:minmax(0,210px) minmax(0,1fr);
+  gap:clamp(24px,4vw,72px); align-items:start; padding-bottom:clamp(40px,5vw,72px)}
+@media(max-width:900px){ .ldoc{grid-template-columns:1fr; gap:26px} }
+
+/* the index sticks alongside the prose */
+/* the fixed navbar sits over the top of the page, so an anchored section has to
+   leave room for it — without this every index link lands under the bar. */
+.lsec[id]{scroll-margin-top:104px}
+/* the shared sheet has a bare nav{} rule for the site header: display:grid with
+   three columns, align-items:center, gap and padding. Reset every one of them,
+   or the index spreads its links across those tracks instead of stacking. */
+.lnav{top:104px; align-self:start; max-height:calc(100dvh - 130px); overflow-y:auto;
+  scrollbar-width:none;
+  grid-template-columns:minmax(0,1fr); grid-auto-flow:row; align-items:stretch;
+  justify-items:stretch; gap:0; padding:0; z-index:auto}
+.lnav::-webkit-scrollbar{display:none}
+.lnav{position:sticky; top:96px; display:grid; gap:0; border-top:1px solid var(--hair)}
+@media(max-width:900px){ .lnav{position:static; top:auto} }
+.lnav a{display:block; padding:10px 0; border-bottom:1px solid var(--hair);
+  font-size:12.5px; color:var(--ink-3); text-decoration:none;
+  transition:color .18s ease}
+.lnav a:hover{color:var(--ink)}
+.lnav .t{padding:0 0 12px; font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+
+.lbody{max-width:74ch}
+.lsec{padding:clamp(22px,2.4vw,30px) 0; border-top:1px solid var(--hair)}
+.lsec:first-child{border-top:0; padding-top:0}
+.lsec h2{font-size:clamp(17px,1.7vw,20px); font-weight:600; color:var(--ink);
+  margin:0 0 12px; letter-spacing:-.014em}
+.lsec p{font-size:14px; line-height:1.72; color:var(--ink-2); margin:0 0 14px}
+.lsec p:last-child{margin-bottom:0}
+.lsec ul{margin:0 0 14px; padding:0; list-style:none; border-top:1px solid var(--hair)}
+.lsec li{padding:10px 0; border-bottom:1px solid var(--hair); font-size:13.5px;
+  line-height:1.6; color:var(--ink-2)}
+.lsec li b{color:var(--ink); font-weight:500}
+.lsec a{color:var(--fire-lt); text-decoration:none; border-bottom:1px solid rgba(249,122,92,.3)}
+.lsec a:hover{border-bottom-color:var(--fire-lt)}
+.lsec code{font-family:var(--font-jetbrains-mono),monospace; font-size:12.5px; color:var(--ink)}
+
+/* the details block: facts set apart from prose */
+.lfacts{border:1px solid var(--edge-2); border-radius:12px; background:rgba(255,255,255,.024);
+  padding:clamp(16px,1.8vw,22px); margin:0 0 16px}
+.lfacts div{display:grid; grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:16px;
+  padding:9px 0; border-bottom:1px solid var(--hair); font-size:13.5px; color:var(--ink-2)}
+.lfacts div:last-child{border-bottom:0}
+@media(max-width:600px){ .lfacts div{grid-template-columns:1fr; gap:4px} }
+.lfacts em{font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:9px;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); padding-top:3px}
+
+/* the address is assembled on click, so it is not sitting in the markup for a
+   crawler to lift. Falls back to a plain reveal if scripting is off. */
+.mailrev{font:inherit; font-size:13.5px; color:var(--fire-lt); background:none;
+  border:0; border-bottom:1px solid rgba(249,122,92,.35); padding:0 0 1px; margin:0;
+  cursor:pointer; text-align:left}
+.mailrev:hover{border-bottom-color:var(--fire-lt)}
+.mailrev.done{color:var(--ink); border-bottom-color:var(--edge); cursor:text}
