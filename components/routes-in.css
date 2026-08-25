@@ -1,0 +1,79 @@
+/* The four routes in — shared by /download and /how-to-use.
+
+   Both pages present the same four ways of putting the folder where a model can
+   read it, with the same four figures. This was one block copied into two
+   sources; here it is one component (components/RoutesIn.tsx) and one
+   stylesheet, because it is the content most likely to be edited later and two
+   copies would drift. Imported by the component, so a page gets it by using it. */
+
+/* getting started — stacked rows, each with its own figure */
+.ostack{margin-top:clamp(24px,2.8vw,38px); border-top:1px solid var(--hair)}
+.orow{display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  gap:clamp(24px,3.4vw,64px); align-items:center;
+  padding:clamp(26px,3vw,40px) 0; border-bottom:1px solid var(--hair)}
+@media(max-width:880px){ .orow{grid-template-columns:1fr; gap:22px} }
+.orow i{display:block; font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:9px;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px}
+.orow i em{font-style:normal; color:var(--fire-lt)}
+.orow h3{font-size:clamp(16px,1.6vw,19px); font-weight:600; color:var(--ink); margin:0 0 10px;
+  letter-spacing:-.014em}
+.orow p{font-size:13.5px; line-height:1.65; color:var(--ink-2); margin:0; max-width:52ch}
+.orow code{font-family:var(--font-jetbrains-mono),monospace; font-size:12px; color:var(--ink)}
+
+/* the figure well, the same three-box construction used elsewhere */
+.ofig{padding:4px; border:1px solid var(--edge-2); border-radius:16px;
+  background:rgba(255,255,255,.022)}
+.ofigin{border:1px solid var(--edge-2); border-radius:12px; background:rgba(255,255,255,.03);
+  overflow:hidden}
+.ofh{display:flex; align-items:center; gap:8px; padding:11px 15px;
+  border-bottom:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--ink-3)}
+.ofh u{width:5px; height:5px; border-radius:50%; text-decoration:none; background:var(--ink-3)}
+.ofh u.on{background:var(--fire)}
+.ofb{padding:16px 15px; display:grid; gap:9px; min-height:132px; align-content:center}
+
+/* a line of a file listing */
+.oln{display:grid; grid-template-columns:14px minmax(0,1fr) auto; gap:11px; align-items:center;
+  font-family:var(--font-jetbrains-mono),monospace; font-size:11px; color:var(--ink-3)}
+.oln b{font-weight:400; color:var(--ink-2)}
+.oln.hit b{color:var(--ink)}
+.oln .dot{width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.16);
+  margin-left:4px}
+.oln.hit .dot{background:var(--fire)}
+.oln em{font-style:normal; font-size:8.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-3)}
+.oln.hit em{color:var(--fire-lt)}
+
+/* a shell line */
+.osh{font-family:var(--font-jetbrains-mono),monospace; font-size:11.5px; line-height:1.9; color:var(--ink-2)}
+.osh span{color:var(--ink-3)}
+.osh b{font-weight:400; color:var(--ink)}
+.osh .ok{color:var(--tie)}
+
+/* a document handed over, and what comes back */
+.opass{display:grid; grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr); gap:10px;
+  align-items:center}
+.opane{border:1px solid var(--edge-2); border-radius:9px; background:rgba(255,255,255,.03);
+  padding:11px; display:grid; gap:7px; min-height:96px; align-content:start}
+.opane u{display:block; height:5px; border-radius:3px; background:rgba(255,255,255,.14);
+  text-decoration:none}
+.opane u.q{background:rgba(255,255,255,.07)}
+.opane .blk{display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:2px}
+.opane .blk span{display:block; height:22px; border-radius:6px; border:1px solid var(--edge-2);
+  background:rgba(255,255,255,.035)}
+.opane .bar{display:block; height:16px; border-radius:5px;
+  background:linear-gradient(180deg,#EFF0F4,#C6C8D2); width:52%}
+.oarrow{display:grid; place-items:center}
+.oarrow svg{width:16px; height:16px; fill:none; stroke:var(--fire-lt); stroke-width:1.8;
+  stroke-linecap:round; stroke-linejoin:round}
+
+/* one line of a file, with the part you change marked */
+.oedit{font-family:var(--font-jetbrains-mono),monospace; font-size:11.5px; line-height:1.9;
+  color:var(--ink-3)}
+.oedit b{font-weight:400; color:var(--ink-2)}
+.oedit mark{background:rgba(249,122,92,.16); color:var(--fire-lt); border-radius:4px;
+  padding:2px 5px}
+.oedit .cap{display:block; margin-top:10px; font-size:8.5px; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-3)}
+
