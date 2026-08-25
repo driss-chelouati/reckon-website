@@ -25,6 +25,9 @@ import { useEffect, useRef } from "react";
 export default function OnRouteChange() {
   const path = usePathname();
   const previous = useRef<string | null>(null);
+  /* the pathname the veil logic last treated as current, so a history event
+     that only moved the hash can be told apart from a real navigation */
+  const seen = useRef<string | null>(null);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -64,18 +67,33 @@ export default function OnRouteChange() {
       routing();
     };
 
+    /* An in-page anchor fires popstate — Next dispatches one for a hash change
+       — and the pathname does not move. Raising the veil there put a second of
+       black over an anchor jump that had already happened underneath it, which
+       is what "scroll to anchor fades to black" was. Only a popstate that
+       actually changes the pathname is a navigation. */
+    const onPop = () => {
+      const now = window.location.pathname;
+      if (seen.current === null) seen.current = now;
+      if (now === seen.current) return;
+      seen.current = now;
+      routing();
+    };
+
+    seen.current = window.location.pathname;
     document.addEventListener("click", onClick, true);
-    window.addEventListener("popstate", routing);
+    window.addEventListener("popstate", onPop);
     return () => {
       clearTimeout(clear);
       document.removeEventListener("click", onClick, true);
-      window.removeEventListener("popstate", routing);
+      window.removeEventListener("popstate", onPop);
     };
   }, []);
 
   useEffect(() => {
     const changed = previous.current !== null && previous.current !== path;
     previous.current = path;
+    seen.current = path;
     if (!changed) return;
     // a URL that names a section asked for that section, not for the top
     if (!window.location.hash) window.scrollTo({ top: 0, behavior: "instant" });
