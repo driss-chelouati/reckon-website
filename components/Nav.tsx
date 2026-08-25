@@ -3,7 +3,13 @@
 import Link from "next/link";
 import SiteLink from "@/components/SiteLink";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import {
+  useEffect,
+  useRef,
+  type FocusEvent,
+  type MouseEvent,
+  type ReactNode,
+} from "react";
 import { icons } from "@/components/icons";
 import {
   drawerGroups,
@@ -36,6 +42,40 @@ function Feature({ href, title, note, icon }: FeatureLink) {
     </SiteLink>
   );
 }
+
+/* The panel opens on hover and closes when the pointer leaves — all CSS, and it
+   stays that way. What the stylesheet cannot know is that a click no longer
+   reloads the document: the pointer is still sitting inside the menu when the
+   next page paints, so the panel would hang open over the page it just took you
+   to. A click marks the menu shut; NAV_SHUT_RESET below decides when it may
+   open again. */
+function shut(e: MouseEvent<HTMLElement>) {
+  e.currentTarget.dataset.shut = "";
+  // A pointer click leaves focus on the link, inside a panel that is now
+  // hidden. Hand it back to the document, as a page load would.
+  if (e.detail > 0 && e.target instanceof HTMLElement) e.target.blur();
+}
+
+function focusIn(e: FocusEvent<HTMLElement>) {
+  // Tabbing back to the trigger should open it again. Focus landing on a link
+  // inside the panel is part of the click that just shut it, so it is not a
+  // reason to reopen.
+  const inPanel = e.target instanceof HTMLElement && e.target.closest(".mega");
+  if (!inPanel) delete e.currentTarget.dataset.shut;
+}
+
+function Mega({ children }: { children: ReactNode }) {
+  return (
+    <span className="hasmega" onClick={shut} onFocus={focusIn}>
+      {children}
+    </span>
+  );
+}
+
+/* the invisible strip under the trigger that keeps hover alive on the way down
+   to the panel — .hasmega::after */
+const BRIDGE = 16;
+const SIDE = 18;
 
 const Chev = (
   <svg className="chev" viewBox="0 0 24 24" aria-hidden="true">
@@ -84,6 +124,26 @@ export default function Nav() {
     };
   }, [pathname]);
 
+  /* A menu shut by a click stays shut until the pointer moves off its trigger.
+     Watching for pointerleave instead does not work: swapping the page under a
+     stationary pointer makes the browser re-hit-test and fire one immediately,
+     while the panel is still transitioning out and would take the hover back. */
+  useEffect(() => {
+    const onMove = (e: globalThis.PointerEvent) => {
+      for (const el of document.querySelectorAll<HTMLElement>(".hasmega[data-shut]")) {
+        const r = el.getBoundingClientRect();
+        const overTrigger =
+          e.clientX >= r.left - SIDE &&
+          e.clientX <= r.right + SIDE &&
+          e.clientY >= r.top &&
+          e.clientY <= r.bottom + BRIDGE;
+        if (!overTrigger) delete el.dataset.shut;
+      }
+    };
+    document.addEventListener("pointermove", onMove, { passive: true });
+    return () => document.removeEventListener("pointermove", onMove);
+  }, []);
+
   /* The drawer is a checkbox and stays a checkbox — but a client-side
      navigation does not reload the document, so nothing would uncheck it.
      Untick it on route change and the CSS-only mechanism is unchanged. */
@@ -100,7 +160,7 @@ export default function Nav() {
             Reckon<span>.</span>
           </a>
           <div className="navlinks">
-            <span className="hasmega">
+            <Mega>
               <Link href="/how-it-works">Product {Chev}</Link>
               <span className="megaveil" aria-hidden="true" />
               <div className="mega">
@@ -126,8 +186,8 @@ export default function Nav() {
                   </div>
                 </div>
               </div>
-            </span>
-            <span className="hasmega">
+            </Mega>
+            <Mega>
               <Link href="/products">Showcase {Chev}</Link>
               <span className="megaveil" aria-hidden="true" />
               <div className="mega">
@@ -167,7 +227,7 @@ export default function Nav() {
                   </div>
                 </div>
               </div>
-            </span>
+            </Mega>
             <Link href="/pricing">Pricing</Link>
             <Link href="/changelog">Changelog</Link>
           </div>

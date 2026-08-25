@@ -1378,7 +1378,11 @@ details p{margin:16px 0 2px; font-size:15px; color:var(--ink-2); max-width:64ch}
 .chev{width:14px; height:14px; flex:none; color:var(--ink-3);
   transition:transform .3s cubic-bezier(.2,.8,.3,1), color .2s ease}
 .chev{fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
-.hasmega:hover .chev, .hasmega:focus-within .chev{transform:rotate(180deg); color:var(--ink)}
+/* :not([data-shut]) — a click inside the panel marks it shut, because a client
+   navigation leaves the pointer sitting inside a menu that would otherwise hang
+   open over the page it just took you to. See components/Nav.tsx. */
+.hasmega:not([data-shut]):hover .chev,
+.hasmega:not([data-shut]):focus-within .chev{transform:rotate(180deg); color:var(--ink)}
 
 /* the page goes back and out of focus behind it */
 .megaveil{position:fixed; inset:0; z-index:-1; pointer-events:none;
@@ -1386,7 +1390,8 @@ details p{margin:16px 0 2px; font-size:15px; color:var(--ink-2); max-width:64ch}
   -webkit-backdrop-filter:blur(7px) saturate(80%); backdrop-filter:blur(7px) saturate(80%);
   opacity:0; visibility:hidden;
   transition:opacity .3s ease, visibility 0s linear .3s}
-.hasmega:hover .megaveil, .hasmega:focus-within .megaveil{
+.hasmega:not([data-shut]):hover .megaveil,
+.hasmega:not([data-shut]):focus-within .megaveil{
   opacity:1; visibility:visible; transition-delay:0s, 0s}
 
 .mega{position:absolute; top:100%; left:50%; margin-top:14px;
@@ -1398,7 +1403,8 @@ details p{margin:16px 0 2px; font-size:15px; color:var(--ink-2); max-width:64ch}
   -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
   box-shadow:0 30px 70px -30px rgba(0,0,0,1);
   transition:opacity .24s ease, transform .3s cubic-bezier(.2,.8,.3,1), visibility 0s linear .24s}
-.hasmega:hover .mega, .hasmega:focus-within .mega{
+.hasmega:not([data-shut]):hover .mega,
+.hasmega:not([data-shut]):focus-within .mega{
   opacity:1; visibility:visible; pointer-events:auto;
   transform:translateX(-50%) translateY(0); transition-delay:0s, 0s, 0s}
 .hasmega::after{content:""; position:absolute; left:-18px; right:-18px; top:100%; height:16px}
