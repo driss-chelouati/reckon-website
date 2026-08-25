@@ -1,0 +1,212 @@
+/* ---------- the rules file ---------- */
+.rhero{position:relative; padding:clamp(52px,6.5vw,96px) 0 0}
+.rhero > *{position:relative; z-index:1}
+.rhero h1{font-size:clamp(36px,5.6vw,70px); line-height:1.04; letter-spacing:-.034em}
+.rhero .lede{margin-top:26px; max-width:58ch}
+.rfx{position:absolute; z-index:0 !important; right:calc(-2.2 * var(--gut)); top:-170px;
+  width:min(900px,68vw); height:760px; pointer-events:none;
+  -webkit-mask-image:radial-gradient(74% 68% at 72% 44%, #000 16%, rgba(0,0,0,.45) 60%, transparent 100%);
+  mask-image:radial-gradient(74% 68% at 72% 44%, #000 16%, rgba(0,0,0,.45) 60%, transparent 100%)}
+.rfx canvas{display:block; width:100%; height:100%}
+@media(max-width:1080px){ .rfx{opacity:.5; width:86vw} }
+@media(max-width:760px){ .rfx{display:none} }
+
+/* one rule, presented as a specimen: the statement, and what holds it up */
+.rspec{position:relative; margin-top:clamp(34px,4vw,54px); padding:4px;
+  border:1px solid var(--edge-2); border-radius:18px;
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.006))}
+.rspin{position:relative; border:1px solid var(--edge-2); border-radius:14px;
+  background:rgba(255,255,255,.022); overflow:hidden}
+/* the ruled ground it sits on */
+.rspin::before{content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background-image:linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+  background-size:clamp(56px,7vw,96px) 100%;
+  -webkit-mask-image:radial-gradient(78% 78% at 50% 46%, #000 12%, transparent 76%);
+  mask-image:radial-gradient(78% 78% at 50% 46%, #000 12%, transparent 76%)}
+.rsh{position:relative; display:flex; align-items:center; justify-content:space-between;
+  gap:14px; padding:14px 20px; border-bottom:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3)}
+.rsh .id{color:var(--ink-2)}
+.rsh .lvl{display:inline-flex; align-items:center; gap:7px; color:var(--fire-lt)}
+.rsh .lvl u{width:5px; height:5px; border-radius:50%; text-decoration:none;
+  background:var(--fire); text-decoration:none}
+
+/* the claim itself, set as display type */
+.rsbody{position:relative; padding:clamp(38px,4.6vw,64px) clamp(20px,3vw,44px) 0}
+.rstate{position:relative; margin:0 auto; max-width:24ch; text-align:center;
+  font-family:var(--font-newsreader),serif; font-weight:400; color:var(--ink);
+  font-size:clamp(24px,3.4vw,42px); line-height:1.14; letter-spacing:-.028em}
+.rstate em{font-style:normal; position:relative; color:var(--fire-lt)}
+
+/* three risers, drawn up to the statement like a technical annotation */
+.rann{position:relative; display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(16px,2.4vw,44px); margin-top:clamp(30px,3.4vw,48px);
+  padding:0 clamp(4px,2vw,28px) clamp(30px,3.4vw,46px)}
+.rann > div{position:relative; padding-top:clamp(34px,3.6vw,48px); text-align:center}
+/* the riser */
+.rann > div::before{content:""; position:absolute; top:0; left:50%; width:1px;
+  height:clamp(24px,2.8vw,36px); background:linear-gradient(180deg, var(--edge), var(--hair))}
+/* the anchor where it meets the statement */
+.rann > div::after{content:""; position:absolute; top:-3px; left:50%; margin-left:-3.5px;
+  width:7px; height:7px; border-radius:50%; background:var(--bg);
+  box-shadow:0 0 0 1px var(--edge)}
+.rann > div.on::after{background:var(--fire); box-shadow:0 0 0 4px rgba(249,122,92,.14)}
+.rann i{display:block; font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px}
+.rann > div.on i{color:var(--fire-lt)}
+.rann p{font-size:13px; line-height:1.6; color:var(--ink-2); margin:0 auto; max-width:30ch}
+@media(max-width:760px){
+  .rann{grid-template-columns:1fr; gap:0; padding-bottom:28px}
+  .rann > div{text-align:left; padding-top:20px; padding-left:22px}
+  .rann > div::before{left:6px; top:0; height:100%}
+  .rann > div::after{left:6px; top:20px}
+  .rstate{max-width:none; text-align:left}
+  .rsbody{padding-left:20px; padding-right:20px}
+}
+
+/* one rule, taken apart */
+.anat{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(20px,3vw,54px); align-items:start; margin-top:clamp(26px,3vw,40px)}
+@media(max-width:900px){ .anat{grid-template-columns:1fr} }
+.acard{padding:4px; border:1px solid var(--edge-2); border-radius:16px;
+  background:rgba(255,255,255,.022)}
+.acin{border:1px solid var(--edge-2); border-radius:12px; background:rgba(255,255,255,.03);
+  padding:clamp(20px,2.2vw,28px)}
+.apart{padding:15px 0; border-bottom:1px solid var(--hair)}
+.apart:first-child{padding-top:0}
+.apart:last-child{border-bottom:0; padding-bottom:0}
+.apart i{display:block; font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--fire-lt); margin-bottom:9px}
+.apart b{display:block; font-family:var(--font-jetbrains-mono),monospace; font-size:13px; font-weight:500;
+  color:var(--ink); margin-bottom:0; letter-spacing:-.01em}
+.apart p{font-size:13.5px; line-height:1.62; color:var(--ink-2); margin:0}
+.anote{display:grid; gap:18px}
+.anote > div{border-top:1px solid var(--hair); padding-top:16px}
+.anote h3{font-size:14.5px; font-weight:600; color:var(--ink); margin:0 0 8px}
+.anote p{font-size:13.5px; line-height:1.62; color:var(--ink-2); margin:0}
+
+/* the tabbed section: four moments, one document each.
+   CSS-only via radios, the same mechanism the FAQ uses.
+   Prefixed rt/rdoc so nothing in the shared stylesheet can reach them.
+
+   The source calls the document pane .doc2 and the closing note .rnote. Both
+   are renamed here (.rdoc, .rfoot) because /how-it-works already defines .doc2
+   as a mono code listing and /changelog defines .rnote as a release paragraph.
+   Page stylesheets are global once loaded, so a shared name lets whichever
+   sheet loaded last redefine the other page — and scoping only this file would
+   not help, since their unscoped rules would still reach in here. Every other
+   class on this page is unique across the site; keep it that way. */
+.rtabs{position:relative; display:grid;
+  grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);
+  gap:clamp(26px,4.4vw,80px); align-items:start;
+  margin-top:clamp(26px,3vw,42px)}
+@media(max-width:900px){ .rtabs{grid-template-columns:1fr; gap:26px} }
+.rtabs > input{position:absolute; opacity:0; width:1px; height:1px; pointer-events:none}
+
+.rtnav{display:grid; gap:4px; align-content:start}
+.rtnav label{display:block; padding:16px 18px; border-radius:11px; cursor:pointer;
+  border:1px solid transparent; transition:background-color .2s ease, border-color .2s ease}
+.rtnav label b{display:block; font-family:var(--font-jetbrains-mono),monospace; font-size:10.5px;
+  font-weight:500; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-2);
+  margin-bottom:9px; transition:color .2s ease}
+.rtnav label span{display:block; font-family:var(--font-jetbrains-mono),monospace; font-size:10.5px;
+  line-height:1.75; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3);
+  max-width:34ch}
+.rtnav label:hover{background:rgba(255,255,255,.025)}
+
+/* the pane, and the tab that opened it */
+.rtpanes{position:relative; min-width:0}
+.rtpane{display:none}
+#rt1:checked ~ .rtpanes .pane1,
+#rt2:checked ~ .rtpanes .pane2,
+#rt3:checked ~ .rtpanes .pane3,
+#rt4:checked ~ .rtpanes .pane4{display:block; animation:rtin .34s ease both}
+@keyframes rtin{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
+#rt1:checked ~ .rtnav label[for="rt1"],
+#rt2:checked ~ .rtnav label[for="rt2"],
+#rt3:checked ~ .rtnav label[for="rt3"],
+#rt4:checked ~ .rtnav label[for="rt4"]{background:rgba(255,255,255,.05);
+  border-color:var(--edge-2)}
+#rt1:checked ~ .rtnav label[for="rt1"] b,
+#rt2:checked ~ .rtnav label[for="rt2"] b,
+#rt3:checked ~ .rtnav label[for="rt3"] b,
+#rt4:checked ~ .rtnav label[for="rt4"] b{color:var(--ink)}
+.rtabs > input:focus-visible ~ .rtnav label[for]{outline:none}
+#rt1:focus-visible ~ .rtnav label[for="rt1"],
+#rt2:focus-visible ~ .rtnav label[for="rt2"],
+#rt3:focus-visible ~ .rtnav label[for="rt3"],
+#rt4:focus-visible ~ .rtnav label[for="rt4"]{border-color:var(--fire)}
+
+/* the document itself */
+.rdoc{border:1px solid var(--edge-2); border-radius:13px; overflow:hidden;
+  background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008)), #0A0A10;
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 34px 60px -34px rgba(0,0,0,.95)}
+.bar3{display:flex; align-items:center; justify-content:space-between; gap:14px;
+  padding:12px 16px; border-bottom:1px solid var(--hair)}
+.bar3 .crumb{display:flex; align-items:center; gap:9px; min-width:0;
+  font-size:11.5px; color:var(--ink-3)}
+.bar3 .crumb b{font-weight:400; color:var(--ink-2); white-space:nowrap}
+.bar3 svg{width:13px; height:13px; flex:0 0 auto; fill:none; stroke:currentColor;
+  stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; opacity:.75}
+.bar3 .tools{display:flex; align-items:center; gap:12px; color:var(--ink-3)}
+
+.body3{padding:clamp(22px,2.6vw,32px) clamp(20px,2.6vw,34px) clamp(28px,3vw,40px)}
+.tile3{width:32px; height:32px; border-radius:9px; display:flex; align-items:center;
+  justify-content:center; margin-bottom:18px;
+  border:1px solid var(--edge-2); background:rgba(255,255,255,.05)}
+.tile3 svg{width:16px; height:16px; fill:none; stroke:var(--ink-2); stroke-width:1.8;
+  stroke-linecap:round; stroke-linejoin:round}
+.body3 h4{margin:0 0 14px; font-size:clamp(18px,1.9vw,22px); font-weight:600; color:var(--ink);
+  letter-spacing:-.02em}
+.body3 .meta4{margin:0 0 18px; font-size:12.5px; color:var(--ink-3)}
+.body3 .meta4 b{font-weight:400; color:var(--ink-2)}
+.body3 p{margin:0 0 16px; font-size:13.5px; line-height:1.72; color:var(--ink-2);
+  max-width:62ch}
+.body3 p:last-child{margin-bottom:0}
+.body3 mark{background:rgba(142,150,255,.22); color:var(--ink); border-radius:3px;
+  padding:0 2px}
+.body3 h5{margin:22px 0 12px; font-size:13.5px; font-weight:600; color:var(--ink)}
+.body3 ul{margin:0 0 16px; padding:0; list-style:none; display:grid; gap:9px}
+.body3 li{position:relative; padding-left:17px; font-size:13.5px; line-height:1.6;
+  color:var(--ink-2)}
+.body3 li::before{content:""; position:absolute; left:3px; top:8px; width:4px; height:4px;
+  border-radius:50%; background:var(--ink-3)}
+.body3 .rulez{font-family:var(--font-jetbrains-mono),monospace; font-size:12px; color:var(--ink);
+  background:rgba(255,255,255,.05); border-radius:4px; padding:2px 6px}
+@media(prefers-reduced-motion:reduce){
+  #rt1:checked ~ .rtpanes .pane1, #rt2:checked ~ .rtpanes .pane2,
+  #rt3:checked ~ .rtpanes .pane3, #rt4:checked ~ .rtpanes .pane4{animation:none}
+}
+
+/* the source carries these inline on the two headlines that need them */
+#anatomy .shead h2, #moments .shead h2{max-width:none; text-wrap:balance}
+
+/* what the file covers */
+.grp{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  margin-top:clamp(24px,2.8vw,38px); border-top:1px solid var(--hair)}
+@media(max-width:900px){ .grp{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media(max-width:600px){ .grp{grid-template-columns:1fr} }
+.grp > div{padding:24px clamp(18px,2vw,28px) 24px 0; border-bottom:1px solid var(--hair)}
+.grp > div + div{border-left:1px solid var(--hair); padding-left:clamp(18px,2vw,28px)}
+@media(max-width:900px){ .grp > div:nth-child(odd){border-left:0; padding-left:0} }
+@media(max-width:600px){ .grp > div{border-left:0 !important; padding-left:0 !important} }
+.grp .hd{display:flex; align-items:center; justify-content:space-between; gap:12px;
+  margin-bottom:12px}
+.grp h3{font-size:15px; font-weight:600; color:var(--ink); margin:0}
+.grp .ct{font-family:var(--font-jetbrains-mono),monospace; font-size:9.5px; color:var(--ink-3)}
+.grp p{font-size:13px; line-height:1.6; color:var(--ink-2); margin:0 0 12px}
+.lv{display:inline-flex; align-items:center; gap:6px; font-family:var(--font-jetbrains-mono),monospace;
+  font-size:8.5px; letter-spacing:.13em; text-transform:uppercase; border-radius:999px;
+  padding:4px 10px}
+.lv u{width:5px; height:5px; border-radius:50%; text-decoration:none; background:currentColor}
+.lv.st{color:var(--ink-3); background:rgba(255,255,255,.06)}
+.lv.cp{color:var(--fire-lt); background:rgba(249,122,92,.12)}
+.lv.ck{color:var(--tie); background:rgba(142,150,255,.13)}
+
+.rfoot{margin-top:clamp(26px,3vw,38px); padding-top:20px; border-top:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.09em; line-height:1.8;
+  color:var(--ink-3); max-width:74ch}
+
+/* the one code fragment in the loading columns; inline in the source */
+.grp code{font-family:var(--font-jetbrains-mono),monospace; font-size:12px; color:var(--ink)}
