@@ -18,6 +18,7 @@ export const layerLinks: MegaLink[] = [
   { href: "/how-to-use", label: "How to use", icon: "howToUse" },
   { href: "/design-system", label: "Design system", icon: "tokens" },
   { href: "/download", label: "Download files", icon: "download" },
+  { href: "/who-its-for", label: "Who it is for", icon: "users" },
 ];
 
 export const productStartHere: FeatureLink[] = [

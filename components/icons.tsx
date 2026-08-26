@@ -10,6 +10,7 @@ export type IconKey =
   | "compiled"
   | "check"
   | "download"
+  | "users"
   | "audit"
   | "failureModes"
   | "designSystem"
@@ -53,6 +54,10 @@ export const icons: Record<IconKey, ReactElement> = {
   // Download
   download: (
     <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4m4-5l5 5l5-5m-5 5V3"/></svg>
+  ),
+  // Who it is for — /who-its-for
+  users: (
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><path d="M16 3.128a4 4 0 0 1 0 7.744" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><circle cx="9" cy="7" r="4" /></svg>
   ),
   // Github
   github: (
