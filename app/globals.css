@@ -36,6 +36,31 @@ body{
   font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased; overflow-x:visible;
 }
 
+/* ---------- how text wraps ----------
+
+   Headings and ledes balance: short blocks read badly when the last line is one
+   stranded word, and evening the lines out is what a typesetter would do. Body
+   copy gets `pretty` instead — `balance` is capped at a handful of lines by every
+   engine that ships it, so on a paragraph it either does nothing or costs layout
+   time, while `pretty` is the rule that actually applies: no orphans.
+
+   This is the default so it does not have to be asked for per page. Explicit
+   <br /> in a headline still breaks exactly where it says — balancing only ever
+   moves breaks the browser chose itself. Engines without support ignore both.
+
+   h1 is deliberately left out: thirteen of the sixteen on this site carry a
+   hand-placed <br />, so display headlines are broken by an editor here, not by
+   an engine. On the few without one, balancing made them worse — it split "first
+   screen" on the homepage and inverted the long-then-short rag a two-line
+   headline wants. */
+h2, h3, h4, h5, h6,
+.lede, .shead h2{
+  text-wrap:balance; -webkit-text-wrap:balance;
+}
+p, li, figcaption, dd, blockquote{
+  text-wrap:pretty; -webkit-text-wrap:pretty;
+}
+
 /* ---------- ambient light source ---------- */
 .aura{position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden}
 .aura i{position:absolute; display:block; border-radius:50%; filter:blur(110px)}
