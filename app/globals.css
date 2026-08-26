@@ -333,6 +333,18 @@ body:has(.navtog:checked){overflow:hidden}
 .hero .lede{margin-top:32px; max-width:50ch}
 .hero-actions{margin-top:44px; display:flex; align-items:center; flex-wrap:wrap}
 @media(max-width:480px){ .cta{display:block; text-align:center} .cta-alt{margin:18px 0 0; display:block} }
+/* On a phone the landing hero offers one action, at the full width of the
+   column. Two stacked buttons is most of what a phone screen has left by the
+   time the headline and the lede are on it, and the second of them is a link
+   rather than a decision — /failure-modes is under Product in the panel.
+   Scoped to .hero-actions: the closing block and the 404 keep both of theirs.
+   480px is the phone: the widest phone portrait is about 430, and an iPad mini
+   portrait is 768. */
+@media(max-width:480px){
+  .hero-actions{display:block}
+  .hero-actions .cta{display:block; width:100%; text-align:center}
+  .hero-actions .cta-alt{display:none}
+}
 
 /* ---------- the widget bento ---------- */
 .ledger{padding-bottom:clamp(76px,10vw,132px)}
