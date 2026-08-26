@@ -12,7 +12,6 @@ import {
 } from "react";
 import { icons } from "@/components/icons";
 import {
-  drawerGroups,
   layerLinks,
   productStartHere,
   showcaseStartHere,
@@ -151,12 +150,22 @@ export default function Nav() {
     return () => document.removeEventListener("pointermove", onMove);
   }, []);
 
-  /* The drawer is a checkbox and stays a checkbox — but a client-side
+  /* The panel is a checkbox and stays a checkbox — but a client-side
      navigation does not reload the document, so nothing would uncheck it.
      Untick it on route change and the CSS-only mechanism is unchanged. */
   useEffect(() => {
     if (tog.current) tog.current.checked = false;
   }, [pathname]);
+
+  /* A checkbox has no idea what Escape means, and a panel covering the whole
+     screen needs a way out that is not aimed at a 38px button. */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && tog.current?.checked) tog.current.checked = false;
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <div className="navbar" ref={bar}>
@@ -250,25 +259,62 @@ export default function Nav() {
           </label>
         </nav>
       </div>
-      <div className="navdrawer">
-        {drawerGroups.map((g) => (
-          <div className="ndgrp" key={g.title}>
-            <b>{g.title}</b>
-            <div className="ndsub">
-              {g.links.map((l) => (
-                <SiteLink href={l.href} key={l.href}>
-                  {"emphasis" in l && l.emphasis ? <em>{l.label}</em> : l.label}
-                </SiteLink>
-              ))}
-            </div>
+      {/* The veil the megamenus already put over the page, worn by the panel too,
+          and a click target that shuts it. */}
+      <label className="navveil" htmlFor="navtog" aria-hidden="true" />
+
+      {/* The panel is built out of the same two lists the megamenus are, so the
+          two cannot drift apart the way the old drawer's hand-kept copy had:
+          it was five layer links against ten, and four products against ten. */}
+      <aside className="navpanel">
+        <div className="nphead">
+          <Link className="mark" href="/" onClick={toTop}>
+            Reckon<span>.</span>
+          </Link>
+          <label className="npclose" htmlFor="navtog" aria-label="Close menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </label>
+        </div>
+
+        <div className="npbody">
+          <div className="npgrp">
+            <b>Product</b>
+            {layerLinks.map((l) => (
+              <SiteLink className="npi" href={l.href} key={l.href}>
+                {icons[l.icon]}
+                {l.label}
+              </SiteLink>
+            ))}
           </div>
-        ))}
-        <Link href="/pricing">Pricing</Link>
-        <Link href="/changelog">Changelog</Link>
-        <Link className="cta" href="/pricing" data-t="Get Reckon">
-          Get Reckon
-        </Link>
-      </div>
+
+          <div className="npgrp">
+            <b>Showcase</b>
+            {menuProducts.map((p) => (
+              <SiteLink className="npi" href={`/products/${p.slug}`} key={p.slug}>
+                {icons[p.icon]}
+                {p.name}
+              </SiteLink>
+            ))}
+            <Link className="npi npall" href="/products">
+              Browse all<span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
+          <div className="npgrp npflat">
+            <Link href="/pricing">Pricing</Link>
+            <Link href="/changelog">Changelog</Link>
+          </div>
+
+          {/* /download, which is where the bar's own button goes — the old
+              drawer sent this one to /pricing instead */}
+          <Link className="cta" href="/download" data-t="Get Reckon">
+            Get Reckon
+          </Link>
+        </div>
+      </aside>
     </div>
   );
 }

@@ -1,9 +1,13 @@
 import type { IconKey } from "@/components/icons";
 
-/* The navigation, in one place: the two megamenus, the mobile drawer and the
-   plain links. Several of these routes do not exist yet — /rules, /setup and
-   nine of the ten product pages. That is deliberate; the menu shape is the
-   design and the pages are coming. Do not scaffold placeholders for them. */
+/* The navigation, in one place: the two megamenus and the plain links. The
+   mobile panel is built from these same lists rather than from a copy of them —
+   the drawer it replaced kept its own, and had drifted to five layer links
+   against ten and four products against ten.
+
+   Several of these routes do not exist yet — /rules and nine of the ten product
+   pages. That is deliberate; the menu shape is the design and the pages are
+   coming. Do not scaffold placeholders for them. */
 
 export type MegaLink = { href: string; label: string; icon: IconKey };
 export type FeatureLink = { href: string; title: string; note: string; icon: IconKey };
@@ -30,27 +34,6 @@ export const productStartHere: FeatureLink[] = [
 /* the three products the Showcase menu opens with */
 export const showcaseStartHere = ["cargo-claims", "support", "auth"];
 
-export const drawerGroups = [
-  {
-    title: "Product",
-    links: [
-      { href: "/how-it-works", label: "How it works" },
-      { href: "/rules", label: "The rules file" },
-      { href: "/failure-modes", label: "Failure modes" },
-      { href: "/design-system", label: "The design system" },
-      { href: "/setup", label: "Claude Design setup" },
-    ],
-  },
-  {
-    title: "Showcase",
-    links: [
-      { href: "/products/cargo-claims", label: "Cargo claims" },
-      { href: "/products/support", label: "Support desk" },
-      { href: "/products/auth", label: "Authentication" },
-      { href: "/products", label: "Browse all →", emphasis: true },
-    ],
-  },
-];
 
 /* Every page's header carries one of these class names, and the nav measures
    whichever one is on the page to decide when its button turns primary.

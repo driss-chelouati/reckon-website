@@ -234,82 +234,89 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 }
 @media(max-width:860px){ .navcta{display:none} }
 
-/* mobile menu */
+/* ---------- the mobile panel ---------- */
+
+/* It replaces a sheet that dropped from the top of the screen. This one comes in
+   from the right, over the same veil the megamenus put over the page, and covers
+   the navigation instead of sitting under it. Still a checkbox: no state, no
+   hydration, and the route-change effect in Nav already unticks it. */
 .navtog{position:absolute; width:1px; height:1px; opacity:0; pointer-events:none}
 .burger{display:none; justify-self:end; width:38px; height:38px; border-radius:9px;
   border:1px solid var(--edge-2); background:rgba(255,255,255,.03);
-  cursor:pointer; position:relative; z-index:30}
+  cursor:pointer; position:relative; z-index:30;
+  transition:border-color .3s ease, background-color .3s ease}
 .burger span{position:absolute; left:11px; width:16px; height:1.4px; background:var(--ink-2);
-  border-radius:2px; transition:transform .3s cubic-bezier(.2,.7,.3,1), opacity .2s ease}
+  border-radius:2px}
 .burger span:nth-child(1){top:15px}
 .burger span:nth-child(2){top:21px}
-.navtog:checked ~ .band .burger span:nth-child(1){transform:translateY(3px) rotate(45deg)}
-.navtog:checked ~ .band .burger span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
 .navtog:focus-visible ~ .band .burger{outline:2px solid var(--fire-hi); outline-offset:2px}
 @media(max-width:860px){ .burger{display:block} }
+/* the bars no longer cross when it opens: the panel covers the burger, and the
+   close button in its header is the affordance now */
 
-.navdrawer{position:fixed; inset:0 0 auto 0; z-index:25; display:none;
-  max-height:100dvh; overflow-y:auto; overscroll-behavior:contain;
-  padding:74px var(--gut) 34px; background:rgba(8,8,11,.92);
-  -webkit-backdrop-filter:blur(22px) saturate(120%); backdrop-filter:blur(22px) saturate(120%);
-  border-bottom:1px solid var(--hair);
-  opacity:0; visibility:hidden; pointer-events:none;
-  transition:opacity .34s cubic-bezier(.4,0,.2,1), visibility 0s linear .34s,
-             backdrop-filter .44s ease, -webkit-backdrop-filter .44s ease}
-@media(max-width:860px){ .navdrawer{display:block} }
-.navtog:checked ~ .navdrawer{opacity:1; visibility:visible; pointer-events:auto;
-  transition:opacity .34s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s,
-             backdrop-filter .44s ease, -webkit-backdrop-filter .44s ease}
+/* The panel sits above .navbar's own children rather than under them, which is
+   what "overlaps the navigation" needs. Both live inside .navbar, so these
+   compete only with each other; .navbar's z-index:20 is what lifts the pair
+   over the page. */
+.navveil{z-index:40; display:none; cursor:pointer}
+@media(max-width:860px){ .navveil{display:block} }
+.navtog:checked ~ .navveil{opacity:1; visibility:visible; transition-delay:0s, 0s}
 
-/* a hairline that draws itself across the foot of the panel */
-.navdrawer::after{content:""; position:absolute; left:0; bottom:0; height:1px; width:100%;
-  background:linear-gradient(90deg, transparent, rgba(249,122,92,.55) 30%,
-    rgba(249,122,92,.55) 70%, transparent);
-  transform:scaleX(0); transform-origin:50% 50%;
-  transition:transform .5s cubic-bezier(.4,0,.2,1) .1s}
-.navtog:checked ~ .navdrawer::after{transform:scaleX(1)}
+.navpanel{position:fixed; top:0; right:0; z-index:41; display:none;
+  flex-direction:column; width:min(380px, 86vw); height:100dvh;
+  background:rgba(10,10,15,.98);
+  -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
+  border-left:1px solid var(--edge-2);
+  box-shadow:-30px 0 70px -30px rgba(0,0,0,1);
+  transform:translateX(101%); visibility:hidden;
+  transition:transform .38s cubic-bezier(.2,.7,.3,1), visibility 0s linear .38s}
+@media(max-width:860px){ .navpanel{display:flex} }
+.navtog:checked ~ .navpanel{transform:none; visibility:visible; transition-delay:0s, 0s}
 
-/* each row settles in behind the fade, one after another */
-.navdrawer a{display:flex; align-items:baseline; gap:14px; padding:15px 0;
-  border-top:1px solid var(--hair); color:var(--ink); text-decoration:none; font-size:17px;
-  opacity:0; transform:translateY(-7px);
-  transition:opacity .34s ease, transform .44s cubic-bezier(.2,.8,.3,1), color .2s ease}
-.navtog:checked ~ .navdrawer a{opacity:1; transform:none}
-.navdrawer > *:nth-child(1){transition-delay:.05s}
-.navdrawer > *:nth-child(2){transition-delay:.1s}
-.navdrawer > *:nth-child(3){transition-delay:.15s}
-.navdrawer > *:nth-child(4){transition-delay:.2s}
-.navdrawer > *:nth-child(5){transition-delay:.25s}
-.navdrawer > *:nth-child(6){transition-delay:.3s}
-.navdrawer a:active{color:var(--fire-lt)}
-.navdrawer a i{font-family:var(--font-jetbrains-mono),monospace; font-size:10px; font-style:normal;
-  letter-spacing:.1em; color:var(--ink-3); transition:color .2s ease}
-.navdrawer a:active i{color:var(--fire-lt)}
-.navdrawer .cta{display:block; text-align:center; margin-top:22px; border-top:0}
+/* the header keeps its own height while the body takes the rest and scrolls */
+.nphead{flex:0 0 auto; display:flex; align-items:center; justify-content:space-between;
+  gap:16px; height:64px; padding:0 var(--gut); border-bottom:1px solid var(--hair)}
+.npclose{display:grid; place-items:center; width:38px; height:38px; border-radius:9px;
+  border:1px solid var(--edge-2); background:rgba(255,255,255,.03);
+  color:var(--ink-2); cursor:pointer;
+  transition:border-color .3s ease, background-color .3s ease, color .3s ease}
+.npclose:hover{border-color:rgba(249,122,92,.5); background:rgba(249,122,92,.10);
+  color:var(--fire-lt)}
+.npclose svg{width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.5;
+  stroke-linecap:round}
 
-/* groups, so the hierarchy survives the collapse */
-.ndgrp{opacity:0; transform:translateY(-7px);
-  transition:opacity .34s ease, transform .44s cubic-bezier(.2,.8,.3,1)}
-.navtog:checked ~ .navdrawer .ndgrp{opacity:1; transform:none}
-.ndgrp > b{display:flex; align-items:baseline; gap:14px; padding:15px 0 12px;
-  border-top:1px solid var(--hair); font-family:var(--font-jetbrains-mono),monospace; font-size:10px;
-  font-weight:400; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
-.ndsub{margin:0 0 4px 3px; padding-left:17px; border-left:1px solid var(--hair)}
-.ndsub a{font-size:14.5px; padding:11px 0; border-top:0; color:var(--ink-2);
-  opacity:1; transform:none}
-.ndsub a + a{border-top:1px solid rgba(255,255,255,.028)}
-.ndsub a:active{color:var(--fire-lt)}
-.ndsub a em{margin-left:auto; font-style:normal; font-family:var(--font-jetbrains-mono),monospace;
-  font-size:9px; letter-spacing:.1em; color:var(--ink-3)}
+/* min-height:0 or the flex item refuses to shrink and the panel scrolls as a
+   whole, taking its header with it */
+.npbody{flex:1 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain;
+  padding:4px var(--gut) calc(28px + env(safe-area-inset-bottom))}
 
-/* the button itself: bars cross, and the frame warms */
-.burger{transition:border-color .3s ease, background-color .3s ease}
-.navtog:checked ~ .band .burger{border-color:rgba(249,122,92,.5); background:rgba(249,122,92,.10)}
-.navtog:checked ~ .band .burger span{background:var(--fire-lt)}
+/* every link is on the page at once — the groups are labels, not accordions */
+.npgrp{padding:12px 0}
+.npgrp + .npgrp{border-top:1px solid var(--hair)}
+.npgrp > b{display:block; padding:8px 0 4px;
+  font-family:var(--font-jetbrains-mono),monospace; font-size:10px; font-weight:400;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.npi{display:flex; align-items:center; gap:12px; padding:11px 0;
+  font-size:15px; color:var(--ink); text-decoration:none;
+  transition:color .16s ease}
+.npi svg{width:16px; height:16px; flex:none; color:var(--ink-3);
+  fill:none; stroke:currentColor; stroke-width:1.4; stroke-linecap:round;
+  stroke-linejoin:round; transition:color .16s ease}
+.npi:active{color:var(--fire-lt)}
+.npi:active svg{color:var(--fire-lt)}
+.npall{color:var(--ink-2); font-size:14px}
+.npall span{margin-left:auto; color:var(--ink-3)}
+
+.npflat a{display:block; padding:12px 0; font-size:15px; color:var(--ink);
+  text-decoration:none; transition:color .16s ease}
+.npflat a:active{color:var(--fire-lt)}
+.npbody .cta{display:block; margin-top:18px; text-align:center}
+
+/* the page behind must not scroll under a panel that covers the screen */
+body:has(.navtog:checked){overflow:hidden}
 
 @media(prefers-reduced-motion:reduce){
-  .navdrawer, .navdrawer a, .navdrawer::after, .burger span{transition:none !important}
-  .navdrawer a{transition-delay:0s !important}
+  .navpanel, .navveil{transition:none !important}
 }
 
 .hero{position:relative; padding:clamp(68px,10vw,148px) 0 clamp(52px,7vw,92px)}
@@ -1450,12 +1457,14 @@ details p{margin:16px 0 2px; font-size:15px; color:var(--ink-2); max-width:64ch}
 .hasmega:not([data-shut]):hover .chev,
 .hasmega:not([data-shut]):focus-within .chev{transform:rotate(180deg); color:var(--ink)}
 
-/* the page goes back and out of focus behind it */
-.megaveil{position:fixed; inset:0; z-index:-1; pointer-events:none;
+/* the page goes back and out of focus behind it — the same veil the mobile
+   panel wears, which is why the look is declared for both at once */
+.megaveil, .navveil{position:fixed; inset:0;
   background:rgba(5,5,9,.6);
   -webkit-backdrop-filter:blur(7px) saturate(80%); backdrop-filter:blur(7px) saturate(80%);
   opacity:0; visibility:hidden;
   transition:opacity .3s ease, visibility 0s linear .3s}
+.megaveil{z-index:-1; pointer-events:none}
 .hasmega:not([data-shut]):hover .megaveil,
 .hasmega:not([data-shut]):focus-within .megaveil{
   opacity:1; visibility:visible; transition-delay:0s, 0s}
