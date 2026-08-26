@@ -133,10 +133,42 @@ probably wrong, not the system.
 - Standard easing `cubic-bezier(.2,.7,.3,1)`; 0.3–0.5s for state changes, 1s+ only for
   something travelling a distance.
 - Stagger 60–220ms depending on how many items. Enough to read as a sequence, not a wave.
-- Hover lifts 2px, never more. The shadow tint stays under 20% opacity.
-- **Hover never reveals content.** It lifts and warms. Anything a reader needs must be visible
+- **Nothing moves on hover.** Around thirty `translateY` hover rules were removed on purpose;
+  cards respond with border, background and shadow only. An absence leaves no trace in the CSS,
+  which makes this the rule most likely to be undone by someone acting in good faith. Do not
+  reintroduce them.
+- **Hover never reveals content.** It warms and lights. Anything a reader needs must be visible
   without a pointer — half your visitors are on a phone.
 - Every animation needs a `prefers-reduced-motion` path that renders the resolved state.
+
+### The page entrance
+
+Two rules in `globals.css` animate every page in, and both are structural — they key off where
+an element sits in the tree, not off a class you can grep for:
+
+- `.rin > *:not([aria-hidden])` staggers the header pieces 140ms apart, finishing around 0.75s.
+  Decorative layers opt out by being `aria-hidden`.
+- `.hband ~ *` fades in everything below the header at 0.82s, so a tall screen does not show the
+  next section fully drawn while the header is still arriving.
+
+`.hband ~ *` is a **general sibling selector on the page's top-level bands**. Wrap the sections in
+a fragment or one more `<div>` and it silently stops matching — no error, just a page that no
+longer animates below its header. Check it whenever you change a page's outer structure.
+
+### Buttons tear
+
+Primary buttons tear their label on hover: two pseudo-elements read `content:attr(data-t)`, clip
+themselves into horizontal bands and jump three steps. **Every primary button's `data-t` must
+match its own visible text**, or it tears the wrong word. `.cta--quiet` is excluded deliberately
+— a tear needs a filled surface to cut into — and the nav button only tears once it has turned
+primary.
+
+### WebGL figures
+
+Every WebGL figure is a `components/fx/<Name>Field.tsx` built on the shared `Field`, which owns
+the renderer, the `IntersectionObserver` that stops the scene off screen, the rAF loop and the
+teardown. A new scene supplies `frame`, `resize` and `dispose` and nothing else — do not stand
+up a second loop or a second cleanup path beside it.
 
 ---
 
@@ -175,4 +207,8 @@ Do not add new ones without checking whether an existing one does the job.
 - More than one accent in a single card?
 - A fully rounded element that isn't the hero pill?
 - A fourth card type that could have been one of the existing three?
+- Does anything move on hover?
+- Does every primary button's `data-t` match its own label?
+- Do the page's sections still sit as top-level siblings after `.hband`, so the fade below the
+  header still matches?
 - Does it hold at 390px, and at reduced motion?
