@@ -9,9 +9,7 @@ export default function Footer() {
         <div className="footrow">
           <div>&copy; Reckon — 2025-{currentYear}</div>
           <div>
-            <Link href="/how-to-use">How to use</Link>
-            {' '}
-            <Link href="/download">Download</Link>
+            <Link href="https://github.com/driss-chelouati">Github</Link>
             {' '}
             <Link href="/legal">Legal notice</Link>
             {' '}
