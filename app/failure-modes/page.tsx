@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import FailField from "@/components/fx/FailField";
 import Faq from "@/components/Faq";
 import ClosingCta from "@/components/ClosingCta";
 import "./failure-modes.css";
 
-export const metadata: Metadata = {
-  title: "Failure modes — what goes wrong, and the rule that closes it",
-};
+export const metadata = pageMeta(
+  "Failure modes — what goes wrong, and the rule that closes it",
+  "Specific ways generated business software goes wrong underneath a surface that looks finished, each with the rule written against it and a specimen showing it.",
+);
 
 export default function FailureModesPage() {
   return (

@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import ShowcaseField from "@/components/fx/ShowcaseField";
 import ProductIndex from "@/components/ProductIndex";
 import ClosingCta from "@/components/ClosingCta";
 import "./showcase.css";
 
-export const metadata: Metadata = {
-  title: "Showcase — whole products, not screens",
-};
+export const metadata = pageMeta(
+  "Showcase — whole products, not screens",
+  "Ten worked products, each generated from a plain-language brief and audited number by number, each with its own routes, status values and deliberately unkind data.",
+);
 
 export default function Products() {
   return (

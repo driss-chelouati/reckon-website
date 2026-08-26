@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import DownloadField from "@/components/fx/DownloadField";
 import ClosingCta from "@/components/ClosingCta";
@@ -7,9 +7,10 @@ import inline from "@/components/inline";
 import RoutesIn from "@/components/RoutesIn";
 import "./download.css";
 
-export const metadata: Metadata = {
-  title: "The design system — free to take",
-};
+export const metadata = pageMeta(
+  "The design system — free to take",
+  "Plain CSS, plain JSX, plain HTML. No bundler, no package install, no build — drop the folder into a project and the tokens, components and prototypes are there.",
+);
 
 const Tick = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import LogField from "@/components/fx/LogField";
 import Faq from "@/components/Faq";
 import ClosingCta from "@/components/ClosingCta";
@@ -13,9 +13,10 @@ import {
 } from "@/lib/changelog";
 import "./changelog.css";
 
-export const metadata: Metadata = {
-  title: "Changelog — what shipped, and what is next",
-};
+export const metadata = pageMeta(
+  "Changelog — what shipped, and what is next",
+  "Every change to the rules layer, with what moved and why, and what is coming on the same page — because a roadmap kept somewhere else is a wish list.",
+);
 
 export default function Changelog() {
   return (

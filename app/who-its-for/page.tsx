@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import AudienceField from "@/components/fx/AudienceField";
 import ClosingCta from "@/components/ClosingCta";
 import { claims, fit, fitNote, rows } from "@/lib/audience";
 import { figures } from "./figures";
 import "./who-its-for.css";
 
-export const metadata: Metadata = {
-  title: "Who it is for — designers, developers, teams",
-};
+export const metadata = pageMeta(
+  "Who it is for — designers, developers, teams",
+  "The same rules do a different job depending on who holds them: a designer gets room to decide, a developer gets output that compiles, a team gets agreement.",
+);
 
 export default function WhoItsForPage() {
   return (

@@ -1,5 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import ProductField from "@/components/fx/ProductField";
 import ClosingCta from "@/components/ClosingCta";
@@ -21,7 +22,10 @@ export async function generateMetadata({
 }: PageProps<"/products/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const product = bySlug.get(slug);
-  return { title: product ? `${product.name} desk — a worked product` : "Worked product" };
+  if (!product) return pageMeta("Worked product", "A product generated from a brief, then audited.");
+  /* the blurb is the product's own one-line description and is already written
+     for a reader who has not seen the page */
+  return pageMeta(`${product.name} desk — a worked product`, product.blurb);
 }
 
 const Next = ({ next }: { next: NextLink }) => (

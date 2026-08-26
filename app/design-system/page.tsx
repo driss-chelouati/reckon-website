@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import SystemField from "@/components/fx/SystemField";
 import ClosingCta from "@/components/ClosingCta";
 import { specimens } from "./specimens";
 import "./design-system.css";
 
-export const metadata: Metadata = {
-  title: "The design system — components, tokens and shells",
-};
+export const metadata = pageMeta(
+  "The design system — components, tokens and shells",
+  "A component set with tokens you can point at your own brand, packaged so Claude Design picks it up on load. It sits on whichever primitives you already use.",
+);
 
 export default function DesignSystem() {
   return (

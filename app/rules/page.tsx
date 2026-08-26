@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import RulesField from "@/components/fx/RulesField";
 import ClosingCta from "@/components/ClosingCta";
@@ -18,9 +18,10 @@ import {
 import RuleDoc from "./docs";
 import "./rules.css";
 
-export const metadata: Metadata = {
-  title: "The rules file — one document, read before it draws",
-};
+export const metadata = pageMeta(
+  "The rules file — one document, read before it draws",
+  "One markdown document, read at the start of a session and governing every screen after it — a set of claims about what a business screen is, not a style guide.",
+);
 
 /** the level pill: coral compiled, blue checked, grey stated */
 const Pill = ({ level, label }: { level: string; label: string }) => (

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import FixtureField from "@/components/fx/FixtureField";
 import ClosingCta from "@/components/ClosingCta";
@@ -16,9 +16,10 @@ import {
 import { RosterCard, panels } from "./panels";
 import "./fixtures.css";
 
-export const metadata: Metadata = {
-  title: "Fixtures and states — the data nobody demos with",
-};
+export const metadata = pageMeta(
+  "Fixtures and states — the data nobody demos with",
+  "Demo data is polite: names fit, everyone has a salary, every record is in a state somebody thought about. A real roster is none of those, and that is the test.",
+);
 
 export default function FixturesPage() {
   return (

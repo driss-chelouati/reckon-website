@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import HowField from "@/components/fx/HowField";
 import Faq from "@/components/Faq";
 import ClosingCta from "@/components/ClosingCta";
 import "./how-it-works.css";
 
-export const metadata: Metadata = {
-  title: "How it works — stated, compiled, checked",
-};
+export const metadata = pageMeta(
+  "How it works — stated, compiled, checked",
+  "Written guidance drifts. Reckon holds its rules three ways — stated, compiled and checked — and the strongest of them do not depend on the model's judgement.",
+);
 
 export default function HowItWorks() {
   return (

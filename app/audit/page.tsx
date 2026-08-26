@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import AuditField from "@/components/fx/AuditField";
 import ClosingCta from "@/components/ClosingCta";
@@ -17,9 +17,10 @@ import {
 } from "@/lib/audit";
 import a from "./audit.module.css";
 
-export const metadata: Metadata = {
-  title: "The audit pass — rules, checked by name",
-};
+export const metadata = pageMeta(
+  "The audit pass — rules, checked by name",
+  "A pass over a finished screen that reports, by name, which rules it broke and where — what the stated and compiled layers cannot catch between them.",
+);
 
 const Chevron = () => (
   <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>

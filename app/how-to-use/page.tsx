@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import HowToField from "@/components/fx/HowToField";
 import ClosingCta from "@/components/ClosingCta";
 import Faq from "@/components/Faq";
@@ -7,9 +7,10 @@ import inline from "@/components/inline";
 import { cost, faqLede, snags, snagsNote } from "@/lib/howto";
 import "./how-to-use.css";
 
-export const metadata: Metadata = {
-  title: "How to use it — four routes in, nothing to install",
-};
+export const metadata = pageMeta(
+  "How to use it — four routes in, nothing to install",
+  "No package to add, no config to write and no build step. Four ways to put one folder somewhere a model can read it, and what each of them is good for.",
+);
 
 export default function HowToUsePage() {
   return (

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import ShellField from "@/components/fx/ShellField";
 import ClosingCta from "@/components/ClosingCta";
@@ -14,9 +14,10 @@ import {
 import { RecordStack, specimens } from "./specimens";
 import s from "./shells.module.css";
 
-export const metadata: Metadata = {
-  title: "Shells and archetypes — four shapes, three choices each",
-};
+export const metadata = pageMeta(
+  "Shells and archetypes — four shapes, three choices each",
+  "A queue, a record, a decision, and two sides that have to agree. Almost every operational product is an arrangement of those four shapes, three choices each.",
+);
 
 export default function ShellsPage() {
   return (

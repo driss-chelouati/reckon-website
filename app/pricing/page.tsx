@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import PriceField from "@/components/fx/PriceField";
 import PracticeFigure from "@/components/PracticeFigure";
@@ -8,9 +8,10 @@ import Faq from "@/components/Faq";
 import ClosingCta from "@/components/ClosingCta";
 import "./pricing.css";
 
-export const metadata: Metadata = {
-  title: "Pricing — a free layer, and the work of applying it",
-};
+export const metadata = pageMeta(
+  "Pricing — a free layer, and the work of applying it",
+  "Reckon is free and stays free. What is sold is the judgement behind it: making a real product behave, and writing rules that fit a codebase you already have.",
+);
 
 export default function PricingPage() {
   return (
