@@ -47,10 +47,9 @@ export function Dependency() {
 
 /* ---------- 02 · developers: a figure that names the rows it derives from ---------- */
 
-/* Photographs drop in here: .wpav already styles both the image and the
-   initials, so a person with a `photo` renders one and everybody else renders
-   the other. No photographs have been supplied, so today every avatar draws
-   initials — put a file in /public and set `photo` on the person.
+/* .wpav styles both paths, so a person with a `photo` renders the photograph and
+   a person without renders their initials. All four in this figure have one; the
+   initials remain as the fallback.
 
    The rendered element is still an <img>, which is what .wpav img{object-fit:
    cover} expects; next/image only adds the sizing and lazy-loading around it. */
@@ -76,7 +75,7 @@ export function Provenance() {
           <b>{provenance.owner.name}</b>
           <span>{provenance.context}</span>
         </span>
-        <span className="fig">
+        <span className="wpfig">
           <b>{money(provenanceTotal)}</b>
           <em><u></u>Derived</em>
         </span>

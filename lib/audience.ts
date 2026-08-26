@@ -104,9 +104,9 @@ export const rows: Row[] = [
 
 /* ---------- the developers' figure: a derived total and its rows ---------- */
 
-/* Each person may carry a photograph. None have been supplied, so every avatar
-   currently draws its initials — .wpav already styles both paths. Dropping a
-   file into /public and setting `photo` is the whole change. */
+/* Each person may carry a photograph, and all four here have one. The initials
+   stay on the record as the fallback .wpav draws when a photo is missing or
+   fails to load, so a person without one still renders. */
 export type Person = { name: string; initials: string; photo?: string };
 
 export type Provenance = {
@@ -120,12 +120,12 @@ export type Provenance = {
 };
 
 export const provenance: Provenance = {
-  owner: { name: "Sofia Delacroix", initials: "SD" },
+  owner: { name: "Sofia Delacroix", initials: "SD", photo: "/img/people/sofia-delacroix.png" },
   context: "Engineering · Q3 headcount",
   sources: [
-    { person: { name: "Amina Berrada", initials: "AB" }, amount: 42000 },
-    { person: { name: "Tomás Novak", initials: "TN" }, amount: 51500 },
-    { person: { name: "Lena Fischer", initials: "LF" }, amount: 38900 },
+    { person: { name: "Amina Berrada", initials: "AB", photo: "/img/people/amina-berrada.jpg" }, amount: 42000 },
+    { person: { name: "Tomás Novak", initials: "TN", photo: "/img/people/tomas-novak.jpg" }, amount: 51500 },
+    { person: { name: "Lena Fischer", initials: "LF", photo: "/img/people/lena-fischer.jpg" }, amount: 38900 },
   ],
   signature: "ListFooter({ rows })",
   refusedProp: "total: number",

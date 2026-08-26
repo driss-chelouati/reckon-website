@@ -119,7 +119,11 @@
 
 /* the developers' figure: a figure that names the rows it came from.
    Prefixed wp so nothing in the shared stylesheet can reach it. */
-.wprov{width:100%; max-width:340px; font-family:var(--font-instrument-sans),sans-serif}
+/* Fills the well it sits in, like .wlist does. The 340px it used to cap at left
+   a quarter of the card empty on the right, which read as a panel that had not
+   finished rather than as a figure. The name column takes the slack and the
+   amounts stay on the right edge, which is where a reader compares them. */
+.wprov{width:100%; font-family:var(--font-instrument-sans),sans-serif}
 
 /* the derived figure, and whose it is */
 .wphd{display:grid; grid-template-columns:44px minmax(0,1fr) auto; gap:13px;
@@ -136,14 +140,17 @@
   line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .wphd .who3 span{display:block; margin-top:3px; font-size:11.5px; line-height:1.2;
   color:var(--ink-3)}
-.wphd .fig{text-align:right}
-.wphd .fig b{display:block; font-family:var(--font-jetbrains-mono),monospace;
+/* .wpfig, not .fig: globals.css owns .fig for the three-column .figs block in
+   WhatItIs, and its horizontal padding was pushing this figure ~31px in from the
+   right, so it no longer lined up with the amounts in the rows below it. */
+.wphd .wpfig{text-align:right}
+.wphd .wpfig b{display:block; font-family:var(--font-jetbrains-mono),monospace;
   font-variant-numeric:tabular-nums; font-size:17px; font-weight:500; color:var(--ink);
   letter-spacing:-.028em; line-height:1}
-.wphd .fig em{display:inline-flex; align-items:center; gap:6px; margin-top:8px;
+.wphd .wpfig em{display:inline-flex; align-items:center; gap:6px; margin-top:8px;
   font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px;
   letter-spacing:.13em; text-transform:uppercase; color:var(--fire-lt)}
-.wphd .fig em u{width:5px; height:5px; border-radius:50%; text-decoration:none;
+.wphd .wpfig em u{width:5px; height:5px; border-radius:50%; text-decoration:none;
   background:var(--fire)}
 
 /* the rows it is derived from */
