@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { icons } from "@/components/icons";
@@ -84,11 +85,19 @@ export default function ProductIndex() {
               hidden={!shown[i]}
               key={p.slug}
             >
-              <span className="xshot">
-                <span className="xph">
-                  <span>{p.shotIndex}</span>
-                  <em>{p.name}</em>
-                </span>
+              <span className={p.image ? "xshot real" : "xshot"}>
+                {p.image ? (
+                  <Image
+                    src={p.image}
+                    alt=""
+                    sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 33vw"
+                  />
+                ) : (
+                  <span className="xph">
+                    <span>{p.shotIndex}</span>
+                    <em>{p.name}</em>
+                  </span>
+                )}
                 <span className="xglow"></span>
               </span>
               <span className="xinfo">

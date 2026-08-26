@@ -4,7 +4,16 @@
 
    Every string on the page is a field, because this copy is placeholder and
    will be rewritten. Adding the next product means adding a record, not a JSX
-   file. The screenshot slots take a real <img> drop-in later. */
+   file. Every screenshot slot takes an optional `image`; cargo-claims has all
+   six, and a slot without one draws the dashed placeholder instead. */
+
+import type { StaticImageData } from "next/image";
+import shotDashboard from "@/public/img/products/claims-desk/01-dashboard.png";
+import shotWorkQueue from "@/public/img/products/claims-desk/02-work-queue.png";
+import shotClaimDetail from "@/public/img/products/claims-desk/03-claim-detail.png";
+import shotDecision from "@/public/img/products/claims-desk/04-decision.png";
+import shotRecovery from "@/public/img/products/claims-desk/05-recovery.png";
+import shotAssessedPayable from "@/public/img/products/claims-desk/06-assessed-payable.png";
 
 /** the numbered link that closes each section and points at the next one */
 export type NextLink = { num: string; href: string; label: string };
@@ -17,7 +26,7 @@ export type ProductPage = {
   lede: string;
   meta: { label: string; value: string; note: string }[];
   /** the full-width shot under the header */
-  hero: { shot: string; of: string; caption: string; captionLead: string; size: string };
+  hero: { shot: string; image?: StaticImageData; of: string; caption: string; captionLead: string; size: string };
   job: {
     railRight: string;
     headline: string;
@@ -36,6 +45,7 @@ export type ProductPage = {
       body: string;
       points: string[];
       shot: string;
+      image?: StaticImageData;
       of: string;
       route: string;
       kind: string;
@@ -63,6 +73,7 @@ export type ProductPage = {
     lede: string;
     next: NextLink;
     shot: string;
+    image?: StaticImageData;
     of: string;
     captionLead: string;
     caption: string;
@@ -85,6 +96,7 @@ export const productPages: Record<string, ProductPage> = {
     ],
     hero: {
       shot: "Screenshot 01",
+      image: shotDashboard,
       of: "Work queue · full screen",
       captionLead: "Work queue",
       caption: " · the screen the day starts on",
@@ -132,6 +144,7 @@ export const productPages: Record<string, ProductPage> = {
             "Blocked records offer what unblocks them",
           ],
           shot: "Screenshot 02",
+          image: shotWorkQueue,
           of: "Work queue",
           route: "/queue",
           kind: "list · grouped",
@@ -145,6 +158,7 @@ export const productPages: Record<string, ProductPage> = {
             "The cap is applied and flagged, not silently swallowed",
           ],
           shot: "Screenshot 03",
+          image: shotClaimDetail,
           of: "Claim detail",
           route: "/claims/:id",
           kind: "record",
@@ -158,6 +172,7 @@ export const productPages: Record<string, ProductPage> = {
             "Above a threshold, a manager’s sign-off is required",
           ],
           shot: "Screenshot 04",
+          image: shotDecision,
           of: "Evidence & decision",
           route: "/claims/:id/decision",
           kind: "decision surface",
@@ -171,6 +186,7 @@ export const productPages: Record<string, ProductPage> = {
             "Nothing recovered is a state, not an empty table",
           ],
           shot: "Screenshot 05",
+          image: shotRecovery,
           of: "Recovery detail",
           route: "/recovery/:id",
           kind: "record",
@@ -229,6 +245,7 @@ export const productPages: Record<string, ProductPage> = {
       lede: "The check that used to fail. Each aggregate on each screen, matched against the array it claims to summarise.",
       next: { num: "05", href: "#top", label: "Back to the top →" },
       shot: "Screenshot 06",
+      image: shotAssessedPayable,
       of: "Audit view · figures and their sources",
       captionLead: "Assessed payable",
       caption: " · sums the four ready rows",

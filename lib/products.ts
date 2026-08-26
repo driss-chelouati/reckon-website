@@ -1,4 +1,6 @@
+import type { StaticImageData } from "next/image";
 import type { IconKey } from "@/components/icons";
+import claimsDesk from "@/public/img/products/claims-desk/01-dashboard.png";
 
 /* The ten worked products. This list is the megamenu's Showcase column and the
    /products index cards — the same records in two shapes, which is why it lives
@@ -17,6 +19,9 @@ export type Product = {
   cat: string;
   /* the index card */
   shotIndex: string;
+  /* a real screenshot where there is one; the dashed placeholder stands in
+     until then, and names what the shot will be */
+  image?: StaticImageData;
   blurb: string;
   screens: string;
   covers: string;
@@ -34,6 +39,7 @@ export const products: Product[] = [
     state: "audited",
     cat: "ops",
     shotIndex: "Screenshot 01",
+    image: claimsDesk,
     blurb:
       "Damage claims against a container line. Liability caps, a filing window that cannot be extended, and evidence that gates the decision.",
     screens: "8",

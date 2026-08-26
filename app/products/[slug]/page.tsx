@@ -1,3 +1,4 @@
+import Image, { type StaticImageData } from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductField from "@/components/fx/ProductField";
@@ -30,6 +31,38 @@ const Next = ({ next }: { next: NextLink }) => (
   </a>
 );
 
+/* One screenshot frame. Where a real shot exists it sits inside the inset with
+   its own proportions; where there is none the dashed placeholder names what is
+   going to go there. Nine of the ten products are still all placeholder. */
+function Shot({
+  image,
+  shot,
+  of,
+  sizes,
+  priority,
+  tall,
+}: {
+  image?: StaticImageData;
+  shot: string;
+  of: string;
+  sizes: string;
+  priority?: boolean;
+  /* the audit view is drawn taller than the rest — but only while it is empty,
+     since a real shot brings the shape it was captured at */
+  tall?: boolean;
+}) {
+  const cls = image ? "shot real" : tall ? "shot shot--tall" : "shot";
+  return (
+    <div className={cls}>
+      {image ? (
+        <Image src={image} alt="" priority={priority} sizes={sizes} />
+      ) : (
+        <div className="ph2"><span>{shot}</span><em>{of}</em></div>
+      )}
+    </div>
+  );
+}
+
 export default async function ProductPage({ params }: PageProps<"/products/[slug]">) {
   const { slug } = await params;
   const page = productPages[slug];
@@ -57,10 +90,14 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
       </div>
 
       <div className="band">
-        <div className="pstage">
-          <div className="shot">
-            <div className="ph2"><span>{page.hero.shot}</span><em>{page.hero.of}</em></div>
-          </div>
+        <div className="pstage pstage--lead">
+          <Shot
+            image={page.hero.image}
+            shot={page.hero.shot}
+            of={page.hero.of}
+            priority
+            sizes="(max-width: 1100px) 94vw, 1040px"
+          />
           <div className="shotcap">
             <span><b>{page.hero.captionLead}</b>{page.hero.caption}</span>
             <span>{page.hero.size}</span>
@@ -115,7 +152,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
                 </ul>
               </div>
               <div>
-                <div className="shot"><div className="ph2"><span>{w.shot}</span><em>{w.of}</em></div></div>
+                <Shot image={w.image} shot={w.shot} of={w.of} sizes="(max-width: 900px) 94vw, 56vw" />
                 <div className="shotcap"><span><b>{w.route}</b></span><span>{w.kind}</span></div>
               </div>
             </div>
@@ -177,9 +214,13 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
           </div>
 
           <div className="pstage" style={{ marginTop: "clamp(26px,3vw,40px)" }}>
-            <div className="shot shot--tall">
-              <div className="ph2"><span>{page.audit.shot}</span><em>{page.audit.of}</em></div>
-            </div>
+            <Shot
+              image={page.audit.image}
+              shot={page.audit.shot}
+              of={page.audit.of}
+              tall
+              sizes="(max-width: 1100px) 94vw, 1040px"
+            />
             <div className="shotcap">
               <span><b>{page.audit.captionLead}</b>{page.audit.caption}</span>
               <span>{page.audit.size}</span>
