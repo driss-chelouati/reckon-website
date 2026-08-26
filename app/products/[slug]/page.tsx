@@ -4,6 +4,7 @@ import { pageMeta } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import ProductField from "@/components/fx/ProductField";
 import ClosingCta from "@/components/ClosingCta";
+import { icons } from "@/components/icons";
 import { productPages } from "@/lib/product-pages";
 import { bySlug } from "@/lib/products";
 import type { NextLink } from "@/lib/product-pages";
@@ -79,7 +80,15 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
           <ProductField />
           <div className="srail"><span className="l">Worked product</span><span className="r">{page.railRight}</span></div>
           <h1>{page.headline}</h1>
-          <p className="lede">{page.lede}</p>
+          <div className="phrow">
+            <p className="lede">{page.lede}</p>
+            {page.preview && (
+              <a className="cta cta--quiet pprev" href={page.preview.href} target="_blank">
+                <span className="gl" data-t={page.preview.label}>{page.preview.label}</span>
+                {icons.arrowRight}
+              </a>
+            )}
+          </div>
 
           <div className="pmeta">
             {page.meta.map((m) => (

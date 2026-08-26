@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
 import type { IconKey } from "@/components/icons";
-import claimsDesk from "@/public/img/products/claims-desk/01-dashboard.png";
+import claimsDesk from "@/public/img/products/claims-desk/01-claims-desk.png";
 
 /* The ten worked products. This list is the megamenu's Showcase column and the
    /products index cards — the same records in two shapes, which is why it lives

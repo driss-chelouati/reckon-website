@@ -69,6 +69,54 @@
    so it does not need a full section gap, but it does need more than nothing. */
 .pstage--lead{margin-bottom:clamp(56px,7vw,104px)}
 
+/* The lede and the template button share a row above the four facts: the lede
+   keeps its own 56ch and the button is pushed to the far end, sitting on the
+   line the lede ends on.
+
+   That is `last baseline` — plain `baseline` would align the button to the
+   lede's *first* line and leave it stranded at the top of a paragraph three
+   lines deep. flex-end is declared first as the fallback: a browser that does
+   not know the keyword drops the whole declaration, and stretch would draw a
+   button as tall as the paragraph.
+
+   The row takes the lede's .rin stagger slot rather than adding one, so the
+   header still finishes at .75s — which is what the .hband fade below it is
+   timed against.
+
+   The template the shots were taken from, opened whole. Quiet, because the
+   argument this page makes is the walkthrough and not the demo.
+
+   Below 480 every .cta on the site goes full width. A flex item does not
+   stretch on its own, so the width is stated here, and the row's gap is what
+   separates it from the lede once it has wrapped under it. */
+.phrow{display:flex; justify-content:space-between; align-items:flex-end;
+  align-items:last baseline;
+  gap:clamp(24px,4vw,56px); flex-wrap:wrap}
+.pprev{display:inline-flex; align-items:center; gap:9px; flex:none}
+.pprev svg{width:15px; height:15px; flex:none; transition:transform .18s ease}
+/* The arrow turns to the top-right corner on hover — the same gesture the link
+   itself makes, since this one leaves the page for a file. .18s ease is what
+   .cta transitions its own colours on, so the arrow and the surface under it
+   settle together. */
+.pprev:hover svg{transform:rotate(-45deg)}
+/* The label gives out on hover. This is the headline's own glitch — .gl and its
+   three keyframes, unchanged — fired by the pointer instead of by the timer in
+   Glitch.tsx, and it is the site's glitch rather than a second one written for
+   this button.
+
+   Not the .cta tear: that clips a near-white and a dark-coral copy of the label
+   into bands, which only reads against the coral fill it was drawn for. On a
+   transparent quiet button the dark copy disappears into the page. The glitch
+   lights the label instead of cutting it, which is what this surface can carry.
+
+   Once per hover, like the tear — the animation runs a single iteration and
+   re-arms when the pointer leaves. Reduced motion is already handled: the
+   global block stills every animation and hides both .gl layers. */
+.pprev:hover .gl{animation:glWord .72s linear 1}
+.pprev:hover .gl::before{animation:glA .72s linear 1}
+.pprev:hover .gl::after{animation:glB .72s linear 1}
+@media(max-width:480px){ .pprev{display:flex; justify-content:center; width:100%} }
+
 /* the walkthrough: text and shot, alternating */
 .walk{display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
   gap:clamp(26px,4vw,68px); align-items:center;
@@ -79,6 +127,18 @@
   .walk, .walk.rev{grid-template-columns:1fr; gap:26px; padding:clamp(36px,5vw,52px) 0}
   .walk.rev .wtext{order:0}
   .walk .shot.real{padding:14px}
+}
+/* On a phone the frame's inset is the most expensive space on the page: the
+   shot inside it is already down to about 350px wide, and 14px a side spends 8%
+   of that on gutter. 40% off it — 8.4px — keeps the frame reading as a frame
+   without taking the width from the thing it is framing.
+
+   This has to sit after the 900 block: .walk .shot.real matches at the same
+   specificity, so source order is what decides which padding a walkthrough shot
+   ends up with. The dashed placeholder keeps its own 14px inset — nine products
+   still draw it, and it is a label rather than a picture. */
+@media(max-width:480px){
+  .shot.real, .walk .shot.real{padding:8.4px}
 }
 .wtext .n2{font-family:var(--font-jetbrains-mono),monospace; font-size:9.5px; letter-spacing:.16em;
   text-transform:uppercase; color:var(--ink-3); margin-bottom:16px}
