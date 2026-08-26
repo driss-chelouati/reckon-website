@@ -98,3 +98,16 @@
   background:rgba(255,255,255,.025)}
 .st2.term{color:var(--ink-3); border-style:dashed; background:transparent}
 .st2.hot2{color:var(--fire-lt); border-color:rgba(249,122,92,.4); background:rgba(249,122,92,.09)}
+
+
+/* Each of the three columns ends on its indigo note. They are grid siblings and
+   so all stand the same height, but a column whose body runs a line shorter than
+   its neighbours would sit its note a line higher. The spare row below the body
+   absorbs that difference and puts every note back on the same baseline.
+   .n and .t share row 1 because they are the "01 Investigate" line. */
+#job .idx a{display:grid; grid-template-columns:auto 1fr;
+  grid-template-rows:auto auto 1fr auto}
+#job .idx .n{grid-row:1; grid-column:1}
+#job .idx .t{grid-row:1; grid-column:2; justify-self:start}
+#job .idx p{grid-row:2; grid-column:1 / -1}
+#job .idx .m{grid-row:4; grid-column:1 / -1; align-self:end}
