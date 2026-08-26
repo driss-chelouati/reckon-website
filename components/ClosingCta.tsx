@@ -176,10 +176,11 @@ export default function ClosingCta({
     }
 
     const P = geo.attributes.position.array as Float32Array;
-    const t0 = performance.now();
+    let t0: number | null = null;
     let raf = 0;
     const frame = (now: number) => {
       raf = requestAnimationFrame(frame);
+      if (t0 === null) t0 = now; // see the note in Field.tsx
       if (!vis) return;
       const t = (now - t0) / 1000;
       // 0 = scattered, 1 = held on the form

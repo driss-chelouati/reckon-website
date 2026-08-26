@@ -86,10 +86,18 @@ export default function Field({
       io.observe(canvas);
     }
 
-    const t0 = performance.now();
+    /* Seeded from the first frame's own timestamp rather than performance.now().
+       The value rAF hands back is the start of the frame it belongs to, which can
+       predate a performance.now() sampled while that frame was already in flight,
+       making the first t negative. A scene that floors its cycle into an index
+       then reads past the start of its array, gets undefined, and writes NaN into
+       the geometry. Seeded here, before the visibility check, so the clock still
+       runs from mount rather than from first paint. */
+    let t0: number | null = null;
     let raf = 0;
     const tick = (now: number) => {
       raf = requestAnimationFrame(tick);
+      if (t0 === null) t0 = now;
       if (!visible) return;
       scene.frame((now - t0) / 1000);
     };

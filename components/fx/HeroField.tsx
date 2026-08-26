@@ -163,9 +163,10 @@ export default function HeroField() {
         io.observe(wrap!);
       }
 
-      const t0 = performance.now();
+      let t0: number | null = null;
       const frame = (now: number) => {
         raf = requestAnimationFrame(frame);
+        if (t0 === null) t0 = now; // see the note in Field.tsx
         if (!running) return;
         const t = (now - t0) / 1000;
         const P = (geo.attributes.position as THREE.BufferAttribute).array as Float32Array;
@@ -245,9 +246,10 @@ export default function HeroField() {
         return [W * 0.5 + X * s * (W / 70), H * 0.5 - y * s * (H / 26), s];
       }
 
-      const t0 = performance.now();
+      let t0: number | null = null;
       const frame = (now: number) => {
         raf = requestAnimationFrame(frame);
+        if (t0 === null) t0 = now; // see the note in Field.tsx
         if (!running || !W) return;
         const t = (now - t0) / 1000;
         ctx.clearRect(0, 0, W, H);
