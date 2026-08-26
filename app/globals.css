@@ -333,17 +333,30 @@ body:has(.navtog:checked){overflow:hidden}
 .hero .lede{margin-top:32px; max-width:50ch}
 .hero-actions{margin-top:44px; display:flex; align-items:center; flex-wrap:wrap}
 @media(max-width:480px){ .cta{display:block; text-align:center} .cta-alt{margin:18px 0 0; display:block} }
-/* On a phone the landing hero offers one action, at the full width of the
-   column. Two stacked buttons is most of what a phone screen has left by the
-   time the headline and the lede are on it, and the second of them is a link
-   rather than a decision — /failure-modes is under Product in the panel.
-   Scoped to .hero-actions: the closing block and the 404 keep both of theirs.
-   480px is the phone: the widest phone portrait is about 430, and an iPad mini
-   portrait is 768. */
+/* On a phone both of the site's action rows — the landing hero's and the one
+   closing every page — stack and take the full width, and the side link becomes
+   a neutral button. An underlined text link beneath a full-width filled button
+   reads as a caption rather than as the other choice.
+
+   Geometry from .cta, colours from .cta--quiet, so it is the site's own quiet
+   button rather than a third thing. The border shorthand is what clears
+   .cta-alt's underline, and the padding clears its padding-bottom.
+
+   The two rows are declared together rather than a block each, so the button
+   cannot end up styled one way in the hero and another at the foot of the page.
+   The 404's row is .nfgo and keeps its text link.
+
+   480px is phone and not tablet: the widest phone portrait is about 430, and an
+   iPad mini in portrait is 768. */
 @media(max-width:480px){
-  .hero-actions{display:block}
-  .hero-actions .cta{display:block; width:100%; text-align:center}
-  .hero-actions .cta-alt{display:none}
+  .hero-actions, .cta-acts{display:block}
+  .hero-actions .cta, .cta-box .cta{display:block; width:100%; text-align:center}
+  .hero-actions .cta-alt, .cta-box .cta-alt{display:block; width:100%; margin:10px 0 0;
+    padding:15px 30px; border:1px solid var(--edge); border-radius:8px;
+    background:transparent; color:var(--ink);
+    font-size:15px; font-weight:600; text-align:center}
+  .hero-actions .cta-alt:hover, .cta-box .cta-alt:hover{background:var(--surface-2);
+    border-color:rgba(255,255,255,.1)}
 }
 
 /* ---------- the widget bento ---------- */
@@ -1305,10 +1318,6 @@ details p{margin:16px 0 2px; font-size:15px; color:var(--ink-2); max-width:64ch}
   justify-content:center; flex-wrap:wrap; gap:8px 0}
 .cta-note{margin-top:clamp(30px,3.4vw,42px); font-family:var(--font-jetbrains-mono),monospace;
   font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3)}
-@media(max-width:480px){
-  .cta-box .cta{display:block; text-align:center}
-  .cta-box .cta-alt{margin:16px 0 0; display:block}
-}
 
 /* testimonials — an uneven bento, no photographs, no motion */
 .tbento{display:grid; grid-template-columns:repeat(12,1fr); gap:clamp(10px,1.1vw,14px);
