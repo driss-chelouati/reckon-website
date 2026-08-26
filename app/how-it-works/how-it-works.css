@@ -1,7 +1,8 @@
 
 /* three cards, one per layer, lighting in succession */
-.hflow{display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(12px,1.4vw,18px); margin-top:clamp(34px,3.8vw,50px); width:100%}
+.hflow{--hgap:clamp(12px,1.4vw,18px);
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--hgap); margin-top:clamp(34px,3.8vw,50px); width:100%}
 @media(max-width:760px){ .hflow{grid-template-columns:1fr} }
 
 .hc{position:relative; border:1px solid var(--edge-2); border-radius:14px;
@@ -14,8 +15,12 @@
   8%,29%  {border-color:rgba(249,122,92,.45); background:rgba(249,122,92,.055)}
   34%,100%{border-color:var(--edge-2); background:rgba(255,255,255,.022)}
 }
-/* the hand-off between them */
-.hc:not(:last-child)::after{content:""; position:absolute; right:-8px; top:50%; z-index:2;
+/* the hand-off between them, sitting in the middle of the gap: half the gap out
+   from the card's edge, then back half the dot. Both halves come from --hgap, so
+   the dot cannot fall out of centre when the gap resizes with the viewport — a
+   flat -8px put it 3.8px left of the middle at the gap's full width. */
+.hc:not(:last-child)::after{content:""; position:absolute; top:50%; z-index:2;
+  right:calc(var(--hgap) / -2 - 3px);
   width:6px; height:6px; margin-top:-3px; border-radius:50%; background:var(--ink-3);
   animation:hdot 12s ease-in-out infinite}
 .hc:nth-child(2)::after{animation-delay:4s}
