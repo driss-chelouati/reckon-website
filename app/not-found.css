@@ -1,0 +1,33 @@
+/* ---------- 404 ---------- */
+
+/* Same hero shape as every other page — rail, headline, lede, actions, with the
+   figure to the right — because a 404 is still one of this site's pages. What
+   differs is the headline, which is a number rather than a sentence and is set
+   far larger than a headline would be. */
+.nfhero{position:relative; padding:clamp(52px,6.5vw,96px) 0 clamp(38px,4.2vw,62px)}
+.nfhero > *{position:relative; z-index:1}
+.nfhero h1{font-size:clamp(96px,17vw,232px); line-height:.9; letter-spacing:-.05em;
+  margin:clamp(14px,1.8vw,24px) 0 0}
+/* .gl draws its glitch out of ::before and ::after at the same size as the text,
+   so the number needs room around it that a line of prose would not */
+.nfhero h1 .gl{padding:0 .04em}
+.nfhero .lede{margin-top:clamp(18px,2.2vw,28px); max-width:54ch}
+
+.nffx{position:absolute; z-index:0 !important; right:calc(-2.2 * var(--gut)); top:-160px;
+  width:min(900px,68vw); height:800px; pointer-events:none;
+  -webkit-mask-image:radial-gradient(74% 68% at 70% 46%, #000 16%, rgba(0,0,0,.45) 60%, transparent 100%);
+  mask-image:radial-gradient(74% 68% at 70% 46%, #000 16%, rgba(0,0,0,.45) 60%, transparent 100%)}
+.nffx canvas{display:block; width:100%; height:100%}
+@media(max-width:1080px){ .nffx{opacity:.5; width:86vw} }
+@media(max-width:760px){ .nffx{display:none} }
+
+/* .cta-alt carries its own margin-left for the closing block, which would double
+   up against the gap here */
+.nfgo{display:flex; flex-wrap:wrap; align-items:center; gap:14px 26px;
+  margin-top:clamp(26px,3vw,42px)}
+.nfgo .cta-alt{margin-left:0}
+
+.nffoot{margin-top:clamp(30px,3.4vw,46px); padding-top:16px;
+  border-top:1px solid var(--hair);
+  font-family:var(--font-jetbrains-mono),monospace; font-size:9.5px;
+  letter-spacing:.06em; color:var(--ink-3)}
