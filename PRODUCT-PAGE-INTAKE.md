@@ -52,7 +52,7 @@ Short, one clause each, no full stops on the last three:
 
 - **Blurb** — 2 sentences, 25–40 words. What the operator is up against, and
   the one hard constraint the product is built around.
-- **Screens** — the number in the template
+- **Screens** — the number of screens in the template
 - **Covers** — 3–4 nouns comma-separated, e.g. "Queue, record, decision,
   recovery"
 - **Breaks on** — the single worst case, ≤ 8 words, e.g. "A claim time-barred
