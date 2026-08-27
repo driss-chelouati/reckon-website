@@ -173,24 +173,26 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
         </div>
       </div>
 
-      <div className="band">
-        <div className="sec" id="states">
-          <div className="srail"><span className="l">Status</span><span className="r">{page.states.railRight}</span></div>
-          <div className="shead">
-            <h2>{page.states.headline}</h2>
-            <div>
-              <p className="lede">{page.states.lede}</p>
-              <Next next={page.states.next} />
+      {page.states && (
+        <div className="band">
+          <div className="sec" id="states">
+            <div className="srail"><span className="l">Status</span><span className="r">{page.states.railRight}</span></div>
+            <div className="shead">
+              <h2>{page.states.headline}</h2>
+              <div>
+                <p className="lede">{page.states.lede}</p>
+                <Next next={page.states.next} />
+              </div>
             </div>
+            <div className="states">
+              {page.states.values.map((v) => (
+                <span className={v.mark ? `st2 ${v.mark}` : "st2"} key={v.name}>{v.name}</span>
+              ))}
+            </div>
+            <div className="machfoot">{page.states.foot}</div>
           </div>
-          <div className="states">
-            {page.states.values.map((v) => (
-              <span className={v.mark ? `st2 ${v.mark}` : "st2"} key={v.name}>{v.name}</span>
-            ))}
-          </div>
-          <div className="machfoot">{page.states.foot}</div>
         </div>
-      </div>
+      )}
 
       <div className="band">
         <div className="sec" id="hostile">

@@ -28,6 +28,13 @@ import shotEvidence from "@/public/img/products/claims-desk/03-claims-desk.png";
 import shotDecision from "@/public/img/products/claims-desk/04-claims-desk.png";
 import shotSignoff from "@/public/img/products/claims-desk/05-claims-desk.png";
 import shotRecovery from "@/public/img/products/claims-desk/06-claims-desk.png";
+import shotBook from "@/public/img/products/talent-desk/01-talent-desk.png";
+import shotCreator from "@/public/img/products/talent-desk/02-talent-desk.png";
+import shotBrief from "@/public/img/products/talent-desk/03-talent-desk.png";
+import shotDeal from "@/public/img/products/talent-desk/04-talent-desk.png";
+import shotMoney from "@/public/img/products/talent-desk/05-talent-desk.png";
+import shotSignin from "@/public/img/products/talent-desk/06-talent-desk.png";
+import shotWrap from "@/public/img/products/talent-desk/07-talent-desk.png";
 
 /** the numbered link that closes each section and points at the next one */
 export type NextLink = { num: string; href: string; label: string };
@@ -77,7 +84,11 @@ export type ProductPage = {
       kind: string;
     }[];
   };
-  states: {
+  /** Omitted while a product's status set has not been read out of its template
+      yet. The section is the page's own argument — status is data — so it is
+      better absent than filled with values nobody has checked, and the numbered
+      link chain closes over the gap. */
+  states?: {
     railRight: string;
     headline: string;
     lede: string;
@@ -283,6 +294,202 @@ export const productPages: Record<string, ProductPage> = {
     closing: {
       headline: ["One brief in.", "A whole product out."],
       lede: "This is one of several. Each has its own routes, its own status values, and its own awkward cases waiting to be found.",
+    },
+  },
+
+  /* Talent representation. Written from the design brief rather than from the
+     template — there are no screenshots yet and no status set, so every shot
+     slot draws the dashed placeholder and the status section is absent rather
+     than guessed. The route caption carries the destination's name because the
+     brief deliberately holds back a route inventory; when the template lands,
+     those become paths. */
+  talent: {
+    slug: "talent",
+    railRight: "Media · talent representation",
+    headline: "A desk that answers to both sides of the deal.",
+    lede: "An agency sits between brands who want a campaign booked and creators whose careers turn on what is agreed for them. Both think they are the customer. Money arrives late and leaves later, and nothing here is a single-owner record.",
+    meta: [
+      { label: "Operator", value: "Talent manager", note: "five of the nine on the roster" },
+      { label: "One deal binds", value: "Five records", note: "any one of them can be the late one" },
+      { label: "Figures", value: "All derived", note: "nothing on screen is a stored total" },
+      { label: "Creates", value: "Three refused", note: "each arrives with the deal that owes it" },
+    ],
+    hero: {
+      shot: "Screenshot 01",
+      image: shotBook,
+      of: "The book · the availability band",
+      captionLead: "Five free to pitch",
+      caption: " · counted against today, and against the brand’s own window once there is a brief",
+      size: "9 on the book",
+    },
+    preview: { href: "/templates/talent-desk.html", label: "Preview interactive design" },
+    job: {
+      railRight: "Before any of it is a screen",
+      headline: "Two customers, and one desk between them.",
+      lede: "A brand wants a campaign booked. A creator wants a career managed. The agency answers to both, and every screen in this product exists because that job needed it.",
+      next: { num: "01", href: "#screens", label: "The screens →" },
+      steps: [
+        {
+          n: "01",
+          title: "Represent",
+          body: "Free to pitch, coming free inside thirty days, booked — three figures over nine creators. Availability is counted against today here, and against the brand’s own window on a brief, so somebody booked until October is free for a campaign that starts in November.",
+          note: "the same word, two clocks",
+        },
+        {
+          n: "02",
+          title: "Book",
+          body: "A pitched brief becomes a deal, and the deal brings its deliverables, its invoice and its payout with it. The contract walks a declared line — drafted, out for signature, signed — with the date it reached each one.",
+          note: "book the deal, not create deal",
+        },
+        {
+          n: "03",
+          title: "Collect",
+          body: "$119,000.00 owed by brands against $142,160.00 owed to creators, and the commission banks when the money clears rather than when the deal is signed. $30,340.00 of it is still sitting on invoices nobody has paid.",
+          note: "$14,900.00 banked, not $45,240.00",
+        },
+      ],
+    },
+    screens: {
+      railRight: "Scanned across, rarely drilled into",
+      headline: "Each one answers a question the last one raised.",
+      lede: "Twenty-eight registered routes: five destinations in the bar, fourteen off it, nine for auth. There is deliberately no deals list and no brands list — a deal or a brand is only ever reached through the work that names it.",
+      next: { num: "02", href: "#states", label: "The status sets →" },
+      walk: [
+        {
+          n: "Screen 01",
+          title: "A face business, led by a face",
+          body: "The record opens on the creator’s portrait, because that is what this industry trades on. The 600K audience beneath it is not stored — it is 412K on one platform and 188K on another, added up in front of you, and the panel says so: a follower count changed anywhere moves every figure that mentions her.",
+          points: [
+            "3.8% and 5.1% weighted into the 4.2% on the header",
+            "Instagram carries 68.7% of the audience, and that is derived too",
+            "Nothing has finished running, so there is no promise to judge yet",
+          ],
+          shot: "Screenshot 02",
+          image: shotCreator,
+          of: "Creator record",
+          route: "Creator record",
+          kind: "record · portrait-led",
+        },
+        {
+          n: "Screen 02",
+          title: "The honest answer is no",
+          body: "A brief wants four TikToks from a million-plus audience in dating and social, organic only, answered by the 26th. Nobody on the book clears all three axes. The screen leads with that — fits the brief, zero — rather than padding the list with the closest thing to a yes.",
+          points: [
+            "Cannot take it and off brief are different groups, and say why",
+            "“An exclusivity is a contract we signed; a booking is a promise we made”",
+            "One creator has no rate for the format, so there is nothing to quote",
+          ],
+          shot: "Screenshot 03",
+          image: shotBrief,
+          of: "Brief · the match",
+          route: "Brief",
+          kind: "record · matched",
+        },
+        {
+          n: "Screen 03",
+          title: "One deal, and the five records it binds",
+          body: "A fee of $15,000.00 against a rate card that quoted $16,000.00 and a budget that allowed $18,000.00 — the negotiation is on the page, not behind it. Deliverables, invoice and payout all hang off this record because none of the three can be created without it.",
+          points: [
+            "Drafted, out for signature, signed — each with the date it landed",
+            "Organic only: the brand may not run these as ads",
+            "The invoice is paid and the payout is due, on two separate clocks",
+          ],
+          shot: "Screenshot 04",
+          image: shotDeal,
+          of: "Deal record",
+          route: "Deal",
+          kind: "record · binds five",
+        },
+        {
+          n: "Screen 04",
+          title: "Two ledgers facing each other",
+          body: "What the brands owe us on the left, what we owe the creators on the right. A creator’s $24,800.00 cannot move because a brand is 22 days past due on $31,000.00, and the header says exactly that rather than leaving a payout marked pending with no cause.",
+          points: [
+            "Every held payout names the invoice holding it",
+            "$41,500.00 uninvoiced, because that contract is not countersigned",
+            "Commission banked excludes the invoices nobody has paid",
+          ],
+          shot: "Screenshot 05",
+          image: shotMoney,
+          of: "Money · invoices and payouts",
+          route: "Money",
+          kind: "ledger · facing",
+        },
+        {
+          n: "Screen 05",
+          title: "The screen with no navigation at all",
+          body: "Auth is a shell decision before it is a form: no nav owner, one layout variant, one credential strategy. Every route the screens offer exists behind them — five stages of recovery, the expired-link branch, and a sixth screen for the lockout that three failed attempts earns you.",
+          points: [
+            "One line of copy under the card, and nothing else on the page",
+            "The lockout counts down to “The wait is over” rather than a dead end",
+            "Nine auth routes, none of them a link into nowhere",
+          ],
+          shot: "Screenshot 06",
+          image: shotSignin,
+          of: "Sign in",
+          route: "Sign in",
+          kind: "auth · no shell",
+        },
+      ],
+    },
+    states: {
+      railRight: "Six declared fields, twenty-three values",
+      headline: "The states that hurt are the ones nobody can set.",
+      lede: "Every value a record can hold is declared once and stored. Overdue is not among them on either side of the money — it is a predicate over a date, computed as the page draws, and it turns true at midnight without anyone touching the record. Rights expiring and rights lapsed work the same way.",
+      next: { num: "03", href: "#hostile", label: "The awkward cases →" },
+      values: [
+        { name: "scheduled" },
+        { name: "submitted" },
+        { name: "revisions_requested", mark: "hot2" },
+        { name: "approved" },
+        { name: "published", mark: "term" },
+      ],
+      foot: "One field of the six, and the stored word is not the word on screen: submitted reads “With brand”, because the vocabulary is written from the manager’s point of view rather than the record’s. Two values across the sets carry no fixture on purpose — both are reachable only by taking the action that leads there, and a screenshot of a state nobody can arrive at proves nothing.",
+    },
+    hostile: {
+      railRight: "What a client finds in week one",
+      headline: "The fixtures are deliberately unkind.",
+      lede: "An industry that runs on remembered numbers hands you records that do not fit the shape a screen wants. These were in the set from the first pass.",
+      next: { num: "04", href: "#audit", label: "The derivation →" },
+      cases: [
+        {
+          label: "Case 01",
+          title: "A payout waiting on money that never arrived",
+          naively:
+            "The row reads “payout pending” with no cause attached, and the manager goes to another screen to find out why.",
+          here: "$24,800.00 held because a brand is 22 days past due on $31,000.00 — and the invoice holding it is the row facing it across the page.",
+        },
+        {
+          label: "Case 02",
+          title: "A brief nobody on the book fits",
+          naively:
+            "The list is padded with the nearest misses, ranked as though somebody qualified, and the agency pitches a creator it should not have.",
+          here: "Fits the brief, zero. Two who cannot take it and seven who are off it, each grouped by the reason — and the answer to the brand is no.",
+        },
+        {
+          label: "Case 03",
+          title: "A deal signed at a rate the policy no longer uses",
+          naively:
+            "The statement multiplies the book by today’s standard commission and disagrees with every contract underneath it.",
+          here: "That payout reads less 18% while the standard is 20%, because each deal carries the rate it was signed at and the screen reads the deals.",
+        },
+      ],
+    },
+    audit: {
+      railRight: "Read after generation, before handoff",
+      headline: "Every figure, traced back.",
+      lede: "The wrap report is the check: 767K reached against 700K promised, 109.6% of it. The two posts beneath the headline carry 412K and 355K, and 56.8K engagements and 7.2K saves split the same way. Every figure on the page is the sum of the rows under it, and each row is the platform’s own number entered when the post went live.",
+      next: { num: "05", href: "#top", label: "Back to the top →" },
+      shot: "Screenshot 07",
+      image: shotWrap,
+      of: "Performance · against the promise",
+      captionLead: "109.6% of the reach promised",
+      caption: " · and 148.0% of the engagement rate, against what the pitch said in May",
+      size: "checkable",
+    },
+    closing: {
+      headline: ["The rules are industry-agnostic.", "The product is not."],
+      lede: "The distance between the two is the design work. Derive every number, declare how every entity commits, and refuse the creates that do not exist in the business.",
     },
   },
 };

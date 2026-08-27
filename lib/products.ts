@@ -1,6 +1,7 @@
 import type { StaticImageData } from "next/image";
 import type { IconKey } from "@/components/icons";
 import claimsDesk from "@/public/img/products/claims-desk/01-claims-desk.png";
+import talentDesk from "@/public/img/products/talent-desk/01-talent-desk.png";
 
 /* The ten worked products. This list is the megamenu's Showcase column and the
    /products index cards — the same records in two shapes, which is why it lives
@@ -84,11 +85,12 @@ export const products: Product[] = [
     state: "audited",
     cat: "money",
     shotIndex: "Screenshot 04",
+    image: talentDesk,
     blurb:
-      "A roster matched to brand briefs, against exclusivity windows, rate cards and deliverables in flight.",
-    screens: "7",
-    covers: "Roster, briefs, deals, money",
-    breaksOn: "A brief nobody on the roster fits",
+      "Creators represented to brands, on a desk that answers to both. One deal binds a creator, a brand, its deliverables, an invoice and a payout — and any one of them can be the late one.",
+    screens: "19",
+    covers: "Roster, briefs, deliverables, money",
+    breaksOn: "A rate the policy no longer uses",
   },
   {
     slug: "clinical",
