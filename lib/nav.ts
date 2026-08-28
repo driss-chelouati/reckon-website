@@ -32,7 +32,7 @@ export const productStartHere: FeatureLink[] = [
 ];
 
 /* the three products the Showcase menu opens with */
-export const showcaseStartHere = ["cargo-claims", "marketing-desk", "auth"];
+export const showcaseStartHere = ["cargo-claims", "marketing-desk", "recruitment-desk"];
 
 
 /* Every page's header carries one of these class names, and the nav measures

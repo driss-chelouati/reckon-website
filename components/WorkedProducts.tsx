@@ -46,7 +46,7 @@ export default function WorkedProducts() {
           <div>
             <p className="lede">
               Cargo claims, recruitment, payment operations, talent representation, marketing,
-              an AI tool, authentication, grant review — more in progress. Each has its own routes, status
+              an AI tool, a booking desk, a hospital desk — more in progress. Each has its own routes, status
               values and data. And the data is deliberately hostile: the awkward cases a client
               finds in week one.
             </p>
