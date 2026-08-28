@@ -125,7 +125,11 @@ export type ProductPage = {
     next: NextLink;
     cases: { label: string; title: string; naively: string; here: string }[];
   };
-  audit: {
+  /** Omitted where no second pass has been run yet. The section reports what
+      checking the product turned up, so on an unaudited product there is
+      nothing to put in it and inventing a finding would be the one lie this
+      page cannot afford. The numbered link chain closes over the gap. */
+  audit?: {
     railRight: string;
     headline: string;
     lede: string;
@@ -917,6 +921,182 @@ export const productPages: Record<string, ProductPage> = {
     closing: {
       headline: ["The process is one.", "The seats are not."],
       lede: "One hiring process from ward clerk to systems engineer, with the gate in the same place on every one. What differs is the register, the band and who sits on the panel.",
+    },
+  },
+
+  /* Marketing desk. No screenshots yet and no standalone export, so every slot
+     draws the dashed placeholder and there is no preview button. No audit
+     section either: no second pass has been run on this product, and the one
+     thing this page cannot do is report a finding that was never found. */
+  "marketing-desk": {
+    slug: "marketing-desk",
+    railRight: "Marketing · a marketing automation desk",
+    headline: "Sending is arithmetic, not a dashboard.",
+    lede: "Twelve destinations over one fixture: journeys that run continuously, broadcasts that wait on an approver, the audiences both send to, and whether any of it arrives. Looking at it should settle whether generated figures can be made to reconcile across thirty-five screens.",
+    meta: [
+      { label: "The operator", value: "Lifecycle marketing lead", note: "admin, not the owner" },
+      { label: "The clock", value: "Thirty days", note: "all the send history kept" },
+      { label: "Status", value: "Four fields, sixteen values", note: "stored only, tones reasoned" },
+      { label: "The data", value: "One fixture, no second copy", note: "every screen reads it" },
+    ],
+    hero: {
+      shot: "Screenshot 01",
+      of: "Overview · full screen",
+      captionLead: "The only screen that mixes both sources",
+      caption: " · 3,176 delivered in the last seven days — 1,731 from journeys, 1,445 from three broadcasts",
+      size: "the screen the day starts on",
+    },
+    job: {
+      railRight: "Marketing operations",
+      headline: "Automations run; sends wait on people.",
+      lede: "The lifecycle lead owns journeys that send without her and broadcasts that cannot send without somebody else. Both feed one delivery number, and she is answerable for it whichever half moved.",
+      next: { num: "01", href: "#screens", label: "The screens →" },
+      steps: [
+        {
+          n: "01",
+          title: "Watch",
+          body: "Two of five journeys need attention, and the screen says why in the predicate’s own words — one failing to deliver for 11.6% of everyone entering it, the other live but silent for eleven days.",
+          note: "entered = completed + at + failed + exited",
+        },
+        {
+          n: "02",
+          title: "Approve",
+          body: "Two broadcasts sit in review and only one of them is hers to approve. One predicate answers for the row button, the section count, the nav badge and the team screen alike.",
+          note: "the badge reads 1, not 2",
+        },
+        {
+          n: "03",
+          title: "Account for it",
+          body: "Deliverability is not time-scoped and says so: 833 failures against 37,650 attempts, 2.2%. The table under it decomposes that by journey step and settled broadcast, worst first.",
+          note: "one threshold, compared at the displayed precision",
+        },
+      ],
+    },
+    screens: {
+      railRight: "Twelve destinations, three groups",
+      headline: "Each screen owes the one before it an answer.",
+      lede: "Thirty-five registered routes: twelve destinations in the sidebar, seventeen off it, six for auth. Activity has no list screen — it is one feed reached from the inbox, the overview and every profile, and a thirteenth destination would push a nav group past what it can hold.",
+      next: { num: "02", href: "#states", label: "The status set →" },
+      walk: [
+        {
+          n: "Screen 01",
+          title: "Where journey sending and broadcast sending are added up",
+          body: "The headline claims one delivered figure for the whole workspace, so it owes the reader both halves. The day chart is that same series plotted, and the four queues below are the predicates the sidebar badges count. It averages nothing across the two sources.",
+          points: [
+            "3,176 delivered over seven days — 1,731 journeys, 1,445 broadcasts",
+            "Straight bars, because days are being compared against each other",
+            "The period offers 7, 14 and 30, because the log holds thirty days",
+          ],
+          shot: "Screenshot 01",
+          of: "Overview · full screen",
+          route: "/",
+          kind: "overview · chart-led",
+        },
+        {
+          n: "Screen 02",
+          title: "A journey’s ladder, and where people are standing on it",
+          body: "Six steps, and the arithmetic closes on every one — enrolment is the sum of who is sitting at each step and nothing else. Each drop-off meter takes that step’s own entered as its track, so the unfilled tail is whoever is still waiting there.",
+          points: [
+            "4,820 entered step one, 3,902 completed the last, 356 enrolled now",
+            "Stopping a journey moves people from at into exited, and closes",
+            "Publish is disabled: one template has no subject line yet",
+          ],
+          shot: "Screenshot 02",
+          of: "Journey · step ladder",
+          route: "/journeys/:id",
+          kind: "record · list-detail",
+        },
+        {
+          n: "Screen 03",
+          title: "Approvals, split by who is being waited on",
+          body: "Three queues out of one predicate: waiting on you, submitted by you, waiting on somebody else. The middle queue is where the operator is the one holding things up, and nothing is disabled to avoid deciding — a send you submitted yourself carries the reason instead.",
+          points: [
+            "Two broadcasts in review, one of them approvable by this viewer",
+            "“You submitted this one — someone else has to approve it.”",
+            "One sends in 30 hours, to 1,284 people",
+          ],
+          shot: "Screenshot 03",
+          of: "Approvals · three queues",
+          route: "/approvals",
+          kind: "queue · gated",
+        },
+        {
+          n: "Screen 04",
+          title: "A send report drawn as the funnel it is",
+          body: "Attempted, delivered, opened, clicked — each bar measured against the top of the funnel, so the shape is the funnel, while each row also states its own rate against the row above it. A send still running reports what it has handed off, never a projection.",
+          points: [
+            "4,592 sent, 4,488 delivered, 1,693 opened",
+            "Delivery rate is delivered over sends; open rate is opened over delivered",
+            "One send is still going — 88 of 143 handed off",
+          ],
+          shot: "Screenshot 04",
+          of: "Broadcast · send report",
+          route: "/broadcasts/:id",
+          kind: "record · reconciliation",
+        },
+        {
+          n: "Screen 05",
+          title: "Three checks, across three domains",
+          body: "A grid question gets a grid: SPF, DKIM and DMARC for each sending domain, and a domain counts as authenticated only when all three pass. Underneath, the failure figure decomposed by source — and the screen refuses to scope itself to a period, saying why in the lede.",
+          points: [
+            "833 failures against 37,650 attempts — 2.2%, not time-scoped",
+            "One authenticated domain of three, with a DKIM record failing",
+            "The threshold is 2.0%, compared at the precision displayed",
+          ],
+          shot: "Screenshot 05",
+          of: "Deliverability · DNS matrix",
+          route: "/deliverability",
+          kind: "matrix · read-only",
+        },
+      ],
+    },
+    states: {
+      railRight: "A closed set with defined transitions",
+      headline: "Six values, and the two everybody expects are missing.",
+      lede: "Broadcast status is where a one-off send sits between written and delivered, grouped by who it is waiting on. Overdue review and partially delivered are not in it — both are computed at render from the record and the clock, and storing either would let a value disagree with the arithmetic.",
+      next: { num: "03", href: "#hostile", label: "The awkward cases →" },
+      values: [
+        { name: "draft" },
+        { name: "in_review", mark: "hot2" },
+        { name: "scheduled" },
+        { name: "sending" },
+        { name: "sent", mark: "term" },
+        { name: "failed", mark: "term" },
+      ],
+      foot: "Six values, two of them terminal. Draft is deliberately neutral: nobody is waiting on it but its author, so it earns no tone that would put it in a queue. Across the product, four status fields and sixteen values, each carrying the reason for its tone and at least one fixture — except a stopped journey, reachable only by taking the transition, because nothing ships stopped.",
+    },
+    hostile: {
+      railRight: "Three fixtures that break a screen",
+      headline: "The cases a generated product gets wrong.",
+      lede: "All three are real records in the fixture rather than hypotheticals.",
+      next: { num: "04", href: "#top", label: "Back to the top →" },
+      cases: [
+        {
+          label: "Case 01",
+          title: "A send that is still going out",
+          naively:
+            "143 sent against 88 delivered, so 55 messages are booked as failures and the deliverability rate moves — on a send that has not finished.",
+          here: "A partial send has to be settled first. Messages in flight are pending, not failed, so the send never enters the failure table at an invented rate and the 2.2% does not move when it lands.",
+        },
+        {
+          label: "Case 02",
+          title: "A review the operator cannot do herself",
+          naively:
+            "The badge counts both broadcasts in review, and the approve button renders live on the one she submitted — or greyed out with nothing said.",
+          here: "One of them was submitted by the viewer, so the badge reads 1 and the button is disabled carrying the reason: “You submitted this one — someone else has to approve it.”",
+        },
+        {
+          label: "Case 03",
+          title: "A draft journey that cannot be published",
+          naively:
+            "Publish is live, and the journey goes out with an email step pointing at a template that has no subject line.",
+          here: "One question, one answer: the publish gate and the step editor’s problem list read the same function, so the button is disabled and names the template that is not ready.",
+        },
+      ],
+    },
+    closing: {
+      headline: ["The shell is reusable.", "The arithmetic is not."],
+      lede: "Twelve destinations, thirty-five routes and four status fields are the easy half. What takes the time is the figure that has to agree with the rows under it on every screen that quotes it.",
     },
   },
 };

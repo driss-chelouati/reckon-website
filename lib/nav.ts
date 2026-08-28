@@ -32,7 +32,7 @@ export const productStartHere: FeatureLink[] = [
 ];
 
 /* the three products the Showcase menu opens with */
-export const showcaseStartHere = ["cargo-claims", "support", "auth"];
+export const showcaseStartHere = ["cargo-claims", "marketing-desk", "auth"];
 
 
 /* Every page's header carries one of these class names, and the nav measures
@@ -60,6 +60,7 @@ export const liveRoutes = new Set([
   "/products/cargo-claims",
   "/products/talent",
   "/products/payment-ops",
+  "/products/marketing-desk",
   "/products/recruitment-desk",
   "/download",
   "/rules",

@@ -220,32 +220,34 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
         </div>
       </div>
 
-      <div className="band">
-        <div className="sec" id="audit">
-          <div className="srail"><span className="l">The audit</span><span className="r">{page.audit.railRight}</span></div>
-          <div className="shead">
-            <h2>{page.audit.headline}</h2>
-            <div>
-              <p className="lede">{page.audit.lede}</p>
-              <Next next={page.audit.next} />
+      {page.audit && (
+        <div className="band">
+          <div className="sec" id="audit">
+            <div className="srail"><span className="l">The audit</span><span className="r">{page.audit.railRight}</span></div>
+            <div className="shead">
+              <h2>{page.audit.headline}</h2>
+              <div>
+                <p className="lede">{page.audit.lede}</p>
+                <Next next={page.audit.next} />
+              </div>
             </div>
-          </div>
 
-          <div className="pstage" style={{ marginTop: "clamp(26px,3vw,40px)" }}>
-            <Shot
-              image={page.audit.image}
-              shot={page.audit.shot}
-              of={page.audit.of}
-              tall
-              sizes="(max-width: 1100px) 94vw, 1040px"
-            />
-            <div className="shotcap">
-              <span><b>{page.audit.captionLead}</b>{page.audit.caption}</span>
-              <span>{page.audit.size}</span>
+            <div className="pstage" style={{ marginTop: "clamp(26px,3vw,40px)" }}>
+              <Shot
+                image={page.audit.image}
+                shot={page.audit.shot}
+                of={page.audit.of}
+                tall
+                sizes="(max-width: 1100px) 94vw, 1040px"
+              />
+              <div className="shotcap">
+                <span><b>{page.audit.captionLead}</b>{page.audit.caption}</span>
+                <span>{page.audit.size}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       <ClosingCta
         field
