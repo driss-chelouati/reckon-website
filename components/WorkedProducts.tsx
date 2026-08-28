@@ -26,9 +26,9 @@ const cards: { icon: IconKey; title: string; body: string; note: string }[] = [
   },
   {
     icon: "billing",
-    title: "Billing and invoicing",
-    body: "Subscriptions, dunning and failed payments. The invoice on the list is the same invoice on the detail screen — same amount, same state.",
-    note: "No footer count anyone typed",
+    title: "Payment operations",
+    body: "Money arriving, payouts waiting on an approval, and what the company spent on its own cards — every figure reconciling against the rows beneath it.",
+    note: "A payout nobody here can release",
   },
 ];
 

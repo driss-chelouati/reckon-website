@@ -46,7 +46,7 @@ export const PAGE_HEADER_SELECTOR =
   "[data-page-header], .hero, .prhero, .chero, .phero, .xhero, .fhero, .hhero, .dhero," +
   " .ohero, .rhero, .whero, .khero, .hthero, .nfhero";
 
-/* The routes that exist. Ten more are in the menu on purpose and are coming;
+/* The routes that exist. Nine more are in the menu on purpose and are coming;
    until they do they stay plain anchors, so the router does not prefetch a 404
    for every one of them the moment the menu renders. */
 export const liveRoutes = new Set([
@@ -59,6 +59,7 @@ export const liveRoutes = new Set([
   "/products",
   "/products/cargo-claims",
   "/products/talent",
+  "/products/payment-ops",
   "/download",
   "/rules",
   "/who-its-for",

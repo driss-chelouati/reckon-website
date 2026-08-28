@@ -35,6 +35,13 @@ import shotDeal from "@/public/img/products/talent-desk/04-talent-desk.png";
 import shotMoney from "@/public/img/products/talent-desk/05-talent-desk.png";
 import shotSignin from "@/public/img/products/talent-desk/06-talent-desk.png";
 import shotWrap from "@/public/img/products/talent-desk/07-talent-desk.png";
+import shotDash from "@/public/img/products/finance-desk/01-finance-desk.png";
+import shotPayouts from "@/public/img/products/finance-desk/02-finance-desk.png";
+import shotExpenses from "@/public/img/products/finance-desk/03-finance-desk.png";
+import shotCard from "@/public/img/products/finance-desk/04-finance-desk.png";
+import shotDisputes from "@/public/img/products/finance-desk/05-finance-desk.png";
+import shotBalances from "@/public/img/products/finance-desk/06-finance-desk.png";
+import shotTeam from "@/public/img/products/finance-desk/07-finance-desk.png";
 
 /** the numbered link that closes each section and points at the next one */
 export type NextLink = { num: string; href: string; label: string };
@@ -116,6 +123,10 @@ export type ProductPage = {
     caption: string;
     size: string;
   };
+  /** the two lines of the closing CTA, one per line. Each half wants to be
+      about twenty characters — the CTA sets at 68px on one centred column, so a
+      longer half wraps and the two-line shape becomes four. "One brief in." /
+      "A whole product out." is the length to write to. */
   closing: { headline: [string, string]; lede: string };
 };
 
@@ -488,8 +499,199 @@ export const productPages: Record<string, ProductPage> = {
       size: "checkable",
     },
     closing: {
-      headline: ["The rules are industry-agnostic.", "The product is not."],
+      headline: ["The rules travel.", "The product does not."],
       lede: "The distance between the two is the design work. Derive every number, declare how every entity commits, and refuse the creates that do not exist in the business.",
+    },
+  },
+
+  "payment-ops": {
+    slug: "payment-ops",
+    railRight: "Finance · a payments desk for a platform",
+    headline: "Every figure names the rows it came from.",
+    lede: "A payments desk for a platform: what came in, what is waiting to go out, what we spent on our own cards, and how much of the balance is actually ours to move today. Looking at it should settle whether a number on screen can be checked.",
+    meta: [
+      { label: "The operator", value: "Treasury operations", note: "two admins, an approver, two members" },
+      { label: "The window", value: "Rolling 30 days", note: "never a calendar month" },
+      { label: "Declared status", value: "Six fields, 28 values", note: "seven derived flags, none stored" },
+      { label: "The data", value: "One fixture set, in cents", note: "20 payments, 8 payouts, 22 expenses" },
+    ],
+    hero: {
+      shot: "Screenshot 01",
+      image: shotDash,
+      of: "Dashboard · full screen",
+      captionLead: "Five figures, then the queues that owe them.",
+      caption: " · $162,232.15 net over the last 30 days, and $12,905.60 of payouts you can release right now.",
+      size: "the screen the day starts on",
+    },
+    preview: { href: "/templates/finance-desk.html", label: "Preview interactive design" },
+    job: {
+      railRight: "Before any of it is a screen",
+      headline: "Watch it, release it, account for it.",
+      lede: "One person in treasury operations, on a rolling 30-day window rather than a calendar month — a monthly limit reads empty on the first and makes every card meter lie about the same data on different days.",
+      next: { num: "01", href: "#screens", label: "The screens →" },
+      steps: [
+        {
+          n: "01",
+          title: "Watch",
+          body: "Money arrives as card, ACH, wire or wallet, and how it arrived is what it costs. Net volume is settled payments less refunds — an authorised charge and a pending one have no outcome yet, so both sit outside the authorisation rate as well as the total.",
+          note: "a pending charge is not a failure",
+        },
+        {
+          n: "02",
+          title: "Release",
+          body: "Payouts leave the balance, so nothing leaves without an approval. A payout held by another team keeps its row, its badge, its clock and its reason, and loses only its button. One predicate answers “can I approve this” for the row, the figure and the sidebar badge.",
+          note: "never disabled to avoid deciding",
+        },
+        {
+          n: "03",
+          title: "Review",
+          body: "Whether a receipt is required is policy, not a fact about the expense — over $75.00, or on meals and travel. The rule lives in one object the settings screen edits, every predicate takes it as an argument, and saving that form recounts the sidebar.",
+          note: "the threshold is passed in, never inlined",
+        },
+      ],
+    },
+    screens: {
+      railRight: "In the order the work happens",
+      headline: "Five screens, each answering the last one’s question.",
+      lede: "Thirty registered routes, eleven of them top-level. Two destinations deliberately have no record screen — a payment and a payout are only ever read on the list that holds them, so a notification about one lands on that list rather than on a route with nothing behind it.",
+      next: { num: "02", href: "#states", label: "The status set →" },
+      walk: [
+        {
+          n: "Screen 01",
+          title: "The queue that knows which payouts you can finish",
+          body: "The dashboard promises an approvable figure; this screen owes an answer for it. Three payouts are waiting on us and one can be released: another team holds the second for a dispute running on a different screen, and the third is above the operator’s own approval limit. The queue hides neither and offers neither.",
+          points: [
+            "$12,905.60 ready to approve — 1 of the 3 payouts waiting on us",
+            "One reads “Held by Risk — Compliance review — open dispute”",
+            "One reads “Above your $50,000.00 limit”, and names who can release it",
+          ],
+          shot: "Screenshot 02",
+          image: shotPayouts,
+          of: "Payouts · approval queue",
+          route: "/payouts",
+          kind: "queue · gated",
+        },
+        {
+          n: "Screen 02",
+          title: "Card spend, and the receipts holding it up",
+          body: "Our own money going out. Three expenses can be approved now; two more are waiting on a receipt and are recessed with the name of the person who owes it. Approve exists on those rows and is disabled with its reason, because the precondition is visible — not omitted, and not a sentence beside a live button.",
+          points: [
+            "3 you can approve now, $2,332.00 across them",
+            "2 waiting on a receipt, $1,183.00 — required over $75.00, and on meals and travel spend",
+            "A queried row names who is being waited on, and what was asked",
+          ],
+          shot: "Screenshot 03",
+          image: shotExpenses,
+          of: "Expenses · review queue",
+          route: "/expenses",
+          kind: "queue · gated",
+        },
+        {
+          n: "Screen 03",
+          title: "One card, its limit, and the window it is measured over",
+          body: "A meter rather than a row, because the question is how much of the limit is left. One card is past its limit and another is near it — and “near” is the policy’s 80% share rather than a number inside the component. The card’s whole ledger sits under the chart, so the meter is checkable against the rows that filled it.",
+          points: [
+            "$5,120.00 of $5,000.00 — over, at 102.4%",
+            "Another reads near at 82.6%, against the policy’s 80% share",
+            "Rolling 30 days, stated in words beside every figure it scopes",
+          ],
+          shot: "Screenshot 04",
+          image: shotCard,
+          of: "Card · limit and ledger",
+          route: "/cards/:id",
+          kind: "record · meter",
+        },
+        {
+          n: "Screen 04",
+          title: "The money the network is holding",
+          body: "Three open disputes hold $9,650.10 out of the balance. Two need evidence from us and one is under review, where the clock belongs to the network — so that record is offered no action at all, and the screen says who is being waited on instead.",
+          points: [
+            "$9,650.10 held back against the 3 still open",
+            "One is due in 22 hours, another in four days",
+            "The one under review is owed nothing — that clock runs up to 75 days",
+          ],
+          shot: "Screenshot 05",
+          image: shotDisputes,
+          of: "Disputes · one selected",
+          route: "/disputes/:id",
+          kind: "list-detail · thread",
+        },
+        {
+          n: "Screen 05",
+          title: "What of the balance is actually yours to move today",
+          body: "The three-part answer, and the end of the argument the other four screens started. Available is the only stored money figure in the product; committed is the payouts that have not landed and reserved is the open disputes, and both are summed from the two tables printed directly below them.",
+          points: [
+            "$412,806.44 available · $102,835.60 committed · $9,650.10 reserved",
+            "$525,292.14 on the platform — available plus everything claiming it",
+            "Each table’s footer states the figure it sums to",
+          ],
+          shot: "Screenshot 06",
+          image: shotBalances,
+          of: "Balances · the three parts",
+          route: "/balances",
+          kind: "record · reconciliation",
+        },
+      ],
+    },
+    states: {
+      railRight: "A closed set with defined transitions",
+      headline: "Six fields, and the words they refuse to hold.",
+      lede: "The value everybody looks for in the payout enum is blocked, and it is not there: a held payout is awaiting_approval with a blocking record attached, and the block is computed at render. Late is absent for the same reason, from this field and from payments.",
+      next: { num: "03", href: "#hostile", label: "The awkward cases →" },
+      values: [
+        { name: "awaiting_approval", mark: "hot2" },
+        { name: "approved" },
+        { name: "in_transit" },
+        { name: "paid", mark: "term" },
+        { name: "rejected", mark: "term" },
+        { name: "returned", mark: "term" },
+      ],
+      foot: "Six values, three of them terminal. Rejected is deliberately neutral rather than danger — turning a payout down is an ending we chose and can defend, while returned is the network failing us, and the two must not share a colour. Across the product: six status fields, twenty-eight values, and seven derived flag families beside them.",
+    },
+    hostile: {
+      railRight: "Fixtures that break a screen",
+      headline: "Three records the desk has to be right about.",
+      lede: "All three are entries in the fixture rather than hypotheticals, and each one is why a rule in the product exists.",
+      next: { num: "04", href: "#audit", label: "The audit →" },
+      cases: [
+        {
+          label: "Case 01",
+          title: "A payout held by another team for a dispute on another screen",
+          naively:
+            "It sits in the queue with a live Approve button — or it drops out of both the queue and the count, and the operator never learns why the total moved.",
+          here: "$6,300.00, still in the queue at full weight and still badged awaiting approval, with the holding team, the reason and the dispute under the badge, and “Waiting on Risk” where the button would be. It is outside the approvable figure.",
+        },
+        {
+          label: "Case 02",
+          title: "A card past a limit the settings screen owns",
+          naively:
+            "The meter clamps at 100%, or the limit and the warning share are constants inside the component, so the settings form edits a number nothing reads.",
+          here: "$5,120.00 of $5,000.00 at 102.4%, over. The 80% near share and the $75.00 receipt threshold live in one policy object, every predicate takes it as an argument, and the settings screen runs the real evaluator over the real expenses with the draft values.",
+        },
+        {
+          label: "Case 03",
+          title: "An expense that cannot be approved yet",
+          naively:
+            "Approve is hidden, so the row looks finished — or it is live, and the receipt rule is a sentence printed next to it.",
+          here: "$965.00 at a hotel. Approve is present and disabled, reading “A receipt is required before this can be approved — travel spend, 75 dollar threshold”, the row is recessed and names who is being waited on, and a “No receipt” badge sits beside the status.",
+        },
+      ],
+    },
+    audit: {
+      railRight: "What checking it turned up",
+      headline: "A figure on screen that nothing read.",
+      lede: "There is no audit view and there should not be one — the audit is a design-time discipline. It found this: every payout row and the team screen printed an approval limit per person, and no payout predicate read either one. Approvability asked only whether the payout was held, so one at $61,480.00 counted as approvable for everybody.",
+      next: { num: "05", href: "#top", label: "Back to the top →" },
+      shot: "Screenshot 07",
+      image: shotTeam,
+      of: "Team and approvals · the limits",
+      captionLead: "Three of five can approve anything, together up to $575,000.00 a run.",
+      caption: " · the operator’s own limit is $50,000.00, so a $61,480.00 payout sits in her queue named, badged and unapprovable.",
+      size: "checkable",
+    },
+    closing: {
+      headline: ["The chain travels.", "The desk does not."],
+      lede: "Available plus committed plus reserved is arithmetic any product can borrow. Which team is being waited on, and what the screen says instead of a button, is the part you have to decide.",
     },
   },
 };

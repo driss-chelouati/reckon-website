@@ -2,6 +2,7 @@ import type { StaticImageData } from "next/image";
 import type { IconKey } from "@/components/icons";
 import claimsDesk from "@/public/img/products/claims-desk/01-claims-desk.png";
 import talentDesk from "@/public/img/products/talent-desk/01-talent-desk.png";
+import financeDesk from "@/public/img/products/finance-desk/01-finance-desk.png";
 
 /* The ten worked products. This list is the megamenu's Showcase column and the
    /products index cards — the same records in two shapes, which is why it lives
@@ -64,18 +65,20 @@ export const products: Product[] = [
     menuNote: "Where the AI parts are shown",
   },
   {
-    slug: "billing",
-    name: "Billing and invoicing",
+    slug: "payment-ops",
+    name: "Payment operations",
     icon: "billing",
     domain: "Finance",
     state: "audited",
     cat: "money",
     shotIndex: "Screenshot 03",
+    image: financeDesk,
     blurb:
-      "Subscriptions, dunning and payments that fail. The invoice on the list is the invoice on the detail screen.",
-    screens: "6",
-    covers: "Invoices, record, dunning",
-    breaksOn: "A payout you cannot recall",
+      "Treasury operations watches money arrive, releases what goes out and reviews what the company spent on its own cards. Every figure on the screen has to reconcile against the rows underneath it.",
+    screens: "29",
+    covers: "Queue, approval, card spend, balance",
+    breaksOn: "A payout nobody here can release",
+    menuNote: "The money chain, visible",
   },
   {
     slug: "talent",
@@ -187,7 +190,7 @@ export const stateLabel: Record<ProductState, string> = {
 /* The megamenu lists the products in a different order from the index grid. */
 export const menuOrder = [
   "cargo-claims",
-  "billing",
+  "payment-ops",
   "talent",
   "support",
   "clinical",
