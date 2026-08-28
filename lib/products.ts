@@ -4,6 +4,7 @@ import claimsDesk from "@/public/img/products/claims-desk/01-claims-desk.png";
 import talentDesk from "@/public/img/products/talent-desk/01-talent-desk.png";
 import financeDesk from "@/public/img/products/finance-desk/01-finance-desk.png";
 import recruitmentDesk from "@/public/img/products/recruitment-desk/01-recruitment-desk.png";
+import marketingDesk from "@/public/img/products/marketing-desk/01-marketing-desk.png";
 
 /* The ten worked products. This list is the megamenu's Showcase column and the
    /products index cards — the same records in two shapes, which is why it lives
@@ -45,7 +46,7 @@ export const products: Product[] = [
     image: claimsDesk,
     blurb:
       "Damage claims against a container line. Liability caps, a filing window that cannot be extended, and evidence that gates the decision.",
-    screens: "8",
+    screens: "14",
     covers: "Queue, record, decision, recovery",
     breaksOn: "A claim time-barred before you open it",
     menuNote: "Eight screens, fully audited",
@@ -58,9 +59,10 @@ export const products: Product[] = [
     state: "progress",
     cat: "ops progress",
     shotIndex: "Screenshot 02",
+    image: marketingDesk,
     blurb:
       "A lifecycle marketer runs automations that never stop and one-off sends that need somebody else’s sign-off. Every figure on every screen has to reconcile with the send log underneath it.",
-    screens: "35 registered routes",
+    screens: "35",
     covers: "Sending, audiences, approval, deliverability",
     breaksOn: "A send counted as failed mid-flight",
     menuNote: "Twelve destinations, three groups",
