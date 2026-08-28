@@ -19,10 +19,10 @@ const cards: { icon: IconKey; title: string; body: string; note: string }[] = [
     note: "A brief nobody on the roster fits",
   },
   {
-    icon: "clinical",
-    title: "Clinical practice",
-    body: "Scheduling, records and results against a duty of care, where a stale figure is a clinical risk rather than an inconvenience.",
-    note: "Permission-denied, designed",
+    icon: "aiTool",
+    title: "AI tool",
+    body: "A chat workspace with its own meter, where the context window, the cycle bill and the seat count are all recomputed from the same messages.",
+    note: "A file the index could not read",
   },
   {
     icon: "billing",
@@ -45,8 +45,8 @@ export default function WorkedProducts() {
           <h2>Whole products, not screens.</h2>
           <div>
             <p className="lede">
-              Billing, clinical practice, cargo claims, talent representation, home automation,
-              authentication, grant review — more in progress. Each has its own routes, status
+              Cargo claims, recruitment, payment operations, talent representation, marketing,
+              an AI tool, authentication, grant review — more in progress. Each has its own routes, status
               values and data. And the data is deliberately hostile: the awkward cases a client
               finds in week one.
             </p>

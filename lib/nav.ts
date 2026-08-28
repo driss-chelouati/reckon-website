@@ -61,6 +61,7 @@ export const liveRoutes = new Set([
   "/products/talent",
   "/products/payment-ops",
   "/products/marketing-desk",
+  "/products/ai-tool",
   "/products/recruitment-desk",
   "/download",
   "/rules",

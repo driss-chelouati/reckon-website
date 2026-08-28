@@ -1125,4 +1125,190 @@ export const productPages: Record<string, ProductPage> = {
       lede: "Twelve destinations, thirty-five routes and four status fields are the easy half. What takes the time is the figure that has to agree with the rows under it on every screen that quotes it.",
     },
   },
+
+  /* AI tool. Audited, and the audit section reports what that pass actually
+     changed. No screenshots yet, so every slot draws the dashed placeholder —
+     and no preview button: the template ships as a Design Component entry
+     (templates/ai-tool/AiTool.dc.html) and a flattened standalone for
+     public/templates/ does not exist yet. */
+  "ai-tool": {
+    slug: "ai-tool",
+    railRight: "Software · an AI chat workspace with its own meter",
+    headline: "Nothing here stores what a conversation costs.",
+    lede: "A chat workspace for an eight-person team, with the context window, the cycle bill and the seat count all derived from the messages and the fixture arrays. Looking at it should settle whether an assistant product can show its own arithmetic without a single stored total.",
+    meta: [
+      { label: "Operator", value: "A product lead", note: "owns the workspace and the bill" },
+      { label: "The clock", value: "One billing cycle", note: "1 Aug to today, derived" },
+      { label: "Declared status", value: "Four vocabularies", note: "fourteen values, five fields" },
+      { label: "The data", value: "Ten threads, nine files", note: "two of them unreadable" },
+    ],
+    hero: {
+      shot: "Screenshot 01",
+      of: "New chat · full screen",
+      captionLead: "The composer is the whole screen.",
+      caption: " · 0 of 200k in context before a word is typed, and the three most-used prompts sit under it — 41, 33 and 27 uses.",
+      size: "the screen the day starts on",
+    },
+    job: {
+      railRight: "Before any of it is a screen",
+      headline: "Read the answer, then pay for it.",
+      lede: "A product lead runs the week’s writing, code review and research through one assistant, on a workspace allowance that resets on the first. Every turn re-reads the conversation, so a reply costs what is already in the window.",
+      next: { num: "01", href: "#screens", label: "The screens →" },
+      steps: [
+        {
+          n: "01",
+          title: "Attach",
+          body: "A thread carries the files it is reading, and only a file the index actually read reaches the window. One that failed or is unsupported carries nothing and is left out of the meter.",
+          note: "nothing stored, counted per render",
+        },
+        {
+          n: "02",
+          title: "Send",
+          body: "A turn is billed for the context that existed when it ran plus what it wrote, so the same question costs more late in a thread than early. Output bills at five times input.",
+          note: "a failed turn is absent, not zero",
+        },
+        {
+          n: "03",
+          title: "Reconcile",
+          body: "The usage screen, the thread’s own cost and the cycle charge are three views of one set of turns. Nothing writes a total — sending a message moves all three at once.",
+          note: "one array, three screens, no cache",
+        },
+      ],
+    },
+    screens: {
+      railRight: "In the order the work happens",
+      headline: "Five screens, one set of turns.",
+      lede: "Twenty-one registered routes: six sidebar destinations, six off it, four settings and five auth. There is deliberately no list screen for turns — a turn is only ever reached through the thread that holds it.",
+      next: { num: "02", href: "#states", label: "The status set →" },
+      walk: [
+        {
+          n: "Screen 01",
+          title: "The conversation, with what it is reading beside it",
+          body: "The thread owes an answer for how full the window is and what the reply was based on. It shows the cited files under each turn, and refuses to imply a file is in context when the index could not read it.",
+          points: [
+            "23k of 200k in context, on the only model with a 200k window",
+            "The files cited are named under the turn that cited them",
+            "A stopped turn offers Continue, a failed one offers Retry — never both",
+          ],
+          shot: "Screenshot 02",
+          of: "Thread · conversation and context rail",
+          route: "/chats/:id",
+          kind: "record · reconciliation",
+        },
+        {
+          n: "Screen 02",
+          title: "Files, and the two the index could not read",
+          body: "The index is the honest part of an assistant product. Every row says whether the model can read the file, and a row that cannot carries the reason and the one move that helps. Nothing falls back to a zero token count.",
+          points: [
+            "“2 of 9 files could not be read”, in the screen’s own lede",
+            "Six readable files carrying 77k tokens between them",
+            "Reindex is disabled on the unsupported archive, with the reason on the row",
+          ],
+          shot: "Screenshot 03",
+          of: "Files · index status",
+          route: "/files",
+          kind: "table · act-ability",
+        },
+        {
+          n: "Screen 03",
+          title: "What the week’s turns actually cost",
+          body: "The day chart, the model table and the person table are the same fourteen turns grouped three ways, so no two of them can disagree. It declines to chart a day with no turn on it as a zero.",
+          points: [
+            "218k tokens, $0.35, 14 billed turns across 9 threads",
+            "218k of the 1.2M included in the plan — 18%",
+            "One model: 6 turns, 87k read, 1.6k written, $0.28",
+          ],
+          shot: "Screenshot 04",
+          of: "Usage · this cycle",
+          route: "/usage",
+          kind: "figures · derived",
+        },
+        {
+          n: "Screen 04",
+          title: "Seats, and the difference between paying and using",
+          body: "A seat is held by a person or by an invite still standing, so the figure is people plus unexpired invites and never a stored count. A dormant member is recessed with the reason rather than disabled or hidden.",
+          points: [
+            "10 of 10 seats used — eight people and two invites still standing",
+            "One expired invite, holding no seat",
+            "“Not in 71 days, still holding a seat” on the dormant row",
+          ],
+          shot: "Screenshot 05",
+          of: "Workspace · people and invites",
+          route: "/settings/workspace",
+          kind: "table · capacity",
+        },
+        {
+          n: "Screen 05",
+          title: "The bill, including the one that did not go through",
+          body: "The current cycle has never been invoiced, so it is derived from the same turns the usage screen charts. The failed invoice is not a badge on its own — it carries the reason it failed and the thing that fixes it.",
+          points: [
+            "$240.00 this cycle — ten seats at $24.00, nothing over the allowance yet",
+            "One invoice unpaid: $251.80, for the month before",
+            "A $400.00 spend cap, 60% used, seats included",
+          ],
+          shot: "Screenshot 06",
+          of: "Plan and billing · cycle and invoices",
+          route: "/settings/billing",
+          kind: "record · money",
+        },
+      ],
+    },
+    states: {
+      railRight: "A closed set with defined transitions",
+      headline: "Three of the four things you would look for are missing.",
+      lede: "Four vocabularies over five fields, and none of them holds what an assistant product is expected to store: whether a thread is near its context limit, whether a prompt has gone stale, whether an invite still holds a seat, whether a card has expired. All four are computed at render.",
+      next: { num: "03", href: "#hostile", label: "The awkward cases →" },
+      values: [
+        { name: "indexing" },
+        { name: "ready", mark: "term" },
+        { name: "failed", mark: "hot2" },
+        { name: "unsupported", mark: "term" },
+      ],
+      foot: "Failed is the one where the operator is being waited on, so it is the one that offers Reindex. Unsupported is terminal because nothing in the product can read an archive — the way out is a person converting the file. Fourteen values over four vocabularies and five fields, six of them terminal, and visibility is a single vocabulary shared by threads and projects because it means the same thing on each. Void on an invoice is deliberately neutral: it was withdrawn before it was ever charged, which is why it is excluded from every total that claims to be money.",
+    },
+    hostile: {
+      railRight: "Three records that break a screen",
+      headline: "The fixtures were written to be difficult.",
+      lede: "Each of these is a real record in the fixture, and each one is the reason a figure on some other screen is derived rather than stored.",
+      next: { num: "04", href: "#audit", label: "The audit →" },
+      cases: [
+        {
+          label: "Case 01",
+          title: "A turn that produced nothing",
+          naively:
+            "The turn renders as an empty bubble or an em dash, and the usage total counts it anyway — a row in the table with no tokens and a cost of $0.00.",
+          here: "One thread holds a turn that failed after 41 seconds. It is not billed and not counted: fourteen billed turns, not fifteen. The turn says what happened and offers Retry, and nothing else on the screen moves.",
+        },
+        {
+          label: "Case 02",
+          title: "A 24.8 MB archive attached to a thread",
+          naively:
+            "The file joins the attachment list and quietly contributes to a context figure claiming the model has read twelve interviews it has never seen.",
+          here: "It reads Unsupported, contributes nothing to the 23k window figure, and its Reindex is disabled: “Archives are not read. Unpack it and upload the transcripts.” The project card says two the index could not read.",
+        },
+        {
+          label: "Case 03",
+          title: "An invoice charged to a card that expired",
+          naively:
+            "The invoice shows Payment failed with a Retry that appears to work, or the card section shows an expiry date and nothing else.",
+          here: "$251.80, failed against a card that expired on 31 July. The card block says nothing can be charged until it is replaced, the retry included — and replacing the card retries that invoice rather than leaving it stranded.",
+        },
+      ],
+    },
+    audit: {
+      railRight: "What the pass found",
+      headline: "The arithmetic held; the chrome did not.",
+      lede: "Every derived figure was walked against the array under it and none disagreed — fourteen billed turns reconcile across the usage table, the person table and the cycle charge, and ten of ten seats reconciles with eight people and two standing invites. What the pass changed was interface: the composer carried a duplicated focus treatment, and the brand mark was sized by an inline style on one screen and by a rule everywhere else.",
+      next: { num: "05", href: "#top", label: "Back to the top →" },
+      shot: "Screenshot 07",
+      of: "Composer · focused",
+      captionLead: "One focus signal, not two.",
+      caption: " · the box takes the ring, and the field inside it takes none.",
+      size: "checkable",
+    },
+    closing: {
+      headline: ["The meter is portable.", "The domain is not."],
+      lede: "Threads, files and seats are this template’s nouns, but the rule underneath travels: if a screen shows a total, the array that makes it is on the same page.",
+    },
+  },
 };
