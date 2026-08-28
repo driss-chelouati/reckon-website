@@ -3,6 +3,7 @@ import type { IconKey } from "@/components/icons";
 import claimsDesk from "@/public/img/products/claims-desk/01-claims-desk.png";
 import talentDesk from "@/public/img/products/talent-desk/01-talent-desk.png";
 import financeDesk from "@/public/img/products/finance-desk/01-finance-desk.png";
+import recruitmentDesk from "@/public/img/products/recruitment-desk/01-recruitment-desk.png";
 
 /* The ten worked products. This list is the megamenu's Showcase column and the
    /products index cards — the same records in two shapes, which is why it lives
@@ -117,6 +118,7 @@ export const products: Product[] = [
     state: "audited",
     cat: "people",
     shotIndex: "Screenshot 06",
+    image: recruitmentDesk,
     blurb:
       "A community health group hires against one process for every seat, from ward clerk to systems engineer. Nothing may be offered until two references, the right to work and — where the seat asks for one — a professional registration are all in hand.",
     screens: "22",

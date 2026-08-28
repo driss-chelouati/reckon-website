@@ -43,6 +43,13 @@ import shotCard from "@/public/img/products/finance-desk/04-finance-desk.png";
 import shotDisputes from "@/public/img/products/finance-desk/05-finance-desk.png";
 import shotBalances from "@/public/img/products/finance-desk/06-finance-desk.png";
 import shotTeam from "@/public/img/products/finance-desk/07-finance-desk.png";
+import shotDesk from "@/public/img/products/recruitment-desk/01-recruitment-desk.png";
+import shotQueue2 from "@/public/img/products/recruitment-desk/02-recruitment-desk.png";
+import shotApplication from "@/public/img/products/recruitment-desk/03-recruitment-desk.png";
+import shotOffers from "@/public/img/products/recruitment-desk/04-recruitment-desk.png";
+import shotCompliance from "@/public/img/products/recruitment-desk/05-recruitment-desk.png";
+import shotRequisition from "@/public/img/products/recruitment-desk/06-recruitment-desk.png";
+import shotBadge from "@/public/img/products/recruitment-desk/07-recruitment-desk.png";
 
 /** the numbered link that closes each section and points at the next one */
 export type NextLink = { num: string; href: string; label: string };
@@ -726,11 +733,13 @@ export const productPages: Record<string, ProductPage> = {
     ],
     hero: {
       shot: "Screenshot 01",
+      image: shotDesk,
       of: "Your desk · full screen",
       captionLead: "The day starts on what is owed.",
       caption: " · 15 applications wait on the desk, 9 of them Nadia’s — and 5 sit over their stage’s own service level, which is three days at applied and ten at checks.",
       size: "the screen the day starts on",
     },
+    preview: { href: "/templates/recruitment-desk.html", label: "Preview interactive design" },
     job: {
       railRight: "Before any of it is a screen",
       headline: "Read it, score it, prove it.",
@@ -773,6 +782,7 @@ export const productPages: Record<string, ProductPage> = {
             "Ordered by how far over its own stage’s allowance a row is, never by arrival",
           ],
           shot: "Screenshot 02",
+          image: shotQueue2,
           of: "Applications · queue",
           route: "/applications",
           kind: "queue · filtered table",
@@ -787,6 +797,7 @@ export const productPages: Record<string, ProductPage> = {
             "Seven steps on the strip of nine declared values — declined and withdrawn are ends",
           ],
           shot: "Screenshot 03",
+          image: shotApplication,
           of: "Application · record",
           route: "/applications/:id",
           kind: "record · stepper-led",
@@ -801,6 +812,7 @@ export const productPages: Record<string, ProductPage> = {
             "Accepted 2 of 3 · 67% of every offer this desk has sent",
           ],
           shot: "Screenshot 04",
+          image: shotOffers,
           of: "Offers · expiry queue",
           route: "/offers",
           kind: "queue · expiry-ordered",
@@ -815,6 +827,7 @@ export const productPages: Record<string, ProductPage> = {
             "Callum Beattie’s register cell: “No NMC number · This seat asks for one”",
           ],
           shot: "Screenshot 05",
+          image: shotCompliance,
           of: "Compliance · pre-employment",
           route: "/compliance",
           kind: "checklist · gated",
@@ -829,6 +842,7 @@ export const productPages: Record<string, ProductPage> = {
             "3 more arrived another way — a referral, the pool, an event",
           ],
           shot: "Screenshot 06",
+          image: shotRequisition,
           of: "Requisition · pipeline and advert",
           route: "/requisitions/:id",
           kind: "board · per seat",
@@ -888,6 +902,7 @@ export const productPages: Record<string, ProductPage> = {
       lede: "Recession was keyed on “clear to start” while urgency was keyed on “has a blocker”, and one record satisfied both: Elias Nordahl’s HCPC registration is in date today, renewing in seventeen days. The only row the badge counted, the only one with a live action on it, was styled as work nobody can act on. “Clear to start” is now the plain negation of the three outstanding flags, and the blocker list is built behind the same guard.",
       next: { num: "05", href: "#top", label: "Back to the top →" },
       shot: "Screenshot 07",
+      image: shotBadge,
       of: "Compliance · one predicate, three altitudes",
       captionLead: "Recession, the count and the badge now agree.",
       caption: " · 16 outstanding, 3 with nothing, 1 close enough to a start date to matter — and the row that carries the action is the one at the top, not greyed out.",
