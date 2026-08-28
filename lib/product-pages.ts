@@ -50,6 +50,13 @@ import shotOffers from "@/public/img/products/recruitment-desk/04-recruitment-de
 import shotCompliance from "@/public/img/products/recruitment-desk/05-recruitment-desk.png";
 import shotRequisition from "@/public/img/products/recruitment-desk/06-recruitment-desk.png";
 import shotBadge from "@/public/img/products/recruitment-desk/07-recruitment-desk.png";
+import shotOverview30 from "@/public/img/products/marketing-desk/01-marketing-desk.png";
+import shotOverview7 from "@/public/img/products/marketing-desk/02-marketing-desk.png";
+import shotJourney from "@/public/img/products/marketing-desk/03-marketing-desk.png";
+import shotApprovals from "@/public/img/products/marketing-desk/04-marketing-desk.png";
+import shotSend from "@/public/img/products/marketing-desk/05-marketing-desk.png";
+import shotDeliver from "@/public/img/products/marketing-desk/06-marketing-desk.png";
+import shotPeople from "@/public/img/products/marketing-desk/07-marketing-desk.png";
 
 /** the numbered link that closes each section and points at the next one */
 export type NextLink = { num: string; href: string; label: string };
@@ -941,11 +948,13 @@ export const productPages: Record<string, ProductPage> = {
     ],
     hero: {
       shot: "Screenshot 01",
+      image: shotOverview30,
       of: "Overview · full screen",
-      captionLead: "The only screen that mixes both sources",
-      caption: " · 3,176 delivered in the last seven days — 1,731 from journeys, 1,445 from three broadcasts",
+      captionLead: "The only screen that adds the two sources together",
+      caption: " · 17,153 delivered over thirty days — 6,818 from journeys running continuously, 10,335 from five one-off sends",
       size: "the screen the day starts on",
     },
+    preview: { href: "/templates/marketing-desk.html", label: "Preview interactive design" },
     job: {
       railRight: "Marketing operations",
       headline: "Automations run; sends wait on people.",
@@ -983,25 +992,27 @@ export const productPages: Record<string, ProductPage> = {
           title: "Where journey sending and broadcast sending are added up",
           body: "The headline claims one delivered figure for the whole workspace, so it owes the reader both halves. The day chart is that same series plotted, and the four queues below are the predicates the sidebar badges count. It averages nothing across the two sources.",
           points: [
-            "3,176 delivered over seven days — 1,731 journeys, 1,445 broadcasts",
+            "3,176 over seven days — 1,731 journeys, 1,445 broadcasts, 54.5% of it continuous",
             "Straight bars, because days are being compared against each other",
             "The period offers 7, 14 and 30, because the log holds thirty days",
           ],
-          shot: "Screenshot 01",
-          of: "Overview · full screen",
+          shot: "Screenshot 02",
+          image: shotOverview7,
+          of: "Overview · seven days",
           route: "/",
           kind: "overview · chart-led",
         },
         {
           n: "Screen 02",
           title: "A journey’s ladder, and where people are standing on it",
-          body: "Six steps, and the arithmetic closes on every one — enrolment is the sum of who is sitting at each step and nothing else. Each drop-off meter takes that step’s own entered as its track, so the unfilled tail is whoever is still waiting there.",
+          body: "The arithmetic closes on every step — entered on one is what continued from the one above it, and each meter’s track is that step’s own entered, so the unfilled tail is whoever is still standing there. Enrolment is the sum of those tails and nothing else.",
           points: [
-            "4,820 entered step one, 3,902 completed the last, 356 enrolled now",
-            "Stopping a journey moves people from at into exited, and closes",
-            "Publish is disabled: one template has no subject line yet",
+            "962 entered the first step, 869 reached the end — 90.3% of them",
+            "Nobody is enrolled now, because the trigger stopped matching on 14 Aug",
+            "22 delivery failures, 9 of them on one step, 0.8% of every attempt",
           ],
-          shot: "Screenshot 02",
+          shot: "Screenshot 03",
+          image: shotJourney,
           of: "Journey · step ladder",
           route: "/journeys/:id",
           kind: "record · list-detail",
@@ -1012,10 +1023,11 @@ export const productPages: Record<string, ProductPage> = {
           body: "Three queues out of one predicate: waiting on you, submitted by you, waiting on somebody else. The middle queue is where the operator is the one holding things up, and nothing is disabled to avoid deciding — a send you submitted yourself carries the reason instead.",
           points: [
             "Two broadcasts in review, one of them approvable by this viewer",
-            "“You submitted this one — someone else has to approve it.”",
-            "One sends in 30 hours, to 1,284 people",
+            "“Yours cannot be approved by you” — the other carries who it waits on",
+            "One sends in 30 hours, to 1,284 people, and 1 of 1 counts as urgent",
           ],
-          shot: "Screenshot 03",
+          shot: "Screenshot 04",
+          image: shotApprovals,
           of: "Approvals · three queues",
           route: "/approvals",
           kind: "queue · gated",
@@ -1025,11 +1037,12 @@ export const productPages: Record<string, ProductPage> = {
           title: "A send report drawn as the funnel it is",
           body: "Attempted, delivered, opened, clicked — each bar measured against the top of the funnel, so the shape is the funnel, while each row also states its own rate against the row above it. A send still running reports what it has handed off, never a projection.",
           points: [
-            "4,592 sent, 4,488 delivered, 1,693 opened",
-            "Delivery rate is delivered over sends; open rate is opened over delivered",
-            "One send is still going — 88 of 143 handed off",
+            "1,276 attempted, 1,251 delivered, 514 opened, 148 clicked",
+            "Every bar against the 1,276; every rate against the line above it",
+            "11.8% clicked of delivered, and 28.8% of opened — both stated, neither mixed",
           ],
-          shot: "Screenshot 04",
+          shot: "Screenshot 05",
+          image: shotSend,
           of: "Broadcast · send report",
           route: "/broadcasts/:id",
           kind: "record · reconciliation",
@@ -1039,11 +1052,12 @@ export const productPages: Record<string, ProductPage> = {
           title: "Three checks, across three domains",
           body: "A grid question gets a grid: SPF, DKIM and DMARC for each sending domain, and a domain counts as authenticated only when all three pass. Underneath, the failure figure decomposed by source — and the screen refuses to scope itself to a period, saying why in the lede.",
           points: [
-            "833 failures against 37,650 attempts — 2.2%, not time-scoped",
-            "One authenticated domain of three, with a DKIM record failing",
-            "The threshold is 2.0%, compared at the precision displayed",
+            "833 failures against 37,650 attempts — 2.2%, and no period at all",
+            "One domain of three passes all three checks; the root fails DKIM",
+            "The worst single source is named and sits at 60.4%",
           ],
-          shot: "Screenshot 05",
+          shot: "Screenshot 06",
+          image: shotDeliver,
           of: "Deliverability · DNS matrix",
           route: "/deliverability",
           kind: "matrix · read-only",
@@ -1069,7 +1083,7 @@ export const productPages: Record<string, ProductPage> = {
       railRight: "Three fixtures that break a screen",
       headline: "The cases a generated product gets wrong.",
       lede: "All three are real records in the fixture rather than hypotheticals.",
-      next: { num: "04", href: "#top", label: "Back to the top →" },
+      next: { num: "04", href: "#audit", label: "The audit →" },
       cases: [
         {
           label: "Case 01",
@@ -1083,7 +1097,7 @@ export const productPages: Record<string, ProductPage> = {
           title: "A review the operator cannot do herself",
           naively:
             "The badge counts both broadcasts in review, and the approve button renders live on the one she submitted — or greyed out with nothing said.",
-          here: "One of them was submitted by the viewer, so the badge reads 1 and the button is disabled carrying the reason: “You submitted this one — someone else has to approve it.”",
+          here: "One of them was submitted by the viewer, so the badge reads 1 and that row carries no button at all — “yours cannot be approved by you”, with the person it is waiting on shown beside it.",
         },
         {
           label: "Case 03",
@@ -1093,6 +1107,18 @@ export const productPages: Record<string, ProductPage> = {
           here: "One question, one answer: the publish gate and the step editor’s problem list read the same function, so the button is disabled and names the template that is not ready.",
         },
       ],
+    },
+    audit: {
+      railRight: "No second pass has been run",
+      headline: "Checked by hand, not yet audited.",
+      lede: "No second pass has been run on this product, so there is no finding to report and none is invented here. What the screens allow has been checked: every step sums to the number that entered it, every rate names the line it is measured against, and the approval rule reads the same in all four places.",
+      next: { num: "05", href: "#top", label: "Back to the top →" },
+      shot: "Screenshot 07",
+      image: shotPeople,
+      of: "People · who can approve a send",
+      captionLead: "Two of the six can approve a send",
+      caption: " · never their own, which is why the queue badge reads 1 and not 2 — the rule is set here, and read in three other places",
+      size: "checked, not audited"
     },
     closing: {
       headline: ["The shell is reusable.", "The arithmetic is not."],
