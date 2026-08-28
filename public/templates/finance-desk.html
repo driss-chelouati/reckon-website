@@ -5,11 +5,13 @@
   <title>Finance Desk — Meridian</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #f7f7f6; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
-    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
-    #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #f7f7f6; z-index: 9999; }
-    #__bundler_thumbnail svg { width: 100%; height: 100%; object-fit: contain; }
-    #__bundler_placeholder { color: #999; font-size: 14px; }
+    body { background: #08080B; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.08em; color: #6A6D79; background: none; padding: 0; border-radius: 0; box-shadow: none; z-index: 10000; }
+    #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #08080B; z-index: 9999; }
+    #__bundler_spinner { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.10); border-top-color: #F97A5C; animation: __bundler_spin 0.7s linear infinite; }
+    @keyframes __bundler_spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { #__bundler_spinner { animation: none; border-top-color: rgba(249,122,92,0.55); } }
+    #__bundler_placeholder { color: #6A6D79; font-size: 14px; }
   </style>
   <noscript>
     <style>#__bundler_loading { display: none; }</style>
@@ -19,9 +21,7 @@
   </noscript>
 </head>
 <body>
-  <div id="__bundler_thumbnail">
-<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#f7f7f6"></rect><rect x="120" y="120" width="240" height="560" rx="16" fill="#e6e6e4"></rect><g fill="#26262b"><rect x="440" y="180" width="180" height="28" rx="6"></rect><rect x="440" y="300" width="60" height="320" rx="8"></rect><rect x="540" y="380" width="60" height="240" rx="8"></rect><rect x="640" y="250" width="60" height="370" rx="8"></rect><rect x="740" y="420" width="60" height="200" rx="8"></rect><rect x="840" y="330" width="60" height="290" rx="8"></rect></g></svg>
-</div>
+  <div id="__bundler_thumbnail"><div id="__bundler_spinner"></div></div>
   <div id="__bundler_loading">Unpacking...</div>
 
   <script>

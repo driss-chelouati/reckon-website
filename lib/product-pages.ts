@@ -80,6 +80,12 @@ export type ProductPage = {
     headline: string;
     lede: string;
     next: NextLink;
+    /** Three parallel columns, so a body wants about thirty words — cargo-claims
+        runs 29 to 35 and is the length to write to. These sit in .idx, which is
+        the hairline-divided pattern for short parallel items; past forty words
+        the three columns stop scanning and become three paragraphs the reader
+        has to work through in order. Anything that will not fit belongs in the
+        note, or on the screen that demonstrates it. */
     steps: { n: string; title: string; body: string; note: string }[];
   };
   screens: {
@@ -351,19 +357,19 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "01",
           title: "Represent",
-          body: "Free to pitch, coming free inside thirty days, booked — three figures over nine creators. Availability is counted against today here, and against the brand’s own window on a brief, so somebody booked until October is free for a campaign that starts in November.",
+          body: "Three figures over nine creators. Availability counts against today here and against the brand’s own window on a brief — so somebody booked until October is free for a campaign starting in November.",
           note: "the same word, two clocks",
         },
         {
           n: "02",
           title: "Book",
-          body: "A pitched brief becomes a deal, and the deal brings its deliverables, its invoice and its payout with it. The contract walks a declared line — drafted, out for signature, signed — with the date it reached each one.",
+          body: "A pitched brief becomes a deal, and the deal brings its deliverables, its invoice and its payout with it. The contract walks a declared line, dated at every step.",
           note: "book the deal, not create deal",
         },
         {
           n: "03",
           title: "Collect",
-          body: "$119,000.00 owed by brands against $142,160.00 owed to creators, and the commission banks when the money clears rather than when the deal is signed. $30,340.00 of it is still sitting on invoices nobody has paid.",
+          body: "$119,000.00 owed by brands against $142,160.00 owed to creators — and the commission banks when the money clears, not when the deal is signed.",
           note: "$14,900.00 banked, not $45,240.00",
         },
       ],
@@ -541,19 +547,19 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "01",
           title: "Watch",
-          body: "Money arrives as card, ACH, wire or wallet, and how it arrived is what it costs. Net volume is settled payments less refunds — an authorised charge and a pending one have no outcome yet, so both sit outside the authorisation rate as well as the total.",
+          body: "Money arrives as card, ACH, wire or wallet, and how it arrived is what it costs. Net volume is settled payments less refunds, and a charge with no outcome yet sits outside both.",
           note: "a pending charge is not a failure",
         },
         {
           n: "02",
           title: "Release",
-          body: "Payouts leave the balance, so nothing leaves without an approval. A payout held by another team keeps its row, its badge, its clock and its reason, and loses only its button. One predicate answers “can I approve this” for the row, the figure and the sidebar badge.",
+          body: "Payouts leave the balance, so nothing leaves without an approval. A payout held by another team keeps its row, its badge, its clock and its reason, and loses only its button.",
           note: "never disabled to avoid deciding",
         },
         {
           n: "03",
           title: "Review",
-          body: "Whether a receipt is required is policy, not a fact about the expense — over $75.00, or on meals and travel. The rule lives in one object the settings screen edits, every predicate takes it as an argument, and saving that form recounts the sidebar.",
+          body: "Whether a receipt is required is policy rather than a fact about the expense. The rule lives in one object the settings screen edits, and saving that form recounts the sidebar.",
           note: "the threshold is passed in, never inlined",
         },
       ],
@@ -749,19 +755,19 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "01",
           title: "Read",
-          body: "Applications arrive overnight and an application is unread until somebody opens it — firstReadAt, not a flag anybody sets. Three of the five at applied have never been opened. The clock a row is judged against is its own stage’s allowance, so a day-old application at applied is later than a week-old one at checks.",
+          body: "Three of the five at applied have never been opened. Every row is judged against its own stage’s allowance, so a day at applied is later than a week at checks.",
           note: "unread is the absence of a timestamp",
         },
         {
           n: "02",
           title: "Score",
-          body: "A panel decision needs two scorecards from two different people. One card is not a decision, so the move to checks is offered and disabled, stating the count: Jonah Okwu’s record reads “2 scorecards are needed before checks start — 1 in so far.” The average on the record is the mean of the cards on it and moves when one lands.",
+          body: "A panel decision needs two scorecards from two different people. One card is not a decision, so the move to checks is offered, disabled, and states the count it is still waiting on.",
           note: "the average is never stored",
         },
         {
           n: "03",
           title: "Prove",
-          body: "Nothing reaches offer until the checks are back. One function names what is missing, and the disabled action, the checks card and the compliance alert all render its output — for Elias Nordahl that is “1 of 2 references back”, his second referee away until Monday. Which register a seat needs is the requisition’s business, not the candidate’s, so a ward clerk owes none.",
+          body: "Nothing reaches offer until the checks are back. Which register a seat asks for is the requisition’s business rather than the candidate’s — so a ward clerk owes none, and the screen shows no gap.",
           note: "a check nobody owes is absent, not failed",
         },
       ],
