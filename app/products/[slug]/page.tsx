@@ -10,9 +10,9 @@ import { bySlug } from "@/lib/products";
 import type { NextLink } from "@/lib/product-pages";
 import "./product.css";
 
-/* One worked product. cargo-claims is the only one written so far; the other
-   nine are in the menu and the index on purpose and will arrive as records in
-   lib/product-pages.ts, not as new files. */
+/* One worked product, drawn from its record in lib/product-pages.ts. Four are
+   written; the other six are in the menu and the index on purpose and will
+   arrive as records here, not as new files. */
 
 export function generateStaticParams() {
   return Object.keys(productPages).map((slug) => ({ slug }));
@@ -25,8 +25,11 @@ export async function generateMetadata({
   const product = bySlug.get(slug);
   if (!product) return pageMeta("Worked product", "A product generated from a brief, then audited.");
   /* the blurb is the product's own one-line description and is already written
-     for a reader who has not seen the page */
-  return pageMeta(`${product.name} desk — a worked product`, product.blurb);
+     for a reader who has not seen the page. Most names are the thing rather than
+     the desk that works it — "Cargo claims", "Payment operations" — so the title
+     supplies the word; a name that already carries it does not get it twice. */
+  const named = /\bdesk$/i.test(product.name) ? product.name : `${product.name} desk`;
+  return pageMeta(`${named} — a worked product`, product.blurb);
 }
 
 const Next = ({ next }: { next: NextLink }) => (
@@ -38,7 +41,7 @@ const Next = ({ next }: { next: NextLink }) => (
 
 /* One screenshot frame. Where a real shot exists it sits inside the inset with
    its own proportions; where there is none the dashed placeholder names what is
-   going to go there. Nine of the ten products are still all placeholder. */
+   going to go there. recruitment-desk is still all placeholder. */
 function Shot({
   image,
   shot,

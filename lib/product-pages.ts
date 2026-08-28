@@ -1,11 +1,12 @@
-/* The worked-product pages. cargo-claims is the first and only one written; the
-   nine other products in lib/products.ts are listed in the menu and the index
-   but do not have a page yet, and nothing here is scaffolded for them.
+/* The worked-product pages. Four are written — cargo-claims, talent,
+   payment-ops and recruitment-desk. The six other products in lib/products.ts
+   are listed in the menu and the index but do not have a page yet, and nothing
+   here is scaffolded for them.
 
    Every string on the page is a field. Adding the next product means adding a
-   record, not a JSX file. Every screenshot slot takes an optional `image`;
-   cargo-claims has all six, and a slot without one draws the dashed placeholder
-   instead.
+   record, not a JSX file. Every screenshot slot takes an optional `image`, and a
+   slot without one draws the dashed placeholder instead — which is every slot on
+   recruitment-desk until its shots are cut.
 
    cargo-claims is no longer placeholder: every figure, route, status value and
    fixture named below is read out of the claims-desk template itself. Nothing
@@ -692,6 +693,209 @@ export const productPages: Record<string, ProductPage> = {
     closing: {
       headline: ["The chain travels.", "The desk does not."],
       lede: "Available plus committed plus reserved is arithmetic any product can borrow. Which team is being waited on, and what the screen says instead of a button, is the part you have to decide.",
+    },
+  },
+
+
+  /* The recruitment desk. The intake was answered from the design brief before
+     the standalone bundle existed; every figure below was then read back out of
+     an export of the template — enums.js, fixtures.js, metrics.js and the screen
+     files — and where the two disagreed the template won. What that corrected:
+     /interviews and /offers
+     are destinations, so the routes deliberately absent are the record routes
+     under them rather than the lists; the queue's own figures are not the desk's;
+     the checks card quoted against the panel record belonged to a different
+     candidate; the strip draws seven steps of the nine declared values; and the
+     compliance rows carry one, two or three blockers rather than two each.
+
+     No `preview` field: the bundle is not in public/templates yet. When it lands
+     it gets one, labelled "Preview interactive design", and the button appears
+     without anything else here changing. Seven shots to come too, in
+     public/img/products/recruitment-desk/ and numbered in the order the sections
+     run; until they land every slot draws the dashed placeholder. */
+  "recruitment-desk": {
+    slug: "recruitment-desk",
+    railRight: "Healthcare · one hiring process, seven stages",
+    headline: "One process, and every clock derived from it.",
+    lede: "A recruitment desk for a 4,100-person health group: nine destinations over one application record, where the stepper is the same component on the queue, the board and the record. What it settles is whether a hiring product can hold a gate without inventing a status for it.",
+    meta: [
+      { label: "The operator", value: "Nadia Ferreira, recruiter", note: "owns 9 of the 15 waiting" },
+      { label: "The clock", value: "Three to ten days", note: "per stage, and derived" },
+      { label: "Status", value: "Six fields, thirty-one values", note: "one enums file" },
+      { label: "The fixture", value: "24 applications, 6 requisitions", note: "one array per entity" },
+    ],
+    hero: {
+      shot: "Screenshot 01",
+      of: "Your desk · full screen",
+      captionLead: "The day starts on what is owed.",
+      caption: " · 15 applications wait on the desk, 9 of them Nadia’s — and 5 sit over their stage’s own service level, which is three days at applied and ten at checks.",
+      size: "the screen the day starts on",
+    },
+    job: {
+      railRight: "Before any of it is a screen",
+      headline: "Read it, score it, prove it.",
+      lede: "A recruiter carries two seats’ worth of pipeline and a hiring manager who wants a start date. The constraint that shapes every screen is the pre-employment gate: two references, a verified right to work, and the register the seat asks for still in date — or nobody starts.",
+      next: { num: "01", href: "#screens", label: "The screens →" },
+      steps: [
+        {
+          n: "01",
+          title: "Read",
+          body: "Applications arrive overnight and an application is unread until somebody opens it — firstReadAt, not a flag anybody sets. Three of the five at applied have never been opened. The clock a row is judged against is its own stage’s allowance, so a day-old application at applied is later than a week-old one at checks.",
+          note: "unread is the absence of a timestamp",
+        },
+        {
+          n: "02",
+          title: "Score",
+          body: "A panel decision needs two scorecards from two different people. One card is not a decision, so the move to checks is offered and disabled, stating the count: Jonah Okwu’s record reads “2 scorecards are needed before checks start — 1 in so far.” The average on the record is the mean of the cards on it and moves when one lands.",
+          note: "the average is never stored",
+        },
+        {
+          n: "03",
+          title: "Prove",
+          body: "Nothing reaches offer until the checks are back. One function names what is missing, and the disabled action, the checks card and the compliance alert all render its output — for Elias Nordahl that is “1 of 2 references back”, his second referee away until Monday. Which register a seat needs is the requisition’s business, not the candidate’s, so a ward clerk owes none.",
+          note: "a check nobody owes is absent, not failed",
+        },
+      ],
+    },
+    screens: {
+      railRight: "In the order the work happens",
+      headline: "Nine destinations over one record.",
+      lede: "Twenty-three registered routes: nine sidebar destinations, twelve off the nav and two for auth. There is no second candidate screen, and neither an interview nor an offer has a record route — an interview is a row and a dialog, and an offer is a field on the application it belongs to, read at /applications/:id and nowhere else.",
+      next: { num: "02", href: "#states", label: "The status set →" },
+      walk: [
+        {
+          n: "Screen 01",
+          title: "What is waiting, and whose it is",
+          body: "The queue promises a number the sidebar badge also shows, so both call one act-ability predicate over one array. The tabs narrow the list and nothing else — there are no figures above them to move. The order is how far over its own stage’s allowance a row is, and the date it arrived only breaks ties.",
+          points: [
+            "“Every application on the desk. 15 of them waiting on us right now.”",
+            "Waiting on us 15 · Waiting on others 4 · Settled 5 · Everything 24",
+            "Ordered by how far over its own stage’s allowance a row is, never by arrival",
+          ],
+          shot: "Screenshot 02",
+          of: "Applications · queue",
+          route: "/applications",
+          kind: "queue · filtered table",
+        },
+        {
+          n: "Screen 02",
+          title: "The application, and what the next move waits on",
+          body: "One record for one person, reached from the desk, the queue, the interview ladder, the requisition board and the talent pool alike. The stepper is the spine: a completed step cites the sub-record that completed it, and a step with nothing to cite says what it is for instead of asserting a date nobody stored.",
+          points: [
+            "“2 scorecards of 2 · 4.38 average · 2 recommending yes” — Priya Raghunathan",
+            "Checks: “0 of 2 references back · right to work verified · DBS with the service”",
+            "Seven steps on the strip of nine declared values — declined and withdrawn are ends",
+          ],
+          shot: "Screenshot 03",
+          of: "Application · record",
+          route: "/applications/:id",
+          kind: "record · stepper-led",
+        },
+        {
+          n: "Screen 03",
+          title: "What runs out first",
+          body: "Two offers on the queue, ordered by expiry rather than by value: one still with the candidate and one already answered. Each row says where the salary sits in the band it came from, and names what the candidate asked for on the rows where the offer came in under it. It will not record a hire the candidate has not accepted.",
+          points: [
+            "£36,796 to Freya Lindsay — 85% up £31,049 – £37,796, 3 days left",
+            "“Asked for £37,000” sits under the row where the offer came in under it",
+            "Accepted 2 of 3 · 67% of every offer this desk has sent",
+          ],
+          shot: "Screenshot 04",
+          of: "Offers · expiry queue",
+          route: "/offers",
+          kind: "queue · expiry-ordered",
+        },
+        {
+          n: "Screen 04",
+          title: "The three things that must be true before anybody starts",
+          body: "One row per live application, three checks each, urgent first — a blocker at offer stops something, the same blocker at applied stops nothing yet. Urgency is the stage, never the number of blockers, and recession reads the same predicate the counts read, so the row with the live action on it is never greyed out.",
+          points: [
+            "16 with something outstanding, 3 with nothing, 1 close enough to a start date to matter",
+            "“renews 14 Sept · 17 days left” against Elias Nordahl, the one row at checks with a gap",
+            "Callum Beattie’s register cell: “No NMC number · This seat asks for one”",
+          ],
+          shot: "Screenshot 05",
+          of: "Compliance · pre-employment",
+          route: "/compliance",
+          kind: "checklist · gated",
+        },
+        {
+          n: "Screen 05",
+          title: "One seat, its pipeline and the advert that filled it",
+          body: "A requisition is seats, not a hire: three community nurse seats with nine live applications and none accepted yet. It also holds which professional register the seat requires. The advert tab counts what each channel actually produced from the applications array, and names the ones that arrived another way rather than quietly folding them in.",
+          points: [
+            "LH-1042 — 3 seats, 9 live, 59 days open, aging past 45, NMC registration required",
+            "4,546 views, 7 applications, 0.2% — best channel Careers event at 1.0%",
+            "3 more arrived another way — a referral, the pool, an event",
+          ],
+          shot: "Screenshot 06",
+          of: "Requisition · pipeline and advert",
+          route: "/requisitions/:id",
+          kind: "board · per seat",
+        },
+      ],
+    },
+    states: {
+      railRight: "A closed set, and the states deliberately outside it",
+      headline: "Nine values, and four clocks that are not among them.",
+      lede: "The value everybody looks for in this enum is “stalled”, and it is not there. Lateness is days in the current stage against that stage’s own allowance, computed at render from one predicate — as are unread, offer expiring, registration outstanding, aging requisition and thin pipeline. A record carries one stage and any number of derived flags.",
+      next: { num: "03", href: "#hostile", label: "The awkward cases →" },
+      values: [
+        { name: "applied", mark: "hot2" },
+        { name: "screening" },
+        { name: "assessment" },
+        { name: "panel" },
+        { name: "checks" },
+        { name: "offer" },
+        { name: "hired", mark: "term" },
+        { name: "declined", mark: "term" },
+        { name: "withdrawn", mark: "term" },
+      ],
+      foot: "Nine values, three terminal, and seven of them the stepper draws. The four the desk owns are info; checks and offer are warning, out of our hands but on the clock; hired is success. Declined and withdrawn are neutral rather than danger, because a settled application is not a failure and nothing is owed on it. Six status fields, thirty-one values, one file — and the four values with no fixture row are named in the coverage note at the bottom of enums.js rather than covered by invented records.",
+    },
+    hostile: {
+      railRight: "Three fixtures that break a screen",
+      headline: "Where the gate has to hold.",
+      lede: "Each of these is a record in the fixture, reachable in the running template.",
+      next: { num: "04", href: "#audit", label: "The audit →" },
+      cases: [
+        {
+          label: "Case 01",
+          title: "A panel decided by one scorecard",
+          naively:
+            "The record is at panel, so a “Move to checks” button renders live — or renders disabled with nothing beside it, leaving the reviewer to work out which of five preconditions is in the way.",
+          here: "The primary action is offered, disabled, and states the count: “2 scorecards are needed before checks start — 1 in so far.” Ruth’s card is the one in, and her note says Esme’s will decide it — she saw the second half of the panel.",
+        },
+        {
+          label: "Case 02",
+          title: "A ward clerk with no NMC number",
+          naively:
+            "The pre-employment gate looks like three symmetrical checks, so registration is read off the application and everybody owes one. An accepted ward-clerk offer sits on the compliance screen as a blocked hire, reading “no registration on file”.",
+          here: "Whether a register is owed is a property of the seat. Damian Oyelaran’s row reads “Not required · This seat asks for no register”, and it is not counted against the badge; Callum Beattie’s, on a seat that does ask, reads “No NMC number · This seat asks for one”.",
+        },
+        {
+          label: "Case 03",
+          title: "An offer already answered, beside one still out",
+          naively:
+            "The accepted offer is counted as a hire, the seat shows nothing left, and the requisition claims a fill that no hire record supports.",
+          here: "Acceptance is a field on the offer, not a stage. Damian Oyelaran accepted £24,071 and is still at offer, with “Record acceptance” live as the primary action; Freya Lindsay’s is disabled: “Nothing to record until the candidate accepts — the offer is with them until 31 Aug.”",
+        },
+      ],
+    },
+    audit: {
+      railRight: "What the audit found",
+      headline: "Two predicates where there should have been one.",
+      lede: "Recession was keyed on “clear to start” while urgency was keyed on “has a blocker”, and one record satisfied both: Elias Nordahl’s HCPC registration is in date today, renewing in seventeen days. The only row the badge counted, the only one with a live action on it, was styled as work nobody can act on. “Clear to start” is now the plain negation of the three outstanding flags, and the blocker list is built behind the same guard.",
+      next: { num: "05", href: "#top", label: "Back to the top →" },
+      shot: "Screenshot 07",
+      of: "Compliance · one predicate, three altitudes",
+      captionLead: "Recession, the count and the badge now agree.",
+      caption: " · 16 outstanding, 3 with nothing, 1 close enough to a start date to matter — and the row that carries the action is the one at the top, not greyed out.",
+      size: "checkable",
+    },
+    closing: {
+      headline: ["The process is one.", "The seats are not."],
+      lede: "One hiring process from ward clerk to systems engineer, with the gate in the same place on every one. What differs is the register, the band and who sits on the panel.",
     },
   },
 };
