@@ -57,6 +57,13 @@ import shotApprovals from "@/public/img/products/marketing-desk/04-marketing-des
 import shotSend from "@/public/img/products/marketing-desk/05-marketing-desk.png";
 import shotDeliver from "@/public/img/products/marketing-desk/06-marketing-desk.png";
 import shotPeople from "@/public/img/products/marketing-desk/07-marketing-desk.png";
+import shotNewChat from "@/public/img/products/ai-tool/01-ai-tool.png";
+import shotThread from "@/public/img/products/ai-tool/02-ai-tool.png";
+import shotFiles from "@/public/img/products/ai-tool/03-ai-tool.png";
+import shotUsage from "@/public/img/products/ai-tool/04-ai-tool.png";
+import shotSeats from "@/public/img/products/ai-tool/05-ai-tool.png";
+import shotBilling from "@/public/img/products/ai-tool/06-ai-tool.png";
+import shotShared from "@/public/img/products/ai-tool/07-ai-tool.png";
 
 /** the numbered link that closes each section and points at the next one */
 export type NextLink = { num: string; href: string; label: string };
@@ -984,7 +991,7 @@ export const productPages: Record<string, ProductPage> = {
     screens: {
       railRight: "Twelve destinations, three groups",
       headline: "Each screen owes the one before it an answer.",
-      lede: "Thirty-five registered routes: twelve destinations in the sidebar, seventeen off it, six for auth. Activity has no list screen — it is one feed reached from the inbox, the overview and every profile, and a thirteenth destination would push a nav group past what it can hold.",
+      lede: "Thirty-seven registered routes: twelve destinations in the sidebar across three groups, nineteen off it, six for auth. Activity has no list screen — it is one feed reached from the inbox, the overview and every profile, and a thirteenth destination would push a nav group past what it can hold.",
       next: { num: "02", href: "#states", label: "The status set →" },
       walk: [
         {
@@ -1052,9 +1059,9 @@ export const productPages: Record<string, ProductPage> = {
           title: "Three checks, across three domains",
           body: "A grid question gets a grid: SPF, DKIM and DMARC for each sending domain, and a domain counts as authenticated only when all three pass. Underneath, the failure figure decomposed by source — and the screen refuses to scope itself to a period, saying why in the lede.",
           points: [
-            "833 failures against 37,650 attempts — 2.2%, and no period at all",
-            "One domain of three passes all three checks; the root fails DKIM",
-            "The worst single source is named and sits at 60.4%",
+            "833 against 37,650 attempts — 2.2%, over the one 2.0% threshold",
+            "One domain of three passes all three checks; the root has failed DKIM for nine days",
+            "The broadcast that died mid-send went out from that domain — 268 attempted, 106 delivered",
           ],
           shot: "Screenshot 06",
           image: shotDeliver,
@@ -1109,16 +1116,16 @@ export const productPages: Record<string, ProductPage> = {
       ],
     },
     audit: {
-      railRight: "No second pass has been run",
-      headline: "Checked by hand, not yet audited.",
-      lede: "No second pass has been run on this product, so there is no finding to report and none is invented here. What the screens allow has been checked: every step sums to the number that entered it, every rate names the line it is measured against, and the approval rule reads the same in all four places.",
+      railRight: "What the pass found",
+      headline: "Walked against the rows, and they close.",
+      lede: "Every derived figure was checked against the array under it and none disagreed: 26,861 journey attempts and 10,789 broadcast sends make the 37,650 the failure rate is drawn from, every journey step sums to the number that entered it, and the approval rule resolves the same way in all four places that read it.",
       next: { num: "05", href: "#top", label: "Back to the top →" },
       shot: "Screenshot 07",
       image: shotPeople,
       of: "People · who can approve a send",
       captionLead: "Two of the six can approve a send",
       caption: " · never their own, which is why the queue badge reads 1 and not 2 — the rule is set here, and read in three other places",
-      size: "checked, not audited"
+      size: "checkable"
     },
     closing: {
       headline: ["The shell is reusable.", "The arithmetic is not."],
@@ -1126,11 +1133,8 @@ export const productPages: Record<string, ProductPage> = {
     },
   },
 
-  /* AI tool. Audited, and the audit section reports what that pass actually
-     changed. No screenshots yet, so every slot draws the dashed placeholder —
-     and no preview button: the template ships as a Design Component entry
-     (templates/ai-tool/AiTool.dc.html) and a flattened standalone for
-     public/templates/ does not exist yet. */
+  /* AI tool. Audited, and the audit section reports what that pass changed
+     rather than claiming it found nothing. */
   "ai-tool": {
     slug: "ai-tool",
     railRight: "Software · an AI chat workspace with its own meter",
@@ -1144,11 +1148,13 @@ export const productPages: Record<string, ProductPage> = {
     ],
     hero: {
       shot: "Screenshot 01",
+      image: shotNewChat,
       of: "New chat · full screen",
       captionLead: "The composer is the whole screen.",
-      caption: " · 0 of 200k in context before a word is typed, and the three most-used prompts sit under it — 41, 33 and 27 uses.",
+      caption: " · 0 of 200k in context before a word is typed, and the three most-used prompts sitting under it",
       size: "the screen the day starts on",
     },
+    preview: { href: "/templates/ai-tool.html", label: "Preview interactive design" },
     job: {
       railRight: "Before any of it is a screen",
       headline: "Read the answer, then pay for it.",
@@ -1186,11 +1192,12 @@ export const productPages: Record<string, ProductPage> = {
           title: "The conversation, with what it is reading beside it",
           body: "The thread owes an answer for how full the window is and what the reply was based on. It shows the cited files under each turn, and refuses to imply a file is in context when the index could not read it.",
           points: [
-            "23k of 200k in context, on the only model with a 200k window",
+            "23k of 200k, counting six messages and two indexed files",
             "The files cited are named under the turn that cited them",
-            "A stopped turn offers Continue, a failed one offers Retry — never both",
+            "Three billed turns and $0.22, stated on the thread itself",
           ],
           shot: "Screenshot 02",
+          image: shotThread,
           of: "Thread · conversation and context rail",
           route: "/chats/:id",
           kind: "record · reconciliation",
@@ -1202,9 +1209,10 @@ export const productPages: Record<string, ProductPage> = {
           points: [
             "“2 of 9 files could not be read”, in the screen’s own lede",
             "Six readable files carrying 77k tokens between them",
-            "Reindex is disabled on the unsupported archive, with the reason on the row",
+            "The failed row offers Reindex; the archive is told to be unpacked instead",
           ],
           shot: "Screenshot 03",
+          image: shotFiles,
           of: "Files · index status",
           route: "/files",
           kind: "table · act-ability",
@@ -1216,9 +1224,10 @@ export const productPages: Record<string, ProductPage> = {
           points: [
             "218k tokens, $0.35, 14 billed turns across 9 threads",
             "218k of the 1.2M included in the plan — 18%",
-            "One model: 6 turns, 87k read, 1.6k written, $0.28",
+            "8 of the 25 days had a turn on them, and the bars are those same 14",
           ],
           shot: "Screenshot 04",
+          image: shotUsage,
           of: "Usage · this cycle",
           route: "/usage",
           kind: "figures · derived",
@@ -1233,6 +1242,7 @@ export const productPages: Record<string, ProductPage> = {
             "“Not in 71 days, still holding a seat” on the dormant row",
           ],
           shot: "Screenshot 05",
+          image: shotSeats,
           of: "Workspace · people and invites",
           route: "/settings/workspace",
           kind: "table · capacity",
@@ -1247,6 +1257,7 @@ export const productPages: Record<string, ProductPage> = {
             "A $400.00 spend cap, 60% used, seats included",
           ],
           shot: "Screenshot 06",
+          image: shotBilling,
           of: "Plan and billing · cycle and invoices",
           route: "/settings/billing",
           kind: "record · money",
@@ -1301,9 +1312,10 @@ export const productPages: Record<string, ProductPage> = {
       lede: "Every derived figure was walked against the array under it and none disagreed — fourteen billed turns reconcile across the usage table, the person table and the cycle charge, and ten of ten seats reconciles with eight people and two standing invites. What the pass changed was interface: the composer carried a duplicated focus treatment, and the brand mark was sized by an inline style on one screen and by a rule everywhere else.",
       next: { num: "05", href: "#top", label: "Back to the top →" },
       shot: "Screenshot 07",
-      of: "Composer · focused",
-      captionLead: "One focus signal, not two.",
-      caption: " · the box takes the ring, and the field inside it takes none.",
+      image: shotShared,
+      of: "Shared with me · a count that agrees three screens away",
+      captionLead: "Two the index could not read",
+      caption: " · the same two the files screen names, counted again on a project card three screens from it",
       size: "checkable",
     },
     closing: {

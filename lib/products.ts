@@ -5,6 +5,7 @@ import talentDesk from "@/public/img/products/talent-desk/01-talent-desk.png";
 import financeDesk from "@/public/img/products/finance-desk/01-finance-desk.png";
 import recruitmentDesk from "@/public/img/products/recruitment-desk/01-recruitment-desk.png";
 import marketingDesk from "@/public/img/products/marketing-desk/01-marketing-desk.png";
+import aiTool from "@/public/img/products/ai-tool/01-ai-tool.png";
 
 /* The ten worked products. This list is the megamenu's Showcase column and the
    /products index cards — the same records in two shapes, which is why it lives
@@ -106,6 +107,7 @@ export const products: Product[] = [
     state: "audited",
     cat: "ops",
     shotIndex: "Screenshot 05",
+    image: aiTool,
     blurb:
       "A team runs its work through one assistant and the bill arrives monthly for turns nobody itemised. Context, cost and seats are all recomputed from the same messages, so none of them can drift apart.",
     screens: "21",
@@ -118,8 +120,8 @@ export const products: Product[] = [
     name: "Marketing desk",
     icon: "marketing",
     domain: "Marketing",
-    state: "progress",
-    cat: "ops progress",
+    state: "audited",
+    cat: "ops",
     shotIndex: "Screenshot 02",
     image: marketingDesk,
     blurb:
