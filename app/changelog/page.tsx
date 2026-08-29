@@ -80,32 +80,18 @@ export default function Changelog() {
           <div className="shead">
             <h2>What is coming, and what it waits on.</h2>
             <div>
-              <p className="lede">In the order it blocks other work rather than by date. The licence answer is first, because nothing goes public until it is settled.</p>
+              <p className="lede">In the order it blocks other work rather than by date. A known gap is listed with the rest, because a demo should not be the thing that finds it.</p>
               <a className="snum" href="#faq"><i>02</i><u>Straight answers →</u></a>
             </div>
           </div>
 
           <div className="road">
             {roadmap.map((item) => (
-              <div className="rdc" key={item.title}>
-                <div className="rdin">
-                  <div className="rdh">
-                    <span>{item.stage}</span>
-                    <span className="conf" aria-label={item.confidenceLabel}>
-                      {[0, 1, 2].map((i) => (
-                        <u className={i < item.confidence ? "on" : undefined} key={i} />
-                      ))}
-                    </span>
-                  </div>
-                  <div className="rdb">
-                    <h3>{item.title}</h3>
-                    <p>{item.note}</p>
-                    <ul>
-                      {item.points.map((p) => (
-                        <li key={p}>{p}</li>
-                      ))}
-                    </ul>
-                  </div>
+              <div className="rdr" key={item.title}>
+                <span className="rds">{item.stage}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.note}</p>
                 </div>
               </div>
             ))}

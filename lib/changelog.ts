@@ -36,35 +36,45 @@ export const releases: Release[] = [
     when: "This month",
     tag: "Current",
     current: true,
-    note: "Nine products carried end to end. The rules had been stated for a while; a product is the only thing that proves they produce screens rather than describing them. This is also the answer to the defect 0.6.1 diagnosed: nine products that a person can tell apart.",
+    note: "Three layers finished together, because none is evidence on its own. Three products landed here and the five before them were re-audited against the finished rules — which is what makes the count eight rather than a running total.",
     changes: [
-      { kind: "add", text: "Nine app prototypes under templates/ — Cadence, Claims Desk, Halyard, Hearth, Kolleger, Lodestay, Meridian, Parley, Talent Desk — each a .dc.html entry with its own shell, screens and fixtures" },
-      { kind: "add", text: "An AGENTS-notes-<slug>.md at the root for eight of them, documenting the data model a reader would otherwise reconstruct from fixtures" },
-      { kind: "chg", text: "Every product owns its enums.js and nav.js and imports nothing from a sibling, so deleting one folder deletes the product with nothing orphaned" },
-      { kind: "chg", text: "Shell choice became a declared decision per product, sidebar or top-nav, with one navigation owner and a comment naming the density, the active-state signature and each destination’s primary content" },
-      { kind: "known", text: "Meridian’s approval limits are editable but not yet enforced at payout" },
+      { kind: "add", text: "Home Desk — a house run for the five people in it: ten destinations on a neutral plane, and five chains from preferences to heating, tariff to money" },
+      { kind: "add", text: "Ward Desk — double-sidebar hospital management: a rail of six categories beside the destinations inside it, twenty in all, from the shift board to cost per episode" },
+      { kind: "add", text: "Marketing Desk — inset-pane sidebar over twelve destinations: journeys, broadcasts and approvals, audiences with the rule each one counts, deliverability as a DNS matrix" },
+      { kind: "chg", text: "Each product is a templates/<slug>/ folder owning its shell, fixtures, enums and nav, importing nothing from a sibling — deleting a folder deletes the product" },
+      { kind: "add", text: "Three shell modes and two content frames over one inventory, with a form register naming a primary display axis per product. This is the answer to the defect 0.6.1 diagnosed" },
+      { kind: "chg", text: "Nothing summable is stored: a total is the sum of its lines, paid is the sum of cleared payments. Gates derive too, one predicate read by the badge, the count and the record" },
+      { kind: "add", text: "Settings that bite: bed counts divide every occupancy figure, a tariff re-prices fourteen days, and a denied action names who may take it instead" },
+      { kind: "add", text: "Fixtures written to be difficult: long names, missing dates, denied permissions, a slow leak visible only as water moving while the house sleeps, twelve import rows nothing could place" },
+      { kind: "known", text: "Finance Desk’s approval limits are editable but not enforced at payout" },
     ],
   },
   {
     version: "0.9",
     when: "Two months ago",
     tag: "Breaking",
-    note: "The rules survived the change of source; their wording did not. AGENTS.md was rewritten against the new component set and the new shells, and it is still not a style guide — styling is the tokens’ job.",
+    note: "The rules survived the change of source; their wording did not. AGENTS.md was rewritten against the new component set, and it is still not a style guide — styling is the tokens’ job. Three products landed against it, and the two from 0.8 were re-audited.",
     changes: [
+      { kind: "add", text: "Finance Desk — sidebar shell for payment operations: the payout approval queue, card expenses and their review policy, disputes as list-detail, the balance and what claims it, and six auth screens" },
+      { kind: "add", text: "Talent Desk — top-nav shell for a talent agency: an editorial roster book, fit-and-exclusivity matching, the deal sheet, performance against promise and the facing money ledgers" },
+      { kind: "add", text: "AI Tool — sidebar shell for a chat workspace: a conversation with its context rail, a composer that really streams, the file index with its failures, and usage derived turn by turn" },
+
       { kind: "breaking", text: "One data state per screen. Loading, empty, no results, error and populated are mutually exclusive branches of one conditional, never neighbours" },
       { kind: "breaking", text: "Actions derive from record state. A fixed action set on a detail view is a defect; disabling to avoid deciding is another" },
       { kind: "chg", text: "Derivation restated in the form it now takes: every figure names the array it comes from, and if the array cannot be named the number is wrong" },
-      { kind: "add", text: "Control contracts: one commit model per screen, three reversibility tiers, switch versus checkbox, and destructive styling that is subtle everywhere except inside its own confirm dialog" },
-      { kind: "add", text: "Two product shells and an auth shell with its full route set, each verified at 1440, 1024, 768 and 375px, losing nothing on the way down" },
-      { kind: "chg", text: "Verbs, time formats and status vocabulary fixed product-wide, one table each. Enums hold stored state only; derived flags compute at render" },
+      { kind: "add", text: "Control contracts and one vocabulary: a commit model per screen, three reversibility tiers, and verbs, time formats and status words fixed product-wide, one table each" },
+      { kind: "add", text: "Two product shells and an auth shell with its full route set, verified at 1440, 1024, 768 and 375px" },
     ],
   },
   {
     version: "0.8",
     when: "Four months ago",
     tag: "Minor",
-    note: "The component set closed against the new source, and the two shipped sites were recreated so the system could be read in situ rather than as a specimen sheet.",
+    note: "The component set closed against the new source, and the two shipped sites were recreated so the system could be read in situ rather than as a specimen sheet. The first two products were built against the closed inventory, which is what proved it was closed.",
     changes: [
+      { kind: "add", text: "Claims Desk — top-nav cargo claims desk: a deadline burn-down queue, liability-cap reconciliation, an evidence gate, decision with sign-off, payments, customer responses and recovery" },
+      { kind: "add", text: "Recruitment Desk — a foldable sidebar for whole applications: the same seven-step stepper wherever one appears, panel scorecards, checks, and offers priced against the requisition’s band" },
+
       { kind: "add", text: "All 54 component families, 177 exported names with compound parts, across actions, forms, data, feedback, overlays and navigation" },
       { kind: "add", text: "78 cards across 15 groups, 22 of them specimens for colour, type, spacing, elevation, motion and brand" },
       { kind: "add", text: "The two site recreations: the docs and gallery site with its ⌘K palette, and the marketing letter page with its container hairlines and nodes" },
@@ -78,11 +88,11 @@ export const releases: Release[] = [
     tag: "Breaking",
     note: "The foundation was replaced. Everything above the token layer stayed; every value below it changed, which is a break in the only sense that matters — a screen built at 0.6 does not render at 0.7. Reckon keeps its name; what it is recreated from is now cosscom/coss.",
     changes: [
-      { kind: "breaking", text: "Tokens re-resolved from cosscom/coss rather than the previous registry: 207 custom properties across seven files, palette, semantic aliases and a .dark re-resolution, so dark mode costs one class and no component changes" },
+      { kind: "breaking", text: "Tokens re-resolved from cosscom/coss: 207 custom properties over seven files, with a .dark re-resolution, so dark mode costs one class and no component changes" },
       { kind: "breaking", text: "The generated brand ramp was removed. There is no --brand-hue knob and no rebrand-from-one-line promise; Reckon is near-monochrome from here and saturated colour is a signal, never decoration" },
       { kind: "breaking", text: "Geist and Geist Mono replaced by Cal Sans and Paper Mono, the real webfonts, with the wordmark’s own axis settings" },
-      { kind: "add", text: "Hairline elevation: a 1px inset highlight over a 5% black shadow, lighting the top edge in light mode and the bottom edge in dark. No gradients, no glows, no coloured left borders" },
-      { kind: "add", text: "--radius: 10px deriving 4 / 6 / 8 / 10 / 14 / 16, alpha borders at 8% and 10% so lines compose over any surface, and five semantic hues used only as state" },
+      { kind: "add", text: "Hairline elevation: a 1px inset highlight over a 5% black shadow, lighting the top edge in light and the bottom in dark. No gradients, no glows" },
+      { kind: "add", text: "--radius: 10px deriving 4 / 6 / 8 / 10 / 14 / 16, alpha borders so lines compose over any surface, and five semantic hues used only as state" },
       { kind: "chg", text: "The icon set moved to Lucide at 16px, 2px stroke, 80% opacity, matching the source rather than approximating it" },
       { kind: "same", text: "Content fundamentals: sentence case, buttons that name their object, no gradients, no emoji, tabular figures on money and counts" },
     ],
@@ -91,11 +101,11 @@ export const releases: Release[] = [
     version: "0.6.1",
     when: "Seven months ago",
     tag: "Breaking",
-    note: "Five of nine worked templates deleted on purpose. They had proved the rules ran; then they proved something worse — nine products that were visually distinguishable and structurally identical, every one a dense record table with a rail of property pairs and a hairline figure strip. Correctness was checked; form was merely invited, so form got defaulted.",
+    note: "Five of nine worked templates deleted on purpose. They proved the rules ran, then proved something worse: nine products structurally identical, every one a dense record table with a rail of property pairs. Correctness was checked; form was merely invited, so form got defaulted.",
     changes: [
       { kind: "breaking", text: "Five templates removed. With them gone the evidence for a shared kit went too, which is why absorbing the converged local helpers was deferred rather than shipped" },
       { kind: "add", text: "A named primary display axis with a ten-item menu and a minimum of two distinct displays per product; checkability widened from the rows beside a figure to three legal forms" },
-      { kind: "chg", text: "Variant economics fixed so the default pairing stopped being what silence buys, and a second question added to the correction-cost standard: could a person tell two products from this system apart?" },
+      { kind: "chg", text: "Variant economics fixed so the default pairing stopped being what silence buys, and one question added to the standard: could a person tell two of these apart?" },
       { kind: "add", text: "A form register, one row per product across six axes, and the first two products generated against it" },
     ],
   },
@@ -160,7 +170,7 @@ export const changeLabel: Record<Change["kind"], string> = {
    reader checks: nothing ships to hit a date, and the source is named with the
    date it was last synced. */
 export const now = [
-  { label: "Current", value: "1.0", note: "Nine worked products, built against the rules rather than beside them." },
+  { label: "Current", value: "1.0", note: "The rules, all 54 component families, and eight products built against them." },
   { label: "Rules", value: "AGENTS.md", note: "Read before any screen is generated; it overrides generic defaults." },
   { label: "Cadence", value: "When it is ready", note: "No release train. Nothing ships to hit a date." },
   { label: "Source", value: "cosscom/coss", note: "Branch main — last synced 23 Aug 2026, recorded in github.md." },
@@ -175,70 +185,34 @@ export const shippedNote =
   "Versions before 0.3 were private. Nothing from them is documented here because nothing from them survived. The one thing that has survived every version, including the change of source at 0.7, is the argument: the component layer was never what failed, and the rules above it are the product.";
 
 export type RoadmapItem = {
+  /* where it sits in the order, not a date — mono label in the left column */
   stage: string;
-  /* how sure, out of three; the label is what a screen reader gets */
-  confidence: 1 | 2 | 3;
-  confidenceLabel: string;
   title: string;
   note: string;
-  points: string[];
 };
 
 /* Unshipped, in the order it blocks other work rather than by likelihood.
-   The licence answer sits first because nothing goes public until it is
-   settled.
 
-   All four read three bars because the release notes commit to all four; the
-   bars are carrying "this is being built", not a grading. If any of these
-   becomes a maybe, drop its confidence rather than leaving it flattering. */
+   There is no confidence meter here any more. Every item read three bars out of
+   three, which is a graphic that says the same thing about everything it is
+   drawn on — and a row of bars beside a sentence invites a reader to compare
+   figures that were never measured. The order is the only ranking the record
+   can defend, so the order is the only ranking shown. */
 export const roadmap: RoadmapItem[] = [
   {
-    stage: "Blocking",
-    confidence: 3,
-    confidenceLabel: "high confidence",
-    title: "The licence answer",
-    note: "Cal Sans, both wordmarks and the avatar imagery are upstream verbatim. Nothing goes public until that question is settled.",
-    points: [
-      "LICENSE and NOTICE follow the answer",
-      "Not the other way round",
-      "Everything below waits on it",
-    ],
-  },
-  {
     stage: "Next",
-    confidence: 3,
-    confidenceLabel: "high confidence",
-    title: "The download page",
-    note: "One self-contained page with live specimens and the package zip, described in SHARING.md.",
-    points: [
-      "Live specimens, not screenshots",
-      "The package zip beside them",
-      "This changelog is written to drop into it",
-    ],
+    title: "A getting-started opening",
+    note: "The readme opens with product context, which is right for a designer and wrong for someone who has just cloned. Small, and overdue.",
   },
   {
-    stage: "Then",
-    confidence: 3,
-    confidenceLabel: "high confidence",
-    title: "A getting-started opening",
-    note: "The readme opens with product context, which is right for a designer and wrong for someone who has just cloned.",
-    points: [
-      "Open with the clone, not the pitch",
-      "Product context moves down",
-      "Small, and overdue",
-    ],
+    stage: "In the project",
+    title: "Booking Desk",
+    note: "A ninth product — a guest booking places to stay, top-nav shell, real map. Not finalised, so not part of 1.0 and not documented above.",
   },
   {
     stage: "Known gap",
-    confidence: 3,
-    confidenceLabel: "high confidence",
-    title: "Meridian’s approval limits",
+    title: "Finance Desk’s approval limits",
     note: "Editable in Settings, but payouts do not check them yet. Named here so a demo does not find it first.",
-    points: [
-      "Editable today",
-      "Not enforced at payout",
-      "Shipped as a known gap in 1.0",
-    ],
   },
 ];
 

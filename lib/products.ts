@@ -7,7 +7,7 @@ import recruitmentDesk from "@/public/img/products/recruitment-desk/01-recruitme
 import marketingDesk from "@/public/img/products/marketing-desk/01-marketing-desk.png";
 import aiTool from "@/public/img/products/ai-tool/01-ai-tool.png";
 import wardDesk from "@/public/img/products/hospital-desk/01-hospital-desk.png";
-import hearth from "@/public/img/products/home-desk/01-home-desk.png";
+import homeDesk from "@/public/img/products/home-desk/01-home-desk.png";
 
 /* The nine worked products. This list is the megamenu's Showcase column and the
    /products index cards — the same records in two shapes, which is why it lives
@@ -150,14 +150,14 @@ export const products: Product[] = [
     menuNote: "The widest single template",
   },
   {
-    slug: "hearth",
-    name: "Hearth",
+    slug: "home-desk",
+    name: "Home desk",
     icon: "device",
     domain: "Residence",
     state: "audited",
     cat: "ops",
     shotIndex: "Screenshot 10",
-    image: hearth,
+    image: homeDesk,
     blurb:
       "A house has no staff and no shift handover, so whoever is standing in the hall is the operator. Everything the product knows has to be answerable from one screen before anybody has taken their coat off.",
     screens: "30",
@@ -181,7 +181,7 @@ export const menuOrder = [
   "ai-tool",
   "recruitment-desk",
   "ward-desk",
-  "hearth",
+  "home-desk",
 ];
 
 export const bySlug = new Map(products.map((p) => [p.slug, p]));

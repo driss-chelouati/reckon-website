@@ -39,19 +39,30 @@
   background:var(--bg); box-shadow:0 0 0 1px rgba(255,255,255,.28)}
 .rel2.now::before{background:var(--fire); box-shadow:0 0 0 4px rgba(249,122,92,.16)}
 .rhd{display:flex; align-items:baseline; flex-wrap:wrap; gap:12px; margin-bottom:14px}
-.rhd b{font-family:var(--font-jetbrains-mono),monospace; font-size:14px; font-weight:500;
-  letter-spacing:-.01em; color:var(--ink)}
+/* The versions sit one under another down the spine, so they take tabular
+   figures — 0.6.1 and 1.0 have to occupy the same width or the column wobbles. */
+.rhd b{font-family:var(--font-jetbrains-mono),monospace; font-size:15px; font-weight:500;
+  font-variant-numeric:tabular-nums; letter-spacing:-.01em; color:var(--ink)}
 .rhd time{font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.13em;
   text-transform:uppercase; color:var(--ink-3)}
+/* A 999px pill here was a second fully rounded element, where the hero eyebrow
+   is meant to be the only one. 5px is the chip radius the rest of the site uses. */
 .rtag{font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px; letter-spacing:.14em;
-  text-transform:uppercase; border-radius:999px; padding:4px 10px;
+  text-transform:uppercase; border-radius:5px; padding:4px 9px;
   color:var(--ink-3); background:rgba(255,255,255,.06)}
 .rtag.cur{color:var(--fire-lt); background:rgba(249,122,92,.13)}
 .rnote{font-size:14px; line-height:1.62; color:var(--ink-2); margin:0 0 16px; max-width:66ch}
 .rl2{display:grid; gap:0; border-top:1px solid var(--hair)}
-.rl2 div{display:grid; grid-template-columns:64px minmax(0,1fr); gap:14px; align-items:baseline;
-  padding:11px 0; border-bottom:1px solid var(--hair);
-  font-size:13.5px; line-height:1.5; color:var(--ink-2)}
+.rl2 div{display:grid; grid-template-columns:74px minmax(0,1fr); gap:16px; align-items:baseline;
+  padding:10px 0; border-bottom:1px solid var(--hair);
+  font-size:13px; line-height:1.55; color:var(--ink-2)}
+/* The entries are one line each at this measure and two at most. Without a cap
+   they run the full band on a wide screen, and the label column stops reading
+   as a column because the eye never comes back to it. */
+.rl2 span{max-width:82ch}
+@media(max-width:620px){
+  .rl2 div{grid-template-columns:1fr; gap:5px; padding:12px 0}
+}
 .rl2 em{font-style:normal; font-family:var(--font-jetbrains-mono),monospace; font-size:8.5px;
   letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
 .rl2 em.add{color:#8FD0AC}
@@ -69,33 +80,34 @@
 .cfound{margin:clamp(22px,2.4vw,30px) 0 0; max-width:74ch;
   font-size:13.5px; line-height:1.7; color:var(--ink-3)}
 
-/* what is next, and how sure it is */
-/* Two across rather than three: there are four of these now, and three columns
-   left the fourth stranded beside two empty ones. */
-.road{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:clamp(12px,1.5vw,18px); margin-top:clamp(24px,2.8vw,38px)}
-@media(max-width:940px){ .road{grid-template-columns:1fr} }
-.rdc{position:relative; display:flex; flex-direction:column; padding:4px;
-  border:1px solid var(--edge-2); border-radius:16px; background:rgba(255,255,255,.022)}
-.rdin{display:flex; flex-direction:column; flex:1; overflow:hidden;
-  border:1px solid var(--edge-2); border-radius:12px; background:rgba(255,255,255,.022)}
-.rdh{display:flex; align-items:center; justify-content:space-between; gap:12px;
-  padding:14px 18px; border-bottom:1px solid var(--hair);
-  font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.15em;
-  text-transform:uppercase; color:var(--ink-3)}
-.conf{display:inline-flex; gap:3px; align-items:center}
-.conf u{width:14px; height:3px; border-radius:2px; text-decoration:none;
-  background:rgba(255,255,255,.14)}
-.conf u.on{background:var(--fire)}
-.rdb{padding:18px; display:grid; gap:0; margin-top:auto;
-  background:rgba(255,255,255,.038); border-radius:12px 12px 0 0}
-.rdb h3{font-size:15px; font-weight:600; color:var(--ink); margin:0 0 8px}
-.rdb p{font-size:13px; line-height:1.6; color:var(--ink-2); margin:0 0 14px}
-.rdb ul{list-style:none; margin:0; padding:0; display:grid; gap:9px}
-.rdb li{position:relative; padding-left:16px; font-size:12.5px; line-height:1.5;
-  color:var(--ink-3)}
-.rdb li::before{content:""; position:absolute; left:0; top:7px; width:5px; height:5px;
-  border-radius:50%; background:rgba(255,255,255,.22)}
+/* What is coming, as a ledger read down rather than four boxes in a grid.
+
+   It was a two-across grid of nested cards — a 16px shell around a 12px inner
+   one, above the 12px ceiling and doubled — each carrying a three-bar meter
+   that read three of three on every item. A graphic that says the same thing
+   about everything it is drawn on is decoration, and next to a sentence it
+   invites a comparison of figures nobody measured. Both are gone.
+
+   What is left is the page's own device: a hairline between rows, the stage in
+   the left column, the item in the right. The order is the ranking, which is
+   the only ranking this record can defend. */
+.road{margin-top:clamp(24px,2.8vw,38px); border-top:1px solid var(--hair)}
+.rdr{display:grid; grid-template-columns:minmax(0,150px) minmax(0,1fr);
+  gap:clamp(18px,3vw,44px); align-items:baseline;
+  padding:clamp(20px,2.2vw,28px) 0; border-bottom:1px solid var(--hair)}
+/* The stage label sits on the same baseline as the title beside it, so the two
+   columns read as one line before they read as two. */
+.rds{font-family:var(--font-jetbrains-mono),monospace; font-size:9px;
+  letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3)}
+.rdr h3{font-family:var(--font-newsreader),serif; font-weight:400;
+  font-size:clamp(19px,1.7vw,23px); line-height:1.2; letter-spacing:-.022em;
+  color:var(--ink); margin:0 0 10px}
+.rdr p{font-size:13.5px; line-height:1.65; color:var(--ink-2); margin:0; max-width:62ch}
+/* Below 760 the stage stops being a column and becomes a line above the title,
+   because 150px of label against a narrow measure leaves the note in a gutter. */
+@media(max-width:760px){
+  .rdr{grid-template-columns:1fr; gap:12px}
+}
 
 .cnote{margin-top:clamp(28px,3.2vw,42px); padding-top:20px; border-top:1px solid var(--hair);
   font-family:var(--font-jetbrains-mono),monospace; font-size:9px; letter-spacing:.09em; line-height:1.8;

@@ -1,6 +1,6 @@
 /* The worked-product pages. Every product in lib/products.ts has one —
    cargo-claims, talent, payment-ops, recruitment-desk, marketing-desk, ai-tool,
-   ward-desk and hearth — so nothing in the menu or the index currently points at
+   ward-desk and home-desk — so nothing in the menu or the index currently points at
    a page that is not here. A booking desk was listed and pulled on 29 Aug 2026
    to be brought back later; its icon is still in the set.
 
@@ -806,13 +806,13 @@ export const productPages: Record<string, ProductPage> = {
     screens: {
       railRight: "In the order the work happens",
       headline: "Nine destinations over one record.",
-      lede: "Twenty-three registered routes: nine sidebar destinations, twelve off the nav and two for auth. There is no second candidate screen, and neither an interview nor an offer has a record route — an interview is a row and a dialog, and an offer is a field on the application it belongs to, read at /applications/:id and nowhere else.",
+      lede: "Twenty-three registered routes: nine sidebar destinations, twelve off the nav, two for auth. Neither an interview nor an offer has a record route — an interview is a row and a dialog, and an offer is a field on the application it belongs to.",
       next: { num: "02", href: "#states", label: "The status set →" },
       walk: [
         {
           n: "Screen 01",
           title: "What is waiting, and whose it is",
-          body: "The queue promises a number the sidebar badge also shows, so both call one act-ability predicate over one array. The tabs narrow the list and nothing else — there are no figures above them to move. The order is how far over its own stage’s allowance a row is, and the date it arrived only breaks ties.",
+          body: "The queue promises a number the sidebar badge also shows, so both call one act-ability predicate over one array. The order is how far over its own stage’s allowance a row is, and the date it arrived only breaks ties.",
           points: [
             "“Every application on the desk. 15 of them waiting on us right now.”",
             "Waiting on us 15 · Waiting on others 4 · Settled 5 · Everything 24",
@@ -827,7 +827,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 02",
           title: "The application, and what the next move waits on",
-          body: "One record for one person, reached from the desk, the queue, the interview ladder, the requisition board and the talent pool alike. The stepper is the spine: a completed step cites the sub-record that completed it, and a step with nothing to cite says what it is for instead of asserting a date nobody stored.",
+          body: "One record for one person, reached from the desk, the queue, the ladder and the board alike. The stepper is the spine: a completed step cites the sub-record that completed it, and a step with nothing to cite says what it is for.",
           points: [
             "“2 scorecards of 2 · 4.38 average · 2 recommending yes” — Priya Raghunathan",
             "Checks: “0 of 2 references back · right to work verified · DBS with the service”",
@@ -842,7 +842,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 03",
           title: "What runs out first",
-          body: "Two offers on the queue, ordered by expiry rather than by value: one still with the candidate and one already answered. Each row says where the salary sits in the band it came from, and names what the candidate asked for on the rows where the offer came in under it. It will not record a hire the candidate has not accepted.",
+          body: "Two offers, ordered by expiry rather than by value. Each row says where the salary sits in the band it came from, and names what the candidate asked for where the offer came in under it. It will not record a hire nobody has accepted.",
           points: [
             "£36,796 to Freya Lindsay — 85% up £31,049 – £37,796, 3 days left",
             "“Asked for £37,000” sits under the row where the offer came in under it",
@@ -857,7 +857,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 04",
           title: "The three things that must be true before anybody starts",
-          body: "One row per live application, three checks each, urgent first — a blocker at offer stops something, the same blocker at applied stops nothing yet. Urgency is the stage, never the number of blockers, and recession reads the same predicate the counts read, so the row with the live action on it is never greyed out.",
+          body: "One row per live application, three checks each, urgent first — a blocker at offer stops something, the same blocker at applied stops nothing yet. Urgency is the stage, never the count, and the row with the live action on it is never greyed out.",
           points: [
             "16 with something outstanding, 3 with nothing, 1 close enough to a start date to matter",
             "“renews 14 Sept · 17 days left” against Elias Nordahl, the one row at checks with a gap",
@@ -872,7 +872,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 05",
           title: "One seat, its pipeline and the advert that filled it",
-          body: "A requisition is seats, not a hire: three community nurse seats with nine live applications and none accepted yet. It also holds which professional register the seat requires. The advert tab counts what each channel actually produced from the applications array, and names the ones that arrived another way rather than quietly folding them in.",
+          body: "A requisition is seats, not a hire: three nurse seats, nine live applications, none accepted. It holds which register the seat requires, and the advert tab counts what each channel actually produced rather than quietly folding in the rest.",
           points: [
             "LH-1042 — 3 seats, 9 live, 59 days open, aging past 45, NMC registration required",
             "4,546 views, 7 applications, 0.2% — best channel Careers event at 1.0%",
@@ -889,7 +889,7 @@ export const productPages: Record<string, ProductPage> = {
     states: {
       railRight: "A closed set, and the states deliberately outside it",
       headline: "Nine values, and four clocks that are not among them.",
-      lede: "The value everybody looks for in this enum is “stalled”, and it is not there. Lateness is days in the current stage against that stage’s own allowance, computed at render from one predicate — as are unread, offer expiring, registration outstanding, aging requisition and thin pipeline. A record carries one stage and any number of derived flags.",
+      lede: "The value everybody looks for here is stalled, and it is not in the set. Lateness is days in the current stage against that stage’s own allowance, computed at render — as are unread, offer expiring and registration outstanding. A record carries one stage and any number of derived flags.",
       next: { num: "03", href: "#hostile", label: "The awkward cases →" },
       values: [
         { name: "applied", mark: "hot2" },
@@ -914,29 +914,29 @@ export const productPages: Record<string, ProductPage> = {
           label: "Case 01",
           title: "A panel decided by one scorecard",
           naively:
-            "The record is at panel, so a “Move to checks” button renders live — or renders disabled with nothing beside it, leaving the reviewer to work out which of five preconditions is in the way.",
-          here: "The primary action is offered, disabled, and states the count: “2 scorecards are needed before checks start — 1 in so far.” Ruth’s card is the one in, and her note says Esme’s will decide it — she saw the second half of the panel.",
+            "The record is at panel, so “Move to checks” renders live — or disabled with nothing beside it, leaving the reviewer to work out which of five preconditions is in the way.",
+          here: "The action is offered, disabled, and states the count: “2 scorecards are needed before checks start — 1 in so far.” The note beside it says whose card will decide it.",
         },
         {
           label: "Case 02",
           title: "A ward clerk with no NMC number",
           naively:
-            "The pre-employment gate looks like three symmetrical checks, so registration is read off the application and everybody owes one. An accepted ward-clerk offer sits on the compliance screen as a blocked hire, reading “no registration on file”.",
-          here: "Whether a register is owed is a property of the seat. Damian Oyelaran’s row reads “Not required · This seat asks for no register”, and it is not counted against the badge; Callum Beattie’s, on a seat that does ask, reads “No NMC number · This seat asks for one”.",
+            "The gate looks like three symmetrical checks, so registration is read off the application and everybody owes one. An accepted ward-clerk offer then sits on compliance as a blocked hire.",
+          here: "Whether a register is owed is a property of the seat. One row reads “Not required · This seat asks for no register” and is not counted against the badge; another, on a seat that does ask, reads “No NMC number”.",
         },
         {
           label: "Case 03",
           title: "An offer already answered, beside one still out",
           naively:
             "The accepted offer is counted as a hire, the seat shows nothing left, and the requisition claims a fill that no hire record supports.",
-          here: "Acceptance is a field on the offer, not a stage. Damian Oyelaran accepted £24,071 and is still at offer, with “Record acceptance” live as the primary action; Freya Lindsay’s is disabled: “Nothing to record until the candidate accepts — the offer is with them until 31 Aug.”",
+          here: "Acceptance is a field on the offer, not a stage. One candidate accepted £24,071 and is still at offer, with “Record acceptance” live; another’s is disabled — “nothing to record until the candidate accepts”.",
         },
       ],
     },
     audit: {
       railRight: "What the audit found",
       headline: "Two predicates where there should have been one.",
-      lede: "Recession was keyed on “clear to start” while urgency was keyed on “has a blocker”, and one record satisfied both: Elias Nordahl’s HCPC registration is in date today, renewing in seventeen days. The only row the badge counted, the only one with a live action on it, was styled as work nobody can act on. “Clear to start” is now the plain negation of the three outstanding flags, and the blocker list is built behind the same guard.",
+      lede: "Recession was keyed on “clear to start” while urgency was keyed on “has a blocker”, and one record satisfied both: a registration in date today, renewing in seventeen days. The only row the badge counted was styled as work nobody can act on. Clear to start is now the plain negation of the three outstanding flags.",
       next: { num: "05", href: "#top", label: "Back to the top →" },
       shot: "Screenshot 07",
       image: shotBadge,
@@ -1415,7 +1415,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 01",
           title: "What is waiting on somebody, before anything else",
-          body: "A figure row, the ward board, then the lists of work owed to a person: bed waits, held discharges, the theatre list and notes owed a reply. It refuses an occupancy percentage without the bed count that divides it, and refuses to sum unlike work into one attention number.",
+          body: "A figure row, the ward board, then the work owed to a person: bed waits, held discharges, the theatre list. No occupancy percentage without the bed count that divides it, and no summing unlike work into one number.",
           points: [
             "“Waiting for a bed 2 — 1 of them past four hours”, the oldest requested at 04:20",
             "One pip per bed against each ward’s own establishment: Beaumont 6, Linden 4, Corvid 4, Aster 3, Hollis 4",
@@ -1430,7 +1430,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 02",
           title: "The procedure record, and the transitions it will offer",
-          body: "The list this came from is a timed ladder rather than a table, because the question is what is next and what is late. The record carries the clock and the gate: what it is over by, and which transitions exist at all.",
+          body: "A timed ladder rather than a table, because the question is what is next and what is late. The record carries the clock and the gate: what it is over by, and which transitions exist at all.",
           points: [
             "“In theatre” — central line insertion, Theatre 3, started 08:20 and an hour over",
             "Consent recorded 06:20 on this one; one of the four in theatre today has none",
@@ -1445,7 +1445,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 03",
           title: "Courses grouped by where their dose clock has got to",
-          body: "The drug round is not a list of prescriptions; it is what is overdue, what is due this hour and what is later today, derived from each course’s own frequency against the clock. Recording a dose moves the next one by the interval that frequency states.",
+          body: "Not a list of prescriptions: what is overdue, due this hour, and later today, derived from each course’s frequency against the clock. Recording a dose moves the next one by that interval.",
           points: [
             "Overdue 1, due within the hour 1, later today 4 — one array, cut by the clock",
             "“Awaiting a pharmacist 3 — not on the round until they are verified”",
@@ -1460,7 +1460,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 04",
           title: "An invoice whose every line names the care it bills",
-          body: "One invoice per episode. Each line points at the intervention, the admission or the medication course behind it, and the contracted price is looked up at render — so a line billed off contract is a finding on three screens at once. The total is the sum of the lines, and nothing summable is stored.",
+          body: "One invoice per episode, each line pointing at the intervention, admission or course behind it. The contracted price is looked up at render, so a line billed off contract is a finding.",
           points: [
             "HG-2026-0342 — two lines, £4,060.00 invoiced, £0 cleared, balance £4,060.00",
             "Six surgical bed days at £480.00 and one debridement at £1,180.00, both at contract",
@@ -1475,7 +1475,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 05",
           title: "The chase list, and the invoice it will not chase",
-          body: "Balance, terms, last contact and the step the ladder says comes next. Overdue is not a stored status — it is a due date in the past with a balance outstanding — so an invoice arrives on this screen without anybody moving it. A disputed invoice is never chased.",
+          body: "Balance, terms, last contact, and the step the ladder says comes next. Overdue is not stored, so an invoice arrives on this screen without anybody moving it — and a disputed one is never chased.",
           points: [
             "£9,790 chaseable across 4 invoices, and the 1 disputed invoice is not among them",
             "HG-2026-0347 — £1,440.00 returned by the sending bank, and the patient written to",
@@ -1492,7 +1492,7 @@ export const productPages: Record<string, ProductPage> = {
     states: {
       railRight: "A closed set with defined transitions",
       headline: "Where an invoice has got to is stored. Whether it is late is not.",
-      lede: "The value nobody finds in this enum is “overdue”: it is a due date in the past with a balance outstanding, computed at render, so an invoice becomes overdue on its own and the credit-control worklist, the aged-debt buckets and the nav badge all read one predicate. “Expiring” is absent from the contract set for the same reason — an end date inside the next thirty days.",
+      lede: "The value nobody finds here is overdue: a due date in the past with a balance outstanding, computed at render, so an invoice becomes overdue on its own and the worklist, the aged-debt buckets and the nav badge read one predicate. Expiring is absent for the same reason.",
       next: { num: "03", href: "#hostile", label: "The awkward cases →" },
       values: [
         { name: "draft" },
@@ -1516,28 +1516,28 @@ export const productPages: Record<string, ProductPage> = {
           title: "A payment the bank sent back",
           naively:
             "The payment row exists for the full amount, so the balance renders £0.00 and the invoice moves to paid. The chase list drops it, and nobody looks at it again.",
-          here: "HG-2026-0347 carries a failed bank transfer of £1,440.00 against £1,440.00 of lines, and the balance still reads £1,440.00 — only cleared payments are paid money. The chase ladder records a letter to the address on the record sixteen hours later.",
+          here: "A failed bank transfer of £1,440.00 against £1,440.00 of lines, and the balance still reads £1,440.00 — only cleared payments are paid money. The chase ladder records a letter sixteen hours later.",
         },
         {
           label: "Case 02",
           title: "A procedure whose consent is not on the record",
           naively:
             "“Start in theatre” renders, disabled, with a tooltip — or worse, it renders enabled and the consent field is left for somebody to notice afterwards.",
-          here: "The transition does not exist. interventionTransitions builds the set from the record, so with consent absent there is no start action to press — and the record says why, in the sentence the note thread is already arguing about: she is second on the day-case list.",
+          here: "The transition does not exist: the set is built from the record, so with consent absent there is no start action to press — and the record says why, in the sentence the note thread is already arguing about.",
         },
         {
           label: "Case 03",
           title: "An invoice the payer has formally queried",
           naively:
             "It is past its due date with a balance, so it appears on the chase list between two ordinary reminders and gets a statement sent.",
-          here: "HG-2026-0309 is disputed — 11 bed days against a 9-day expected stay — and credit control excludes it by predicate, not by somebody remembering. It still counts in outstanding, because the money is still owed; it just is not chased.",
+          here: "One invoice is disputed — 11 bed days against a 9-day expected stay — and credit control excludes it by predicate, not by somebody remembering. It still counts in outstanding; it just is not chased.",
         },
       ],
     },
     audit: {
       railRight: "Healthcare · audited",
       headline: "The contract lookup had to become the join.",
-      lede: "The contracted price for an invoice line lived in two places — once on the tariff item, once implied by the line’s own unit price — with nothing checking that they agreed, so a line billed off contract was invisible unless somebody compared them by eye. The tariff item’s label is now the line’s label, the price is looked up at render, and a line that disagrees is a finding on the invoice record, on Contracts and in the palette at once. Issuing an invoice takes its due date from the payer’s contracted terms rather than a default.",
+      lede: "The contracted price for a line lived in two places — on the tariff item, and implied by the line’s own unit price — with nothing checking they agreed, so a line billed off contract was invisible unless somebody compared them by eye. The price is looked up at render now, and a line that disagrees is a finding on three screens at once.",
       next: { num: "05", href: "#top", label: "Back to the top →" },
       shot: "Screenshot 07",
       image: shotTariff,
@@ -1552,7 +1552,7 @@ export const productPages: Record<string, ProductPage> = {
     },
   },
 
-  /* Hearth. Read out of templates/home-desk/ at the fixture’s frozen clock,
+  /* The home desk. Read out of templates/home-desk/ at the fixture’s frozen clock,
      Tuesday 6 October 2026, so every figure below is quoted as the screen
      renders it.
 
@@ -1576,8 +1576,8 @@ export const productPages: Record<string, ProductPage> = {
      findings: no pagination at 34 devices, no video behind the camera plate,
      and a first-floor window open after dark scoring as ventilation rather than
      a breach. The last of those is the argument job step 01 makes. */
-  "hearth": {
-    slug: "hearth",
+  "home-desk": {
+    slug: "home-desk",
     railRight: "Residence · running one house",
     headline: "The house is a set of derivations, not a dashboard.",
     lede: "Ten destinations over a household of five, where the temperature the house is holding, whether it counts as shut, and whether a filter is due are all worked out at render. Looking at it should settle whether a domestic product can be built on rules instead of switches.",
@@ -1605,13 +1605,13 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "01",
           title: "Read",
-          body: "The house states one verdict before it states anything else. An entry is scored insecure against the alarm and the clock: a window open at four is ventilation, and the same window armed away is why the alarm exists.",
+          body: "The house states one verdict before anything else. An entry is scored insecure against the alarm and the clock: a window open at four is ventilation, the same window armed away is why the alarm exists.",
           note: "the dark hour is a setting, not a constant",
         },
         {
           n: "02",
           title: "Control",
-          body: "Rooms and cameras are the control surface: a switch means it applied, a shutter means recording stopped. A move applies at once and offers the way back — only removing a device or calling the response company asks first.",
+          body: "Rooms and cameras are the control surface: a switch means it applied. A move applies at once and offers the way back — only removing a device or calling the response company asks first.",
           note: "a child sees the reason, not a grey button",
         },
         {
@@ -1631,7 +1631,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 01",
           title: "The house in one card, before anything is a list",
-          body: "Today owes an answer for one question — can the house be left alone — and answers it in a sentence, with a dotted badge carrying the attention level. Nothing is summed without its parts being named underneath, and every count says which array it filtered.",
+          body: "Today owes one answer — can the house be left alone — and gives it in a sentence, with a dotted badge for the attention level. Nothing is summed without its parts named underneath.",
           points: [
             "“2 ways in are not secure” — the back door closed but unlocked, Milo’s window sensor offline",
             "Holding 20.5° downstairs — the warmest preference among the three people home and awake",
@@ -1646,7 +1646,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 02",
           title: "Every room and its controls at once",
-          body: "The room card is the remote control: a switch per device, the zone’s reported temperature, who is in there, and what is insecure. It refuses to be a directory — there is no room record to open, because a room has nothing a card cannot carry.",
+          body: "The room card is the remote control: a switch per device, the zone’s temperature, who is in there, what is insecure. There is no room record to open, because a room has nothing a card cannot carry.",
           points: [
             "“9 of 10 rooms have something on, drawing 1.46 kW between them”",
             "“Everything off downstairs” acts on the lit lights it can name, and on nothing else",
@@ -1661,7 +1661,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 03",
           title: "The live view first, and the shutters as a household decision",
-          body: "One focused camera at 16:9 with its controls, the others as tiles you pick, the clips, and the shutters. Watching is three facts at once — online, set to record, shutter open — so a closed shutter reads as a decision somebody made.",
+          body: "One camera focused with its controls, the others as tiles. Watching is three facts at once — online, set to record, shutter open — so a closed shutter reads as a decision somebody made.",
           points: [
             "“1 of 4 cameras watching” — porch updating, gate never set up, back garden shuttered on purpose",
             "6 clips today of 7 kept, the newest 19:48, deleted after 14 days",
@@ -1676,7 +1676,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 04",
           title: "The screen you open when the kit is wrong",
-          body: "Not a register. The hub’s verdict and a connection test, what the hub can hear but has not taken in, what wants a person, then the whole list last. It refuses to fail a device that cannot be asked anything: updating and never-set-up devices are left out and named.",
+          body: "Not a register: the hub’s verdict, what it can hear but has not taken in, what wants a person, then the list. A device that cannot answer is left out of the run and named, rather than failed.",
           points: [
             "“Milo’s window sensor is not answering” — last heard Mon 13:10, the only failure of 33",
             "“Hearth hub, utility · channel 11 · firmware 5.2.0 · 5.2.2 available”, 33ms to answer on average",
@@ -1691,7 +1691,7 @@ export const productPages: Record<string, ProductPage> = {
         {
           n: "Screen 05",
           title: "What the house buys, and when it is cheap",
-          body: "Electricity, the tariff it is bought on, the battery and the water, over a period the reader picks. Bills sit under this screen because a bill is what a reading turns into. What the battery ought to be doing is worked out from the tariff and its charge rather than stored.",
+          body: "Electricity, its tariff, the battery and the water, over a period the reader picks. A bill is what a reading turns into, and what the battery ought to do is worked out from the tariff and its charge.",
           points: [
             "649.0 kWh over 14 days — 46.5 a day across the 13 complete ones, with today still running",
             "£131 at 8.4p off-peak and 24.8p otherwise, plus 62p a day standing charge",
@@ -1708,7 +1708,7 @@ export const productPages: Record<string, ProductPage> = {
     states: {
       railRight: "A closed set with defined transitions",
       headline: "Whether the house can rely on a device is stored. Everything else is worked out.",
-      lede: "The value nobody finds in this enum is the one every device list seems to need: there is no low battery and no needs attention. Both are derived at render — the level against the household’s own threshold, and “wanting a person” from one predicate over offline, never set up and flat, which the nav badge, the tab count and the row all read.",
+      lede: "The value every device list seems to need is not here: no low battery, no needs attention. Both are derived at render — the level against the household’s own threshold, and wanting a person from one predicate the nav badge, the tab count and the row all read.",
       next: { num: "03", href: "#hostile", label: "The awkward cases →" },
       values: [
         { name: "setup_pending", mark: "hot2" },
@@ -1730,28 +1730,28 @@ export const productPages: Record<string, ProductPage> = {
           title: "A filter that is late by hours, not by months",
           naively:
             "The job carries a date somebody typed at install. It renders as due in three weeks, because nothing on the screen has ever asked the machine how long it ran.",
-          here: "3,980 hours run of 3,600 — 380 past the change interval, read off the ventilation unit’s own counter. The job is overdue with nothing written on it, and marking it done resets the machine’s hours, which is what actually clears it.",
+          here: "3,980 hours run of 3,600, read off the unit’s own counter. The job is overdue with nothing written on it, and marking it done resets those hours, which is what clears it.",
         },
         {
           label: "Case 02",
           title: "A camera that cannot be asked anything",
           naively:
             "The connection test asks all 33 devices, records no answer for the three that cannot reply, and the headline reads “3 devices are not answering” while the figure beside it says 2 want a person.",
-          here: "Only an offline device can fail. The porch camera is updating and the gate camera has never been set up, so both are left out of the run and named in the toast — the verdict stays at “Milo’s window sensor is not answering”, and reconciles with the figure under it.",
+          here: "Only an offline device can fail. One camera is updating and another was never set up, so both are left out of the run and named — the verdict stays at one sensor not answering, and reconciles with the figure under it.",
         },
         {
           label: "Case 03",
           title: "A routine naming a device that left the house",
           naively:
             "“Garage light on entry” still shows as on, having last run nine days ago, and nothing on the screen explains why it stopped doing anything.",
-          here: "Broken is derived from whether the devices a routine names are still in the house. Switching the garage strip light out broke it with nothing written on the routine, and the count moved by itself. Broken is stated at full weight, never recessed — a broken routine means the house is quietly not doing something.",
+          here: "Broken is derived from whether the devices a routine names are still in the house, so swapping a light broke one with nothing written on it. It is stated at full weight, never recessed — a broken routine means the house is quietly not doing something.",
         },
       ],
     },
     audit: {
       railRight: "Residence · audited",
       headline: "Two screens disagreed about the same two cameras.",
-      lede: "The connection test treated any device that was not online as a failure, so running it moved the headline to “3 devices are not answering” while the figure beneath it still read 2 — and the cameras screen described those same two devices as updating and never set up. resultFor now fails only an offline device and leaves the rest out of the run. The pass also found the failure sentence attributing one device’s timestamp to all three, and pairing that wrote a device but no camera record, so anything paired as a camera was invisible to every camera count in the product.",
+      lede: "The connection test failed anything not online, so running it read “3 devices are not answering” while the figure beneath it said 2, and the cameras screen called those same two updating and never set up. It now fails only a device that could have answered. Two more: one device’s timestamp was being read as all three, and pairing wrote a device but no camera record.",
       next: { num: "05", href: "#top", label: "Back to the top →" },
       shot: "Screenshot 05",
       image: shotKit,
