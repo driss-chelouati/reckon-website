@@ -5,9 +5,9 @@ import type { IconKey } from "@/components/icons";
    the drawer it replaced kept its own, and had drifted to five layer links
    against ten and four products against ten.
 
-   Several of these routes do not exist yet — six of the ten product pages. That
-   is deliberate; the menu shape is the design and the pages are coming. Do not
-   scaffold placeholders for them. */
+   Every route listed here exists today, which has not been true before. When
+   the next product joins the menu ahead of its page — a booking desk is coming
+   back — leave the link and do not scaffold a placeholder for it. */
 
 export type MegaLink = { href: string; label: string; icon: IconKey };
 export type FeatureLink = { href: string; title: string; note: string; icon: IconKey };
@@ -46,9 +46,9 @@ export const PAGE_HEADER_SELECTOR =
   "[data-page-header], .hero, .prhero, .chero, .phero, .xhero, .fhero, .hhero, .dhero," +
   " .ohero, .rhero, .whero, .khero, .hthero, .nfhero";
 
-/* The routes that exist. Six more are in the menu on purpose and are coming;
-   until they do they stay plain anchors, so the router does not prefetch a 404
-   for every one of them the moment the menu renders. */
+/* The routes that exist — currently every one the menu lists. A route named in
+   the menu and missing here stays a plain anchor, so the router does not
+   prefetch a 404 for it the moment the menu renders. */
 export const liveRoutes = new Set([
   "/",
   "/how-it-works",
@@ -63,6 +63,8 @@ export const liveRoutes = new Set([
   "/products/marketing-desk",
   "/products/ai-tool",
   "/products/recruitment-desk",
+  "/products/ward-desk",
+  "/products/hearth",
   "/download",
   "/rules",
   "/who-its-for",

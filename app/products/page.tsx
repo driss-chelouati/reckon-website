@@ -6,7 +6,7 @@ import "./showcase.css";
 
 export const metadata = pageMeta(
   "Showcase — whole products, not screens",
-  "Ten worked products, each generated from a plain-language brief and audited number by number, each with its own routes, status values and deliberately unkind data.",
+  "Worked products, each generated from a plain-language brief and audited number by number, each with its own routes, status values and deliberately unkind data.",
 );
 
 export default function Products() {

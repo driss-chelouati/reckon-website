@@ -1,12 +1,13 @@
-/* The worked-product pages. Four are written — cargo-claims, talent,
-   payment-ops and recruitment-desk. The six other products in lib/products.ts
-   are listed in the menu and the index but do not have a page yet, and nothing
-   here is scaffolded for them.
+/* The worked-product pages. Every product in lib/products.ts has one —
+   cargo-claims, talent, payment-ops, recruitment-desk, marketing-desk, ai-tool,
+   ward-desk and hearth — so nothing in the menu or the index currently points at
+   a page that is not here. A booking desk was listed and pulled on 29 Aug 2026
+   to be brought back later; its icon is still in the set.
 
    Every string on the page is a field. Adding the next product means adding a
    record, not a JSX file. Every screenshot slot takes an optional `image`, and a
-   slot without one draws the dashed placeholder instead — which is every slot on
-   recruitment-desk until its shots are cut.
+   slot without one draws the dashed placeholder instead — every slot on every
+   product carries a real shot today, so the placeholder is for the next one in.
 
    cargo-claims is no longer placeholder: every figure, route, status value and
    fixture named below is read out of the claims-desk template itself. Nothing
@@ -64,6 +65,18 @@ import shotUsage from "@/public/img/products/ai-tool/04-ai-tool.png";
 import shotSeats from "@/public/img/products/ai-tool/05-ai-tool.png";
 import shotBilling from "@/public/img/products/ai-tool/06-ai-tool.png";
 import shotShared from "@/public/img/products/ai-tool/07-ai-tool.png";
+import shotToday from "@/public/img/products/hospital-desk/01-hospital-desk.png";
+import shotBoard from "@/public/img/products/hospital-desk/02-hospital-desk.png";
+import shotTheatre from "@/public/img/products/hospital-desk/03-hospital-desk.png";
+import shotRound from "@/public/img/products/hospital-desk/04-hospital-desk.png";
+import shotInvoice from "@/public/img/products/hospital-desk/05-hospital-desk.png";
+import shotChase from "@/public/img/products/hospital-desk/06-hospital-desk.png";
+import shotTariff from "@/public/img/products/hospital-desk/07-hospital-desk.png";
+import shotHouse from "@/public/img/products/home-desk/01-home-desk.png";
+import shotRooms from "@/public/img/products/home-desk/03-home-desk.png";
+import shotCameras from "@/public/img/products/home-desk/04-home-desk.png";
+import shotKit from "@/public/img/products/home-desk/05-home-desk.png";
+import shotEnergy from "@/public/img/products/home-desk/06-home-desk.png";
 
 /** the numbered link that closes each section and points at the next one */
 export type NextLink = { num: string; href: string; label: string };
@@ -81,8 +94,8 @@ export type ProductPage = {
       not a route, so it is a plain href and stays out of lib/nav.ts — and the
       one link on the site Next will not rewrite for you, so a basePath would
       have to be applied to this field by hand. Omit it and the button does not
-      render — a product can have a page before it has a template, and the nine
-      still to come will.
+      render — a product can have a page before it has a template, though every
+      written one has its export now.
 
       These files are written once and frozen. They are heavy (claims-desk is
       2.1MB) but they are fetched only when a reader asks for one, so they are
@@ -1321,6 +1334,435 @@ export const productPages: Record<string, ProductPage> = {
     closing: {
       headline: ["The meter is portable.", "The domain is not."],
       lede: "Threads, files and seats are this template’s nouns, but the rule underneath travels: if a screen shows a total, the array that makes it is on the same page.",
+    },
+  },
+  /* Ward desk. Read out of templates/hospital-desk/ at the fixture’s frozen
+     clock — Tuesday 17 March 2026, 09:20 — so every figure below is quoted as
+     the screen renders it: money is pence in the fixture and sterling here,
+     because that is what a reader would see.
+
+     Every figure was re-read against the seven shots when they landed, and
+     where the intake and the screen disagreed the screen won. That corrected
+     four things. The ward board carries five wards, not four — Hollis was
+     missing from the intake. The invoice in frame is HG-2026-0342 at £4,060.00,
+     not the HG-2026-0318 the intake quoted, which is a row on the
+     credit-control shot instead. The intervention in frame is the one in
+     theatre, with consent recorded at 06:20, so the consent gate is argued from
+     the Today tile that counts it rather than claimed over a shot that does not
+     show it. And Contracts states 21 contracted prices of 60 possible pairs
+     with 2 lines off contract worth £710, where the intake said 15 items and
+     named no total.
+
+     01 and 02 are the same frame — Today, once for the hero and once for the
+     walk — which is how the export delivered them.
+
+     Four things the audit listed as not re-verified — the six report rates and
+     their drill-through targets, the cost model on /margin, the role matrix,
+     and the import review’s effect on its job counts — are deliberately absent
+     from this page. Nothing here rests on them. */
+  "ward-desk": {
+    slug: "ward-desk",
+    railRight: "Healthcare · running one hospital",
+    headline: "Clinical records are the invoice’s only source.",
+    lede: "Twenty destinations across care, pharmacy, finance, business, people and the workspace, joined by one rule: an invoice line names the procedure, the bed days or the medication course it bills. Looking at it should settle whether operations and revenue can sit in one product without either lying about the other.",
+    meta: [
+      { label: "Operator", value: "Ward manager or clinician", note: "the role decides what exists" },
+      { label: "The clock", value: "09:20, mid-handover", note: "bed waits and dose clocks run live" },
+      { label: "Status", value: "Ten fields, 49 values", note: "overdue and expiring in none of them" },
+      { label: "Money", value: "Pence, nothing summed stored", note: "totals are the sum of their lines" },
+    ],
+    hero: {
+      shot: "Screenshot 01",
+      image: shotToday,
+      of: "Today · full screen",
+      captionLead: "The hospital at handover",
+      caption: " · two waiting for a bed, one of them past four hours, and one of the four in theatre today without consent recorded",
+      size: "the screen the shift starts on",
+    },
+    preview: { href: "/templates/hospital-desk.html", label: "Preview interactive design" },
+    job: {
+      railRight: "Healthcare · before any of it is a screen",
+      headline: "The bed is the constraint, and the invoice is the consequence.",
+      lede: "The operator is a ward manager at handover and a finance officer three weeks later, looking at the same records. The constraint is that a bed cannot be created — every admission waiting is somebody in a corridor — and everything billed afterwards has to reconcile to what the ward actually did.",
+      next: { num: "01", href: "#screens", label: "The screens →" },
+      steps: [
+        {
+          n: "01",
+          title: "Admit",
+          body: "Two patients are waiting on a bed, and each clock started when ED requested it rather than when somebody typed a status. A bed is not a route: it is a pip on its ward’s card.",
+          note: "the bed count is a setting, and it divides",
+        },
+        {
+          n: "02",
+          title: "Treat",
+          body: "The theatre list is a timed ladder rather than a table, because the question is what happens next and what is late. A procedure will not start without consent on the record.",
+          note: "consent gates the transition, not the button",
+        },
+        {
+          n: "03",
+          title: "Recover",
+          body: "Coding turns an episode into lines, each naming the care it bills. Only cleared money moves a balance, terms come from the payer’s own contract, and a disputed invoice is never chased.",
+          note: "pending money is not paid money",
+        },
+      ],
+    },
+    screens: {
+      railRight: "Healthcare · five of the twenty",
+      headline: "One record, read by the ward and then by finance.",
+      lede: "Forty registered routes: twenty destinations over six rail categories, six records, the profile, seven under settings and six for auth. There is deliberately no /admissions/:id and no bed record — an admission is one row on the ward board, and a bed is only ever reached through its ward.",
+      next: { num: "02", href: "#states", label: "The status set →" },
+      walk: [
+        {
+          n: "Screen 01",
+          title: "What is waiting on somebody, before anything else",
+          body: "A figure row, the ward board, then the lists of work owed to a person: bed waits, held discharges, the theatre list and notes owed a reply. It refuses an occupancy percentage without the bed count that divides it, and refuses to sum unlike work into one attention number.",
+          points: [
+            "“Waiting for a bed 2 — 1 of them past four hours”, the oldest requested at 04:20",
+            "One pip per bed against each ward’s own establishment: Beaumont 6, Linden 4, Corvid 4, Aster 3, Hollis 4",
+            "“Fit for discharge, still here (2)” — Ivy Trethewey, 30 hours over, day 6 of an expected 5",
+          ],
+          shot: "Screenshot 02",
+          image: shotBoard,
+          of: "Today · board and the lists",
+          route: "/",
+          kind: "board · read-first",
+        },
+        {
+          n: "Screen 02",
+          title: "The procedure record, and the transitions it will offer",
+          body: "The list this came from is a timed ladder rather than a table, because the question is what is next and what is late. The record carries the clock and the gate: what it is over by, and which transitions exist at all.",
+          points: [
+            "“In theatre” — central line insertion, Theatre 3, started 08:20 and an hour over",
+            "Consent recorded 06:20 on this one; one of the four in theatre today has none",
+            "“Record as abandoned” is danger and cancelled is neutral — one started and could not be finished",
+          ],
+          shot: "Screenshot 03",
+          image: shotTheatre,
+          of: "Intervention · in theatre",
+          route: "/interventions/:id",
+          kind: "record · gated",
+        },
+        {
+          n: "Screen 03",
+          title: "Courses grouped by where their dose clock has got to",
+          body: "The drug round is not a list of prescriptions; it is what is overdue, what is due this hour and what is later today, derived from each course’s own frequency against the clock. Recording a dose moves the next one by the interval that frequency states.",
+          points: [
+            "Overdue 1, due within the hour 1, later today 4 — one array, cut by the clock",
+            "“Awaiting a pharmacist 3 — not on the round until they are verified”",
+            "Eluned Pryce’s 07:20 paracetamol, two hours over, last given 01:20",
+          ],
+          shot: "Screenshot 04",
+          image: shotRound,
+          of: "Drug round · by dose clock",
+          route: "/rounds",
+          kind: "queue · time-ordered",
+        },
+        {
+          n: "Screen 04",
+          title: "An invoice whose every line names the care it bills",
+          body: "One invoice per episode. Each line points at the intervention, the admission or the medication course behind it, and the contracted price is looked up at render — so a line billed off contract is a finding on three screens at once. The total is the sum of the lines, and nothing summable is stored.",
+          points: [
+            "HG-2026-0342 — two lines, £4,060.00 invoiced, £0 cleared, balance £4,060.00",
+            "Six surgical bed days at £480.00 and one debridement at £1,180.00, both at contract",
+            "Due 15 Apr, 29 days left — the commissioner’s own 30-day terms, not a default",
+          ],
+          shot: "Screenshot 05",
+          image: shotInvoice,
+          of: "Invoice · lines and payments",
+          route: "/invoices/:id",
+          kind: "record · reconciliation",
+        },
+        {
+          n: "Screen 05",
+          title: "The chase list, and the invoice it will not chase",
+          body: "Balance, terms, last contact and the step the ladder says comes next. Overdue is not a stored status — it is a due date in the past with a balance outstanding — so an invoice arrives on this screen without anybody moving it. A disputed invoice is never chased.",
+          points: [
+            "£9,790 chaseable across 4 invoices, and the 1 disputed invoice is not among them",
+            "HG-2026-0347 — £1,440.00 returned by the sending bank, and the patient written to",
+            "£600.00 promised by the private insurer moves nothing until it clears",
+          ],
+          shot: "Screenshot 06",
+          image: shotChase,
+          of: "Credit control · the worklist",
+          route: "/credit-control",
+          kind: "worklist · derived",
+        },
+      ],
+    },
+    states: {
+      railRight: "A closed set with defined transitions",
+      headline: "Where an invoice has got to is stored. Whether it is late is not.",
+      lede: "The value nobody finds in this enum is “overdue”: it is a due date in the past with a balance outstanding, computed at render, so an invoice becomes overdue on its own and the credit-control worklist, the aged-debt buckets and the nav badge all read one predicate. “Expiring” is absent from the contract set for the same reason — an end date inside the next thirty days.",
+      next: { num: "03", href: "#hostile", label: "The awkward cases →" },
+      values: [
+        { name: "draft" },
+        { name: "awaiting_coding", mark: "hot2" },
+        { name: "issued" },
+        { name: "part_paid" },
+        { name: "paid", mark: "term" },
+        { name: "disputed" },
+        { name: "written_off", mark: "term" },
+      ],
+      foot: "Seven values, two terminal, and written_off is deliberately neutral rather than a failure: writing a balance off is a decision somebody took under a threshold Settings owns, not money that went missing. Disputed sits outside the payment path because it is the payer’s answer, not a stage of collection. Ten fields carry 49 values in all — patient, admission, intervention, medication, stock, staff, invoice, payment, transfer and contract.",
+    },
+    hostile: {
+      railRight: "Healthcare · three fixtures that break a screen",
+      headline: "The fixture set was written to make screens fail.",
+      lede: "All three are records in the fixture rather than hypotheticals, and each one is why a figure on some other screen is derived rather than stored.",
+      next: { num: "04", href: "#audit", label: "The audit →" },
+      cases: [
+        {
+          label: "Case 01",
+          title: "A payment the bank sent back",
+          naively:
+            "The payment row exists for the full amount, so the balance renders £0.00 and the invoice moves to paid. The chase list drops it, and nobody looks at it again.",
+          here: "HG-2026-0347 carries a failed bank transfer of £1,440.00 against £1,440.00 of lines, and the balance still reads £1,440.00 — only cleared payments are paid money. The chase ladder records a letter to the address on the record sixteen hours later.",
+        },
+        {
+          label: "Case 02",
+          title: "A procedure whose consent is not on the record",
+          naively:
+            "“Start in theatre” renders, disabled, with a tooltip — or worse, it renders enabled and the consent field is left for somebody to notice afterwards.",
+          here: "The transition does not exist. interventionTransitions builds the set from the record, so with consent absent there is no start action to press — and the record says why, in the sentence the note thread is already arguing about: she is second on the day-case list.",
+        },
+        {
+          label: "Case 03",
+          title: "An invoice the payer has formally queried",
+          naively:
+            "It is past its due date with a balance, so it appears on the chase list between two ordinary reminders and gets a statement sent.",
+          here: "HG-2026-0309 is disputed — 11 bed days against a 9-day expected stay — and credit control excludes it by predicate, not by somebody remembering. It still counts in outstanding, because the money is still owed; it just is not chased.",
+        },
+      ],
+    },
+    audit: {
+      railRight: "Healthcare · audited",
+      headline: "The contract lookup had to become the join.",
+      lede: "The contracted price for an invoice line lived in two places — once on the tariff item, once implied by the line’s own unit price — with nothing checking that they agreed, so a line billed off contract was invisible unless somebody compared them by eye. The tariff item’s label is now the line’s label, the price is looked up at render, and a line that disagrees is a finding on the invoice record, on Contracts and in the palette at once. Issuing an invoice takes its due date from the payer’s contracted terms rather than a default.",
+      next: { num: "05", href: "#top", label: "Back to the top →" },
+      shot: "Screenshot 07",
+      image: shotTariff,
+      of: "Contracts · lines billed off contract",
+      captionLead: "One price, looked up",
+      caption: " · 21 contracted prices over 4 payer contracts, of 60 possible pairs — and the 2 lines that disagree, worth £710, named",
+      size: "traced",
+    },
+    closing: {
+      headline: ["One record, both jobs.", "Most products split it."],
+      lede: "The ward writes the facts and finance bills them months later. If a figure cannot be walked back to the bed day that produced it, it is not a figure — it is a guess with a currency symbol.",
+    },
+  },
+
+  /* Hearth. Read out of templates/home-desk/ at the fixture’s frozen clock,
+     Tuesday 6 October 2026, so every figure below is quoted as the screen
+     renders it.
+
+     The clock is 20:10, not the 19:10 the intake gave: the drive camera’s live
+     overlay reads 6 Oct 2026, 20:10, and Energy has the off-peak window opening
+     in 4h 20m against a window that opens at 00:30. Two more corrections came
+     out of the shots. Today does sum seven things wanting a person and then
+     names the parts — 2 devices, 2 requests, 3 jobs — so the page argues that
+     rather than claiming nothing is ever summed. And 1.46 kW is the whole
+     house: Rooms states it as 9 of 10 rooms with something on, Devices as 25 of
+     33 on now.
+
+     Screen 05 is Energy rather than Bills. No Bills shot was cut, and the
+     Energy frame carries the argument better anyway — Bills is the register it
+     opens, and the button for it is in the shot. The devices frame is used
+     twice, once for the screen and once for the audit, because the shot that
+     shows the hub and the test is the shot that shows the test having run. Two
+     People frames (02 and 07) are the same screen and no slot uses them.
+
+     The three things the audit left alone on purpose are not claimed here as
+     findings: no pagination at 34 devices, no video behind the camera plate,
+     and a first-floor window open after dark scoring as ventilation rather than
+     a breach. The last of those is the argument job step 01 makes. */
+  "hearth": {
+    slug: "hearth",
+    railRight: "Residence · running one house",
+    headline: "The house is a set of derivations, not a dashboard.",
+    lede: "Ten destinations over a household of five, where the temperature the house is holding, whether it counts as shut, and whether a filter is due are all worked out at render. Looking at it should settle whether a domestic product can be built on rules instead of switches.",
+    meta: [
+      { label: "Operator", value: "Whoever is home", note: "five people, one signed in" },
+      { label: "The clock", value: "20:10, dark since 18:20", note: "an unlocked door reads differently" },
+      { label: "Status", value: "Eleven fields, 47 values", note: "overdue and insecure in none of them" },
+      { label: "Data", value: "34 devices, one link each", note: "signal, latency, firmware, last asked" },
+    ],
+    hero: {
+      shot: "Screenshot 01",
+      image: shotHouse,
+      of: "Today · full screen",
+      captionLead: "The house in one card",
+      caption: " · 2 ways in are not secure, and the house is holding 20.5° because Sofia is home and awake",
+      size: "the screen the day starts on",
+    },
+    preview: { href: "/templates/home-desk.html", label: "Preview interactive design" },
+    job: {
+      railRight: "Residence · before any of it is a screen",
+      headline: "Nobody is on duty, so the house has to be.",
+      lede: "The operator is a parent with a coat on. The constraint is that no state in a house is stable for more than an hour — people arrive, go to bed, open windows — so any figure the product stores goes stale between one glance and the next.",
+      next: { num: "01", href: "#screens", label: "The screens →" },
+      steps: [
+        {
+          n: "01",
+          title: "Read",
+          body: "The house states one verdict before it states anything else. An entry is scored insecure against the alarm and the clock: a window open at four is ventilation, and the same window armed away is why the alarm exists.",
+          note: "the dark hour is a setting, not a constant",
+        },
+        {
+          n: "02",
+          title: "Control",
+          body: "Rooms and cameras are the control surface: a switch means it applied, a shutter means recording stopped. A move applies at once and offers the way back — only removing a device or calling the response company asks first.",
+          note: "a child sees the reason, not a grey button",
+        },
+        {
+          n: "03",
+          title: "Keep",
+          body: "The kit and the building rot on their own schedules. A consumable’s due date is the hours its machine has actually run, and a device becomes a problem the moment its radio reading changes.",
+          note: "the machine’s hours are the due date",
+        },
+      ],
+    },
+    screens: {
+      railRight: "Residence · five of the ten",
+      headline: "Each screen owes an answer the last one raised.",
+      lede: "Thirty registered routes: ten sidebar destinations over two groups, four registers reached from their parent, four records, the profile, seven under settings and six for auth. There is deliberately no /rooms/:id and no /cameras/:id — Rooms holds every room at once, and a camera has no fact a card cannot carry.",
+      next: { num: "02", href: "#states", label: "The status set →" },
+      walk: [
+        {
+          n: "Screen 01",
+          title: "The house in one card, before anything is a list",
+          body: "Today owes an answer for one question — can the house be left alone — and answers it in a sentence, with a dotted badge carrying the attention level. Nothing is summed without its parts being named underneath, and every count says which array it filtered.",
+          points: [
+            "“2 ways in are not secure” — the back door closed but unlocked, Milo’s window sensor offline",
+            "Holding 20.5° downstairs — the warmest preference among the three people home and awake",
+            "“Wants a person 7 — 2 devices, 2 requests, 3 jobs past their date”",
+          ],
+          shot: "Screenshot 01",
+          image: shotHouse,
+          of: "Today · verdict and the household",
+          route: "/",
+          kind: "verdict · read-first",
+        },
+        {
+          n: "Screen 02",
+          title: "Every room and its controls at once",
+          body: "The room card is the remote control: a switch per device, the zone’s reported temperature, who is in there, and what is insecure. It refuses to be a directory — there is no room record to open, because a room has nothing a card cannot carry.",
+          points: [
+            "“9 of 10 rooms have something on, drawing 1.46 kW between them”",
+            "“Everything off downstairs” acts on the lit lights it can name, and on nothing else",
+            "“Porch camera · Updating — nothing to do”, recessed rather than greyed out",
+          ],
+          shot: "Screenshot 03",
+          image: shotRooms,
+          of: "Rooms · live controls",
+          route: "/rooms",
+          kind: "canvas · control",
+        },
+        {
+          n: "Screen 03",
+          title: "The live view first, and the shutters as a household decision",
+          body: "One focused camera at 16:9 with its controls, the others as tiles you pick, the clips, and the shutters. Watching is three facts at once — online, set to record, shutter open — so a closed shutter reads as a decision somebody made.",
+          points: [
+            "“1 of 4 cameras watching” — porch updating, gate never set up, back garden shuttered on purpose",
+            "6 clips today of 7 kept, the newest 19:48, deleted after 14 days",
+            "Record, talk, floodlight, shutter — the controls are real, and the plate names what the camera is pointed at",
+          ],
+          shot: "Screenshot 04",
+          image: shotCameras,
+          of: "Cameras · live view and clips",
+          route: "/cameras",
+          kind: "live view · role-gated",
+        },
+        {
+          n: "Screen 04",
+          title: "The screen you open when the kit is wrong",
+          body: "Not a register. The hub’s verdict and a connection test, what the hub can hear but has not taken in, what wants a person, then the whole list last. It refuses to fail a device that cannot be asked anything: updating and never-set-up devices are left out and named.",
+          points: [
+            "“Milo’s window sensor is not answering” — last heard Mon 13:10, the only failure of 33",
+            "“Hearth hub, utility · channel 11 · firmware 5.2.0 · 5.2.2 available”, 33ms to answer on average",
+            "5 under −70 dBm, 11 on battery with 1 of them flat, 6 behind on firmware",
+          ],
+          shot: "Screenshot 05",
+          image: shotKit,
+          of: "Devices · the hub and the test",
+          route: "/devices",
+          kind: "verdict · diagnostic",
+        },
+        {
+          n: "Screen 05",
+          title: "What the house buys, and when it is cheap",
+          body: "Electricity, the tariff it is bought on, the battery and the water, over a period the reader picks. Bills sit under this screen because a bill is what a reading turns into. What the battery ought to be doing is worked out from the tariff and its charge rather than stored.",
+          points: [
+            "649.0 kWh over 14 days — 46.5 a day across the 13 complete ones, with today still running",
+            "£131 at 8.4p off-peak and 24.8p otherwise, plus 62p a day standing charge",
+            "The battery at 34%, holding until the off-peak window opens in 4h 20m",
+          ],
+          shot: "Screenshot 06",
+          image: shotEnergy,
+          of: "Energy · the tariff and the battery",
+          route: "/energy",
+          kind: "figures · derived",
+        },
+      ],
+    },
+    states: {
+      railRight: "A closed set with defined transitions",
+      headline: "Whether the house can rely on a device is stored. Everything else is worked out.",
+      lede: "The value nobody finds in this enum is the one every device list seems to need: there is no low battery and no needs attention. Both are derived at render — the level against the household’s own threshold, and “wanting a person” from one predicate over offline, never set up and flat, which the nav badge, the tab count and the row all read.",
+      next: { num: "03", href: "#hostile", label: "The awkward cases →" },
+      values: [
+        { name: "setup_pending", mark: "hot2" },
+        { name: "online" },
+        { name: "offline" },
+        { name: "updating" },
+        { name: "retired", mark: "term" },
+      ],
+      foot: "Five values, one terminal, and updating is deliberately neutral rather than a warning: nothing is wrong, nothing can be asked of it, and the row recesses instead of going grey and disabled. Eleven fields carry 47 values in all — device, zone, alarm, entry, job, bill, access, member, routine, request and the connection test’s own result. Overdue, insecure, broken, expiring and above forecast appear in none of them.",
+    },
+    hostile: {
+      railRight: "Residence · three fixtures that break a screen",
+      headline: "The fixture set was written to make screens fail.",
+      lede: "None of these is hypothetical. Each one is a record in the fixture, and each one is why a figure two screens away is worked out at render rather than written down.",
+      next: { num: "04", href: "#audit", label: "The audit →" },
+      cases: [
+        {
+          label: "Case 01",
+          title: "A filter that is late by hours, not by months",
+          naively:
+            "The job carries a date somebody typed at install. It renders as due in three weeks, because nothing on the screen has ever asked the machine how long it ran.",
+          here: "3,980 hours run of 3,600 — 380 past the change interval, read off the ventilation unit’s own counter. The job is overdue with nothing written on it, and marking it done resets the machine’s hours, which is what actually clears it.",
+        },
+        {
+          label: "Case 02",
+          title: "A camera that cannot be asked anything",
+          naively:
+            "The connection test asks all 33 devices, records no answer for the three that cannot reply, and the headline reads “3 devices are not answering” while the figure beside it says 2 want a person.",
+          here: "Only an offline device can fail. The porch camera is updating and the gate camera has never been set up, so both are left out of the run and named in the toast — the verdict stays at “Milo’s window sensor is not answering”, and reconciles with the figure under it.",
+        },
+        {
+          label: "Case 03",
+          title: "A routine naming a device that left the house",
+          naively:
+            "“Garage light on entry” still shows as on, having last run nine days ago, and nothing on the screen explains why it stopped doing anything.",
+          here: "Broken is derived from whether the devices a routine names are still in the house. Switching the garage strip light out broke it with nothing written on the routine, and the count moved by itself. Broken is stated at full weight, never recessed — a broken routine means the house is quietly not doing something.",
+        },
+      ],
+    },
+    audit: {
+      railRight: "Residence · audited",
+      headline: "Two screens disagreed about the same two cameras.",
+      lede: "The connection test treated any device that was not online as a failure, so running it moved the headline to “3 devices are not answering” while the figure beneath it still read 2 — and the cameras screen described those same two devices as updating and never set up. resultFor now fails only an offline device and leaves the rest out of the run. The pass also found the failure sentence attributing one device’s timestamp to all three, and pairing that wrote a device but no camera record, so anything paired as a camera was invisible to every camera count in the product.",
+      next: { num: "05", href: "#top", label: "Back to the top →" },
+      shot: "Screenshot 05",
+      image: shotKit,
+      of: "Devices · after the test",
+      captionLead: "One failure, and it reconciles",
+      caption: " · 33 on the network asked, 2 left out of the run and named, and the figure beneath still reads 2",
+      size: "checkable",
+    },
+    closing: {
+      headline: ["The rules travel.", "A house is hardest."],
+      lede: "No shift handover, no audit trail anybody is paid to keep, and an operator with a coat on. If the derivations hold here they hold in a warehouse.",
     },
   },
 };

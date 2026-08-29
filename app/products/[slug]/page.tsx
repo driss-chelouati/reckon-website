@@ -10,9 +10,9 @@ import { bySlug } from "@/lib/products";
 import type { NextLink } from "@/lib/product-pages";
 import "./product.css";
 
-/* One worked product, drawn from its record in lib/product-pages.ts. Four are
-   written; the other six are in the menu and the index on purpose and will
-   arrive as records here, not as new files. */
+/* One worked product, drawn from its record in lib/product-pages.ts. Every
+   product listed there has one today. The next arrives as a record here, not as
+   a new file. */
 
 export function generateStaticParams() {
   return Object.keys(productPages).map((slug) => ({ slug }));
@@ -41,7 +41,8 @@ const Next = ({ next }: { next: NextLink }) => (
 
 /* One screenshot frame. Where a real shot exists it sits inside the inset with
    its own proportions; where there is none the dashed placeholder names what is
-   going to go there. recruitment-desk is still all placeholder. */
+   going to go there. Nothing is placeholder today; the next product in will be
+   until its shots arrive. */
 function Shot({
   image,
   shot,

@@ -6,8 +6,10 @@ import financeDesk from "@/public/img/products/finance-desk/01-finance-desk.png"
 import recruitmentDesk from "@/public/img/products/recruitment-desk/01-recruitment-desk.png";
 import marketingDesk from "@/public/img/products/marketing-desk/01-marketing-desk.png";
 import aiTool from "@/public/img/products/ai-tool/01-ai-tool.png";
+import wardDesk from "@/public/img/products/hospital-desk/01-hospital-desk.png";
+import hearth from "@/public/img/products/home-desk/01-home-desk.png";
 
-/* The ten worked products. This list is the megamenu's Showcase column and the
+/* The nine worked products. This list is the megamenu's Showcase column and the
    /products index cards — the same records in two shapes, which is why it lives
    here rather than in either component. Copy is placeholder and will be
    rewritten; nothing here should be inlined into JSX. */
@@ -132,46 +134,36 @@ export const products: Product[] = [
     menuNote: "Twelve destinations, three groups",
   },
   {
-    slug: "booking-desk",
-    name: "Booking desk",
-    icon: "booking",
-    domain: "Public sector",
-    state: "progress",
-    cat: "ops progress",
-    shotIndex: "Screenshot 08",
-    blurb:
-      "Applications, scoring and panel decisions held against a closing deadline.",
-    screens: "—",
-    covers: "Rounds, application, panel",
-    breaksOn: "A round that closed mid-review",
-  },
-  {
-    slug: "hospital-desk",
-    name: "Hospital desk",
+    slug: "ward-desk",
+    name: "Ward desk",
     icon: "clinical",
-    domain: "Operations",
+    domain: "Healthcare",
     state: "audited",
     cat: "people",
     shotIndex: "Screenshot 09",
+    image: wardDesk,
     blurb:
-      "Roles, permissions and an audit trail — the archetype every internal tool eventually grows into.",
-    screens: "6",
-    covers: "Users, roles, audit trail",
-    breaksOn: "The last admin, demoting themselves",
+      "A hospital bills for care it has already given, months after the clinical record was written by somebody else. Every figure finance quotes has to be traceable back to a bed day, a procedure or a drug course that actually happened.",
+    screens: "40",
+    covers: "Ward, theatre, pharmacy, invoice, recovery",
+    breaksOn: "A bed day billed that nobody occupied",
+    menuNote: "The widest single template",
   },
   {
-    slug: "device",
-    name: "Device and home",
+    slug: "hearth",
+    name: "Hearth",
     icon: "device",
-    domain: "Devices",
-    state: "progress",
-    cat: "ops progress",
+    domain: "Residence",
+    state: "audited",
+    cat: "ops",
     shotIndex: "Screenshot 10",
+    image: hearth,
     blurb:
-      "Rooms, schedules and hardware that goes offline without telling anybody.",
-    screens: "—",
-    covers: "Rooms, devices, schedules",
-    breaksOn: "A device that stopped reporting",
+      "A house has no staff and no shift handover, so whoever is standing in the hall is the operator. Everything the product knows has to be answerable from one screen before anybody has taken their coat off.",
+    screens: "30",
+    covers: "Control, cameras, climate, security, upkeep",
+    breaksOn: "A door nobody knows is unlocked",
+    menuNote: "The operator lives here",
   },
 ];
 
@@ -188,9 +180,8 @@ export const menuOrder = [
   "marketing-desk",
   "ai-tool",
   "recruitment-desk",
-  "booking-desk",
-  "hospital-desk",
-  "device",
+  "ward-desk",
+  "hearth",
 ];
 
 export const bySlug = new Map(products.map((p) => [p.slug, p]));
