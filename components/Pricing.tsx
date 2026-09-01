@@ -32,7 +32,7 @@ export default function Pricing({
           <div className="tiers" ref={tiers}>
           <div className="tier card tier--wide">
             <span className="tdots" aria-hidden="true"></span><span className="tmesh" aria-hidden="true"></span><span className="tglow" aria-hidden="true"></span>
-            <div className="thead"><div className="tn">Reckon</div><span className="tbadge">MIT <b>· use it anywhere</b></span></div>
+            <div className="thead"><div className="tn">Reckon</div><span className="tbadge">AGPL-3.0 <b>· free to use</b></span></div>
             <div className="tp">Free</div>
             <div className="tt">All of it · no account · no telemetry</div>
             <p className="tpitch">The rules, the components and every worked product. Clone it, point the tokens at your brand, and use it on client work without asking me.</p>
@@ -75,7 +75,7 @@ export default function Pricing({
           </div>
           <div className="tpricefoot">
             <span>Everything in the box — <b>rules, components, tokens and every worked product</b></span>
-            <span>MIT · no account · no runtime</span>
+            <span>AGPL-3.0 · no account · no runtime</span>
           </div>
         </div>
       </div>

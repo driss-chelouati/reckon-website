@@ -50,14 +50,13 @@ export const routes: Route[] = [
       "`readme.md` — the design guide itself",
       "`AGENTS.md` and `SKILL.md`",
       "54 `.prompt.md` pairs, one per family",
-      "Eight `AGENTS-notes-<slug>.md` data models",
+      "`LICENSE`, `NOTICE` and the changelog",
     ],
     cta: {
-      // placeholder: no artefact is published at this path yet
-      href: "reckon-rules.zip",
+      href: "/downloads/reckon-rules-1.0.zip",
       label: "Download the markdown",
       download: true,
-      meta: "~180 KB · no assets",
+      meta: "~78 KB · no assets",
     },
   },
   {
@@ -69,15 +68,14 @@ export const routes: Route[] = [
     items: [
       "Commit history, issues and whatever lands next",
       "Fork it, or pull an update instead of re-downloading",
-      "MIT, with upstream credited in `NOTICE`",
+      "AGPL-3.0-or-later, with upstream credited in `NOTICE`",
       "Same contents as the archive, nothing held back",
     ],
     cta: {
-      // placeholder: the repository has no public URL on the page yet
-      href: "#",
+      href: "https://github.com/driss-chelouati/reckon",
       label: "View the repository",
       rel: "noopener",
-      meta: "git clone · public · MIT",
+      meta: "git clone · public · AGPL-3.0",
     },
   },
   {
@@ -89,16 +87,15 @@ export const routes: Route[] = [
     items: [
       "Tokens, component CSS and all 54 families",
       "The three generated files, committed on purpose",
-      "Eight templates and both UI kits",
+      "Eight templates, and the eight `AGENTS-notes` data models inside them",
       "Fonts and marks included, nothing to fetch",
     ],
     cta: {
-      // placeholder: no artefact is published at this path yet
-      href: "reckon-design-system.zip",
+      href: "/downloads/reckon-1.0.zip",
       label: "Download the .zip",
       primary: true,
       download: true,
-      meta: "v1.0 · August 2026 · ~4 MB",
+      meta: "v1.0 · September 2026 · ~4.6 MB",
     },
     inset: true,
   },
@@ -118,8 +115,8 @@ export const provenance: Provenance[] = [
   {
     title: "Licence",
     paras: [
-      "The recreation work — tokens, component CSS, specimen cards, templates and the design guide — is MIT. Upstream-derived files keep their own terms, which are recorded rather than relicensed.",
-      "Use it on client work. No attribution required in your product, though the `NOTICE` file should travel with the source.",
+      "The recreation work — tokens, component CSS, specimen cards, templates and the design guide — is **AGPL-3.0-or-later**, matching the upstream default it derives from. The token layer comes from a source with no MIT-licensed equivalent, so anything narrower would be a claim the provenance does not support.",
+      "Designing an interface with it is use, not derivation, and a product built with Reckon is not automatically AGPL. Copying the token files, the component implementations or the rules into your own distributed project is derivation, and §13 means network use counts. `LICENSE` and `NOTICE` travel with the source.",
     ],
   },
 ];
@@ -146,6 +143,6 @@ export const limits: Limit[] = [
   },
   {
     label: "Known gap",
-    body: "**Meridian’s approval limits are editable but not yet enforced** — payouts do not check them. Worth knowing before a stakeholder finds it in a demo.",
+    body: "**Finance Desk’s approval limits are editable but not yet enforced** — payouts do not check them. Worth knowing before a stakeholder finds it in a demo.",
   },
 ];

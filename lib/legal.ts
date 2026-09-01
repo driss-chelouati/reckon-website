@@ -83,7 +83,7 @@ export const legalSections: Section[] = [
       { p: "Two different things are published here and they carry different terms." },
       {
         ul: [
-          "**The design system and its documentation** — released under the MIT licence, as stated on the download page. Use it commercially, modify it, ship it in client work. The licence text travels with the package.",
+          "**The design system and its documentation** — released under **AGPL-3.0-or-later**, as stated on the download page and in the package’s own `LICENSE`. Designing an interface with it is use rather than derivation, so a product you build is not itself AGPL; copying the token files, the component implementations or the rules into a distributed project is derivation, and §13 means network use counts.",
           "**This website — its writing, layout and illustrations** — is not covered by that licence and remains the property of the operator. Quoting it with attribution is welcome; republishing it is not.",
         ],
       },

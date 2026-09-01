@@ -24,7 +24,7 @@ export default function DownloadPage() {
       <div className="band hband" id="top">
         <div className="ohero rin">
           <DownloadField />
-          <div className="srail"><span className="l">The design system</span><span className="r">Free · MIT · no build step</span></div>
+          <div className="srail"><span className="l">The design system</span><span className="r">Free · AGPL-3.0 · no build step</span></div>
           <h1>A design system<br />with nothing to install.</h1>
           <p className="lede">Plain CSS, plain JSX transpiled in the page, plain HTML. No bundler, no package install, no build. Drop the folder into a project and the tokens, components, specimen cards and eight working prototypes are already there.</p>
 
