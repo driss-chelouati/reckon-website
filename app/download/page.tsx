@@ -68,6 +68,7 @@ export default function DownloadPage() {
                     href={r.cta.href}
                     data-t={r.cta.primary ? r.cta.label : undefined}
                     download={r.cta.download || undefined}
+                    target={r.cta.target}
                     rel={r.cta.rel}
                   >
                     {r.cta.label}

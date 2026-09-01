@@ -32,6 +32,8 @@ export type Route = {
     /** the primary button tears its label on hover; the neutral two do not */
     primary?: boolean;
     download?: boolean;
+    /* set where the link leaves the site; OnRouteChange skips the veil for it */
+    target?: string;
     rel?: string;
     /** the line under the button */
     meta: string;
@@ -74,6 +76,7 @@ export const routes: Route[] = [
     cta: {
       href: "https://github.com/driss-chelouati/reckon",
       label: "View the repository",
+      target: "_blank",
       rel: "noopener",
       meta: "git clone · public · AGPL-3.0",
     },

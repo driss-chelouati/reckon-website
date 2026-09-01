@@ -64,6 +64,18 @@ export default function OnRouteChange() {
       // same page: an anchor jump or a no-op, and smooth scrolling should keep working
       if (url.pathname === window.location.pathname) return;
 
+      /* Neither of these takes the document anywhere, so neither should raise
+         the veil — and because the pathname never moves, nothing would clear it
+         but the 1200ms fallback. That is the black screen between pressing a
+         download and the file arriving, and the same second of black over every
+         Preview button on a product page.
+
+         A download link hands the URL to the browser and leaves the page
+         standing; a link with a target opens somewhere else entirely. */
+      if (link?.hasAttribute("download")) return;
+      const target = link?.getAttribute("target");
+      if (target && target !== "_self") return;
+
       routing();
     };
 
